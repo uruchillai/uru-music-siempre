@@ -147,11 +147,20 @@ audio{width:90%}
 @media(max-width:1000px){
   .app{
     grid-template-columns:1fr;
+    grid-template-rows:auto 1fr auto;
   }
-  .sidebar,.soul{
+
+  .sidebar{
     display:none;
   }
+
+  .soul{
+    display:block;
+    border-left:none;
+    border-top:1px solid #111;
+  }
 }
+
 </style>
 </head>
 
