@@ -6,65 +6,117 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
+:root {
+  --bg: #0f0f0f;
+  --panel: #181818;
+  --card: #202020;
+  --text: #eaeaea;
+  --muted: #9a9a9a;
+  --accent: #1db954; /* Spotify vibe */
+}
+
+* { box-sizing: border-box; }
+
 body {
   margin: 0;
-  background: #0e0e0e;
-  color: #eaeaea;
-  font-family: system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
 }
+
+/* HEADER */
 header {
-  padding: 20px;
-  text-align: center;
+  padding: 16px 20px;
   border-bottom: 1px solid #222;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
+header h1 {
+  font-size: 1.1rem;
+  margin: 0;
+}
+header span {
+  color: var(--accent);
+}
+
+/* MAIN */
 main {
-  max-width: 760px;
+  max-width: 1100px;
   margin: auto;
   padding: 20px;
 }
-.panel {
-  background: #161616;
-  padding: 20px;
-  border-radius: 14px;
+
+.now {
+  background: var(--panel);
+  padding: 14px 18px;
+  border-radius: 12px;
   margin-bottom: 20px;
-  text-align: center;
+  font-size: 0.9rem;
+  color: var(--muted);
 }
-#now {
-  font-size: 1.05rem;
-}
+
+/* SEARCH */
 .search {
   width: 100%;
-  padding: 12px;
+  padding: 12px 14px;
   border-radius: 10px;
   border: none;
-  background: #1f1f1f;
-  color: #fff;
-  margin-bottom: 20px;
+  background: var(--card);
+  color: var(--text);
+  margin-bottom: 24px;
 }
-.track {
-  background: #161616;
-  padding: 14px;
-  border-radius: 12px;
-  margin-bottom: 14px;
-}
-.track-title {
-  margin-bottom: 8px;
+
+/* SECTIONS */
+.section-title {
+  margin: 30px 0 14px;
   font-size: 0.9rem;
-  color: #ccc;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
-audio, video {
+
+/* AUDIO LIST (Spotify style) */
+.audio-track {
+  background: var(--card);
+  padding: 12px 14px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+.audio-title {
+  font-size: 0.85rem;
+  margin-bottom: 6px;
+}
+audio {
   width: 100%;
 }
-hr {
-  border: none;
-  border-top: 1px solid #222;
-  margin: 30px 0;
+
+/* VIDEO GRID (YouTube style) */
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
 }
+.video-card {
+  background: var(--card);
+  padding: 12px;
+  border-radius: 14px;
+}
+.video-title {
+  font-size: 0.85rem;
+  margin-bottom: 8px;
+}
+video {
+  width: 100%;
+  border-radius: 10px;
+}
+
+/* FOOTER */
 footer {
   text-align: center;
   color: #777;
   font-size: 0.75rem;
-  padding: 20px;
+  padding: 30px 10px;
 }
 </style>
 </head>
@@ -72,98 +124,116 @@ footer {
 <body>
 
 <header>
-  <h1>🎧 Uru Music</h1>
-  <p>Archivo · Exploración · Reproducción</p>
+  <h1>🎧 <span>Uru</span> Music</h1>
 </header>
 
 <main>
 
-<div class="panel">
-  <h2 id="now">Selecciona una pista</h2>
+<div class="now" id="now">
+  Selecciona una pista
 </div>
 
-<input class="search" type="text" placeholder="Buscar audio o video..."
-oninput="filterTracks(this.value)">
+<input class="search" type="text" placeholder="Buscar música o video..."
+oninput="filterAll(this.value)">
 
 <!-- 🎵 AUDIOS -->
+<div class="section-title">Música</div>
 
-<div class="track" data-name="aceso">
-  <div class="track-title">Aceso</div>
+<div class="audio-track" data-name="aceso">
+  <div class="audio-title">Aceso</div>
   <audio controls src="musica/aceso.mp3"></audio>
 </div>
 
-<div class="track" data-name="dd">
-  <div class="track-title">DD</div>
+<div class="audio-track" data-name="dd">
+  <div class="audio-title">DD</div>
   <audio controls src="musica/dd.mp3"></audio>
 </div>
 
-<div class="track" data-name="del">
-  <div class="track-title">Del</div>
+<div class="audio-track" data-name="del">
+  <div class="audio-title">Del</div>
   <audio controls src="musica/del.mp3"></audio>
 </div>
 
-<div class="track" data-name="expancivo">
-  <div class="track-title">Expancivo</div>
+<div class="audio-track" data-name="expancivo">
+  <div class="audio-title">Expancivo</div>
   <audio controls src="musica/expancivo.mp3"></audio>
 </div>
 
-<div class="track" data-name="gds">
-  <div class="track-title">GDS</div>
+<div class="audio-track" data-name="gds">
+  <div class="audio-title">GDS</div>
   <audio controls src="musica/gds.mp3"></audio>
 </div>
 
-<div class="track" data-name="porr">
-  <div class="track-title">Porr</div>
+<div class="audio-track" data-name="inbi">
+  <div class="audio-title">Inbi</div>
+  <audio controls src="musica/inbi.mp3"></audio>
+</div>
+
+<div class="audio-track" data-name="ind">
+  <div class="audio-title">Ind</div>
+  <audio controls src="musica/ind.mp3"></audio>
+</div>
+
+<div class="audio-track" data-name="inter">
+  <div class="audio-title">Inter</div>
+  <audio controls src="musica/inter.mp3"></audio>
+</div>
+
+<div class="audio-track" data-name="mapa">
+  <div class="audio-title">Mapa</div>
+  <audio controls src="musica/mapa.mp3"></audio>
+</div>
+
+<div class="audio-track" data-name="navegar">
+  <div class="audio-title">Navegar</div>
+  <audio controls src="musica/navegar.mp3"></audio>
+</div>
+
+<div class="audio-track" data-name="porr">
+  <div class="audio-title">Porr</div>
   <audio controls src="musica/porr.mp3"></audio>
 </div>
 
-<div class="track" data-name="premi">
-  <div class="track-title">Premi</div>
+<div class="audio-track" data-name="premi">
+  <div class="audio-title">Premi</div>
   <audio controls src="musica/premi.mp3"></audio>
 </div>
 
-<div class="track" data-name="rune">
-  <div class="track-title">Rune</div>
+<div class="audio-track" data-name="rune">
+  <div class="audio-title">Rune</div>
   <audio controls src="musica/rune.mp3"></audio>
 </div>
 
-<div class="track" data-name="wera">
-  <div class="track-title">Wera</div>
+<div class="audio-track" data-name="wera">
+  <div class="audio-title">Wera</div>
   <audio controls src="musica/wera.mp3"></audio>
 </div>
 
-<div class="track" data-name="verdad">
-  <div class="track-title">Siempre he creído que la verdad se esconde</div>
-  <audio controls src="musica/siempre_he_creido_verdad.mp3"></audio>
-</div>
-
-<hr>
-
 <!-- 🎥 VIDEOS -->
+<div class="section-title">Videos</div>
 
-<div class="track" data-name="navegar">
-  <div class="track-title">🎥 Navegar</div>
-  <video controls src="videos/navegar.mp4"></video>
-</div>
+<div class="video-grid">
 
-<div class="track" data-name="manchas">
-  <div class="track-title">🎥 Son solo manchas</div>
-  <video controls src="videos/son_solo_manchas.mp4"></video>
-</div>
+  <div class="video-card" data-name="son_solo_manchas">
+    <div class="video-title">Son solo manchas</div>
+    <video controls src="videos/son_solo_manchas.mp4"></video>
+  </div>
 
-<div class="track" data-name="ami">
-  <div class="track-title">🎥 Ami</div>
-  <video controls src="videos/ami.mp4"></video>
-</div>
+  <div class="video-card" data-name="ami">
+    <div class="video-title">Ami</div>
+    <video controls src="videos/ami.mp4"></video>
+  </div>
 
-<div class="track" data-name="caminar">
-  <div class="track-title">🎥 Caminar</div>
-  <video controls src="videos/caminar.mp4"></video>
-</div>
+  <div class="video-card" data-name="caminar">
+    <div class="video-title">Caminar</div>
+    <video controls src="videos/caminar.mp4"></video>
+  </div>
 
-<div class="track" data-name="hacia-mi">
-  <div class="track-title">🎥 Hacia mí</div>
-  <video controls src="videos/hacia_mi.mp4"></video>
+  <div class="video-card" data-name="hacia_mi">
+    <div class="video-title">Hacia mí</div>
+    <video controls src="videos/hacia_mi.mp4"></video>
+  </div>
+
 </div>
 
 </main>
@@ -179,17 +249,17 @@ const media = document.querySelectorAll("audio, video");
 media.forEach(el => {
   el.addEventListener("play", () => {
     media.forEach(m => { if (m !== el) m.pause(); });
-    const title = el.closest(".track")
-      .querySelector(".track-title").textContent;
+    const title = el.closest("[data-name]")
+      .querySelector("div").textContent;
     now.textContent = "Reproduciendo: " + title;
   });
 });
 
-function filterTracks(value) {
+function filterAll(value) {
   value = value.toLowerCase();
-  document.querySelectorAll(".track").forEach(track => {
-    track.style.display =
-      track.dataset.name.includes(value) ? "block" : "none";
+  document.querySelectorAll("[data-name]").forEach(el => {
+    el.style.display =
+      el.dataset.name.includes(value) ? "" : "none";
   });
 }
 </script>
