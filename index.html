@@ -1,148 +1,181 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <title>Uru Music</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta charset="UTF-8">
+<title>Uru Music</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <style>
-    :root {
-      --bg: #0e0e0e;
-      --card: #161616;
-      --text: #eaeaea;
-      --muted: #9a9a9a;
-      --accent: #4caf50;
-    }
-
-    * {
-      box-sizing: border-box;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-    }
-
-    body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--text);
-    }
-
-    header {
-      padding: 20px;
-      text-align: center;
-      border-bottom: 1px solid #222;
-    }
-
-    header h1 {
-      margin: 0;
-      font-size: 1.6rem;
-      letter-spacing: 1px;
-    }
-
-    header p {
-      margin: 6px 0 0;
-      color: var(--muted);
-      font-size: 0.9rem;
-    }
-
-    main {
-      max-width: 700px;
-      margin: auto;
-      padding: 20px;
-    }
-
-    .track {
-      background: var(--card);
-      border-radius: 10px;
-      padding: 14px;
-      margin-bottom: 14px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .track-title {
-      font-size: 0.95rem;
-      color: var(--text);
-    }
-
-    audio {
-      width: 100%;
-    }
-
-    footer {
-      text-align: center;
-      padding: 20px;
-      font-size: 0.75rem;
-      color: var(--muted);
-    }
-  </style>
+<style>
+body {
+  margin: 0;
+  background: #0e0e0e;
+  color: #eaeaea;
+  font-family: system-ui, sans-serif;
+}
+header {
+  padding: 20px;
+  text-align: center;
+  border-bottom: 1px solid #222;
+}
+main {
+  max-width: 720px;
+  margin: auto;
+  padding: 20px;
+}
+.panel {
+  background: #161616;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.track {
+  background: #161616;
+  padding: 14px;
+  border-radius: 10px;
+  margin-bottom: 14px;
+}
+.track-title {
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+  color: #ccc;
+}
+audio, video {
+  width: 100%;
+}
+footer {
+  text-align: center;
+  color: #888;
+  font-size: 0.75rem;
+  padding: 20px;
+}
+</style>
 </head>
 
 <body>
 
 <header>
   <h1>🎧 Uru Music</h1>
-  <p>Escucha • Relájate • Explora</p>
+  <p>Reproduciendo • Exploración</p>
 </header>
 
 <main>
 
-  <div class="track">
-    <div class="track-title">Aceso</div>
-    <audio controls src="musica/aceso.mp3"></audio>
-  </div>
+<div class="panel">
+  <h2 id="now">Selecciona una pista</h2>
+</div>
 
-  <div class="track">
-    <div class="track-title">DD</div>
-    <audio controls src="musica/dd.mp3"></audio>
-  </div>
+<!-- 🎵 AUDIOS -->
 
-  <div class="track">
-    <div class="track-title">Del</div>
-    <audio controls src="musica/del.mp3"></audio>
-  </div>
+<div class="track">
+  <div class="track-title">Aceso</div>
+  <audio controls src="musica/aceso.mp3"
+    onplay="now.textContent='Reproduciendo: Aceso'"></audio>
+</div>
 
-  <div class="track">
-    <div class="track-title">Expancivo</div>
-    <audio controls src="musica/expancivo.mp3"></audio>
-  </div>
+<div class="track">
+  <div class="track-title">DD</div>
+  <audio controls src="musica/dd.mp3"
+    onplay="now.textContent='Reproduciendo: DD'"></audio>
+</div>
 
-  <div class="track">
-    <div class="track-title">GDS</div>
-    <audio controls src="musica/gds.mp3"></audio>
-  </div>
+<div class="track">
+  <div class="track-title">Del</div>
+  <audio controls src="musica/del.mp3"
+    onplay="now.textContent='Reproduciendo: Del'"></audio>
+</div>
 
-  <div class="track">
-    <div class="track-title">Porr</div>
-    <audio controls src="musica/porr.mp3"></audio>
-  </div>
+<div class="track">
+  <div class="track-title">Expancivo</div>
+  <audio controls src="musica/expancivo.mp3"
+    onplay="now.textContent='Reproduciendo: Expancivo'"></audio>
+</div>
 
-  <div class="track">
-    <div class="track-title">Premi</div>
-    <audio controls src="musica/premi.mp3"></audio>
-  </div>
+<div class="track">
+  <div class="track-title">GDS</div>
+  <audio controls src="musica/gds.mp3"
+    onplay="now.textContent='Reproduciendo: GDS'"></audio>
+</div>
 
-  <div class="track">
-    <div class="track-title">Rune</div>
-    <audio controls src="musica/rune.mp3"></audio>
-  </div>
+<div class="track">
+  <div class="track-title">Porr</div>
+  <audio controls src="musica/porr.mp3"
+    onplay="now.textContent='Reproduciendo: Porr'"></audio>
+</div>
 
-  <div class="track">
-    <div class="track-title">Wera</div>
-    <audio controls src="musica/wera.mp3"></audio>
-  </div>
+<div class="track">
+  <div class="track-title">Premi</div>
+  <audio controls src="musica/premi.mp3"
+    onplay="now.textContent='Reproduciendo: Premi'"></audio>
+</div>
+
+<div class="track">
+  <div class="track-title">Rune</div>
+  <audio controls src="musica/rune.mp3"
+    onplay="now.textContent='Reproduciendo: Rune'"></audio>
+</div>
+
+<div class="track">
+  <div class="track-title">Wera</div>
+  <audio controls src="musica/wera.mp3"
+    onplay="now.textContent='Reproduciendo: Wera'"></audio>
+</div>
+
+<div class="track">
+  <div class="track-title">Siempre he creído que la verdad se esconde</div>
+  <audio controls src="musica/Siempre he creido que la verdad se escon.mp3"
+    onplay="now.textContent='Reproduciendo: La verdad se esconde'"></audio>
+</div>
+
+<hr style="border-color:#222">
+
+<!-- 🎥 VIDEOS -->
+
+<div class="track">
+  <div class="track-title">🎥 Navegar</div>
+  <video controls
+    onplay="now.textContent='Reproduciendo video: Navegar'">
+    <source src="videos/navegar.mp4" type="video/mp4">
+  </video>
+</div>
+
+<div class="track">
+  <div class="track-title">🎥 Son solo manchas</div>
+  <video controls
+    onplay="now.textContent='Reproduciendo video: Son solo manchas'">
+    <source src="videos/Son solo manchas.mp4" type="video/mp4">
+  </video>
+</div>
+
+<div class="track">
+  <div class="track-title">🎥 Ami</div>
+  <video controls
+    onplay="now.textContent='Reproduciendo video: Ami'">
+    <source src="videos/ami.mp4" type="video/mp4">
+  </video>
+</div>
+
+<div class="track">
+  <div class="track-title">🎥 Caminar</div>
+  <video controls
+    onplay="now.textContent='Reproduciendo video: Caminar'">
+    <source src="videos/caminar.mp4" type="video/mp4">
+  </video>
+</div>
+
+<div class="track">
+  <div class="track-title">🎥 Hacia mí</div>
+  <video controls
+    onplay="now.textContent='Reproduciendo video: Hacia mí'">
+    <source src="videos/hacia mi.mp4" type="video/mp4">
+  </video>
+</div>
 
 </main>
 
 <footer>
   © 2025 · Uru Music
 </footer>
-
-</body>
-</html>
-
-
-audio.onended = next;
-</script>
 
 </body>
 </html>
