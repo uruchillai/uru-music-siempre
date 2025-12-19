@@ -18,21 +18,33 @@ header {
   border-bottom: 1px solid #222;
 }
 main {
-  max-width: 720px;
+  max-width: 760px;
   margin: auto;
   padding: 20px;
 }
 .panel {
   background: #161616;
   padding: 20px;
-  border-radius: 12px;
+  border-radius: 14px;
   margin-bottom: 20px;
   text-align: center;
+}
+#now {
+  font-size: 1.1rem;
+}
+.search {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  background: #1f1f1f;
+  color: #fff;
+  margin-bottom: 20px;
 }
 .track {
   background: #161616;
   padding: 14px;
-  border-radius: 10px;
+  border-radius: 12px;
   margin-bottom: 14px;
 }
 .track-title {
@@ -45,9 +57,14 @@ audio, video {
 }
 footer {
   text-align: center;
-  color: #888;
+  color: #777;
   font-size: 0.75rem;
   padding: 20px;
+}
+hr {
+  border: none;
+  border-top: 1px solid #222;
+  margin: 30px 0;
 }
 </style>
 </head>
@@ -56,7 +73,7 @@ footer {
 
 <header>
   <h1>🎧 Uru Music</h1>
-  <p>Reproduciendo • Exploración</p>
+  <p>Reproducción · Exploración · Archivo</p>
 </header>
 
 <main>
@@ -65,117 +82,117 @@ footer {
   <h2 id="now">Selecciona una pista</h2>
 </div>
 
+<input class="search" type="text" placeholder="Buscar audio o video..."
+oninput="filterTracks(this.value)">
+
 <!-- 🎵 AUDIOS -->
 
-<div class="track">
+<div class="track" data-name="aceso">
   <div class="track-title">Aceso</div>
-  <audio controls src="musica/aceso.mp3"
-    onplay="now.textContent='Reproduciendo: Aceso'"></audio>
+  <audio controls src="musica/aceso.mp3"></audio>
 </div>
 
-<div class="track">
+<div class="track" data-name="dd">
   <div class="track-title">DD</div>
-  <audio controls src="musica/dd.mp3"
-    onplay="now.textContent='Reproduciendo: DD'"></audio>
+  <audio controls src="musica/dd.mp3"></audio>
 </div>
 
-<div class="track">
+<div class="track" data-name="del">
   <div class="track-title">Del</div>
-  <audio controls src="musica/del.mp3"
-    onplay="now.textContent='Reproduciendo: Del'"></audio>
+  <audio controls src="musica/del.mp3"></audio>
 </div>
 
-<div class="track">
+<div class="track" data-name="expancivo">
   <div class="track-title">Expancivo</div>
-  <audio controls src="musica/expancivo.mp3"
-    onplay="now.textContent='Reproduciendo: Expancivo'"></audio>
+  <audio controls src="musica/expancivo.mp3"></audio>
 </div>
 
-<div class="track">
+<div class="track" data-name="gds">
   <div class="track-title">GDS</div>
-  <audio controls src="musica/gds.mp3"
-    onplay="now.textContent='Reproduciendo: GDS'"></audio>
+  <audio controls src="musica/gds.mp3"></audio>
 </div>
 
-<div class="track">
+<div class="track" data-name="porr">
   <div class="track-title">Porr</div>
-  <audio controls src="musica/porr.mp3"
-    onplay="now.textContent='Reproduciendo: Porr'"></audio>
+  <audio controls src="musica/porr.mp3"></audio>
 </div>
 
-<div class="track">
+<div class="track" data-name="premi">
   <div class="track-title">Premi</div>
-  <audio controls src="musica/premi.mp3"
-    onplay="now.textContent='Reproduciendo: Premi'"></audio>
+  <audio controls src="musica/premi.mp3"></audio>
 </div>
 
-<div class="track">
+<div class="track" data-name="rune">
   <div class="track-title">Rune</div>
-  <audio controls src="musica/rune.mp3"
-    onplay="now.textContent='Reproduciendo: Rune'"></audio>
+  <audio controls src="musica/rune.mp3"></audio>
 </div>
 
-<div class="track">
+<div class="track" data-name="wera">
   <div class="track-title">Wera</div>
-  <audio controls src="musica/wera.mp3"
-    onplay="now.textContent='Reproduciendo: Wera'"></audio>
+  <audio controls src="musica/wera.mp3"></audio>
 </div>
 
-<div class="track">
+<div class="track" data-name="verdad">
   <div class="track-title">Siempre he creído que la verdad se esconde</div>
-  <audio controls src="musica/Siempre he creido que la verdad se escon.mp3"
-    onplay="now.textContent='Reproduciendo: La verdad se esconde'"></audio>
+  <audio controls src="musica/Siempre he creido que la verdad se escon.mp3"></audio>
 </div>
 
-<hr style="border-color:#222">
+<hr>
 
 <!-- 🎥 VIDEOS -->
 
-<div class="track">
+<div class="track" data-name="navegar">
   <div class="track-title">🎥 Navegar</div>
-  <video controls
-    onplay="now.textContent='Reproduciendo video: Navegar'">
-    <source src="videos/navegar.mp4" type="video/mp4">
-  </video>
+  <video controls src="videos/navegar.mp4"></video>
 </div>
 
-<div class="track">
+<div class="track" data-name="manchas">
   <div class="track-title">🎥 Son solo manchas</div>
-  <video controls
-    onplay="now.textContent='Reproduciendo video: Son solo manchas'">
-    <source src="videos/Son solo manchas.mp4" type="video/mp4">
-  </video>
+  <video controls src="videos/Son solo manchas.mp4"></video>
 </div>
 
-<div class="track">
+<div class="track" data-name="ami">
   <div class="track-title">🎥 Ami</div>
-  <video controls
-    onplay="now.textContent='Reproduciendo video: Ami'">
-    <source src="videos/ami.mp4" type="video/mp4">
-  </video>
+  <video controls src="videos/ami.mp4"></video>
 </div>
 
-<div class="track">
+<div class="track" data-name="caminar">
   <div class="track-title">🎥 Caminar</div>
-  <video controls
-    onplay="now.textContent='Reproduciendo video: Caminar'">
-    <source src="videos/caminar.mp4" type="video/mp4">
-  </video>
+  <video controls src="videos/caminar.mp4"></video>
 </div>
 
-<div class="track">
+<div class="track" data-name="hacia mi">
   <div class="track-title">🎥 Hacia mí</div>
-  <video controls
-    onplay="now.textContent='Reproduciendo video: Hacia mí'">
-    <source src="videos/hacia mi.mp4" type="video/mp4">
-  </video>
+  <video controls src="videos/hacia mi.mp4"></video>
 </div>
 
 </main>
 
 <footer>
-  © 2025 · Uru Music
+© 2025 · Uru Music
 </footer>
+
+<script>
+const now = document.getElementById("now");
+const media = document.querySelectorAll("audio, video");
+
+media.forEach(el => {
+  el.addEventListener("play", () => {
+    media.forEach(m => { if (m !== el) m.pause(); });
+    const title = el.closest(".track").querySelector(".track-title").textContent;
+    now.textContent = "Reproduciendo: " + title;
+  });
+});
+
+function filterTracks(value) {
+  value = value.toLowerCase();
+  document.querySelectorAll(".track").forEach(track => {
+    const name = track.dataset.name;
+    track.style.display = name.includes(value) ? "block" : "none";
+  });
+}
+</script>
 
 </body>
 </html>
+
