@@ -1,17 +1,164 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Uru Music Siempre — altar sonoro</title>
-</head>
-<body>
-  <h1>✨ Bienvenido a Uru Music Siempre ✨</h1>
-  <p>Este altar resonará con música y confesión ritual.</p>
+<meta charset="UTF-8">
+<title>Mi Música</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Ejemplo de música integrada -->
-  <audio controls>
-    <source src="A_veces_me_siento.mp3" type="audio/mpeg">
-    Tu navegador no soporta audio.
-  </audio>
+<style>
+body{
+  margin:0;
+  background:#0f0f0f;
+  color:#fff;
+  font-family:Arial, Helvetica, sans-serif;
+}
+header{
+  padding:15px;
+  background:#181818;
+  font-size:20px;
+  font-weight:bold;
+}
+.container{
+  display:flex;
+  height:calc(100vh - 120px);
+}
+.playlist{
+  width:300px;
+  background:#121212;
+  overflow-y:auto;
+  border-right:1px solid #222;
+}
+.song{
+  padding:12px;
+  cursor:pointer;
+  border-bottom:1px solid #222;
+}
+.song:hover{
+  background:#272727;
+}
+.song.active{
+  background:#ff0000;
+}
+.main{
+  flex:1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:22px;
+  color:#aaa;
+}
+.player{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  background:#181818;
+  padding:10px;
+}
+.controls{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+button{
+  background:#ff0000;
+  border:none;
+  color:#fff;
+  padding:8px 12px;
+  cursor:pointer;
+}
+button:hover{
+  opacity:0.8;
+}
+input[type=range]{
+  width:100%;
+}
+.title{
+  font-size:14px;
+  margin-bottom:5px;
+}
+</style>
+</head>
+
+<body>
+
+<header>🎵 Mi Música</header>
+
+<div class="container">
+  <div class="playlist" id="playlist"></div>
+  <div class="main" id="now">Selecciona una canción</div>
+</div>
+
+<div class="player">
+  <div class="title" id="title">—</div>
+  <input type="range" id="progress" value="0">
+  <div class="controls">
+    <button onclick="prev()">⏮</button>
+    <button onclick="toggle()">▶ / ⏸</button>
+    <button onclick="next()">⏭</button>
+  </div>
+</div>
+
+<audio id="audio"></audio>
+
+<script>
+const songs = [
+  "acceso.mp3","dd.mp3","del.mp3","expansivo.mp3","gds.mp3",
+  "inbi.mp3","ind.mp3","inter.mp3","mapa.mp3","navegar.mp3",
+  "porr.mp3","premi.mp3","rune.mp3","wera.mp3"
+];
+
+const playlist = document.getElementById("playlist");
+const audio = document.getElementById("audio");
+const title = document.getElementById("title");
+const now = document.getElementById("now");
+const progress = document.getElementById("progress");
+
+let index = 0;
+
+songs.forEach((song,i)=>{
+  const div = document.createElement("div");
+  div.className = "song";
+  div.textContent = song.replace(".mp3","");
+  div.onclick = ()=> play(i);
+  playlist.appendChild(div);
+});
+
+function play(i){
+  index = i;
+  audio.src = "musica/" + songs[i];
+  audio.play();
+  title.textContent = songs[i];
+  now.textContent = "Reproduciendo: " + songs[i];
+  document.querySelectorAll(".song").forEach((s,j)=>{
+    s.classList.toggle("active", j===i);
+  });
+}
+
+function toggle(){
+  audio.paused ? audio.play() : audio.pause();
+}
+
+function next(){
+  index = (index + 1) % songs.length;
+  play(index);
+}
+
+function prev(){
+  index = (index - 1 + songs.length) % songs.length;
+  play(index);
+}
+
+audio.ontimeupdate = ()=>{
+  progress.value = (audio.currentTime / audio.duration) * 100 || 0;
+};
+
+progress.oninput = ()=>{
+  audio.currentTime = (progress.value / 100) * audio.duration;
+};
+
+audio.onended = next;
+</script>
+
 </body>
 </html>
