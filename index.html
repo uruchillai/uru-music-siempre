@@ -14,7 +14,9 @@
   --muted:#9a9a9a;
   --accent:#1db954;
 }
+
 *{box-sizing:border-box}
+
 body{
   margin:0;
   font-family:system-ui,Segoe UI,Roboto;
@@ -44,23 +46,76 @@ header{
   border-right:1px solid #111;
   overflow-y:auto;
 }
+
 .section{
   padding:10px 14px;
   font-size:.7rem;
   color:var(--muted);
   letter-spacing:1px;
 }
+
+/* ITEMS */
 .item{
   padding:10px 14px;
   cursor:pointer;
   font-size:.85rem;
   color:#ddd;
   transition:.2s;
+  display:flex;
+  align-items:center;
+  gap:10px;
 }
+
 .item:hover,
 .item.active{
   background:#1a1a1a;
   color:#fff;
+}
+
+/* MINIATURAS */
+.thumb{
+  width:42px;
+  height:42px;
+  border-radius:8px;
+  background:#111;
+  position:relative;
+  overflow:hidden;
+  flex-shrink:0;
+}
+
+.thumb::before{
+  content:"";
+  position:absolute;
+  inset:-40%;
+  background:conic-gradient(
+    transparent,
+    #1db95455,
+    transparent 40%
+  );
+  animation:spin 8s linear infinite;
+  opacity:.2;
+}
+
+.thumb::after{
+  content:"▶";
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:1rem;
+  color:#ffffffcc;
+}
+
+.audio-thumb::after{content:"🎵"}
+.video-thumb::after{content:"🎬"}
+
+.item.active .thumb{
+  box-shadow:0 0 16px #1db95488;
+}
+
+@keyframes spin{
+  to{transform:rotate(360deg)}
 }
 
 /* PLAYER */
@@ -69,47 +124,32 @@ header{
   flex-direction:column;
   background:#000;
 }
+
 .stage{
   flex:1;
   display:flex;
   align-items:center;
   justify-content:center;
-  background:#000;
 }
+
 video{
   max-width:100%;
   max-height:100%;
 }
+
 audio{
   width:90%;
 }
+
 .info{
   padding:10px 14px;
   font-size:.85rem;
   border-top:1px solid #111;
 }
 
-/* MOBILE */
-@media(max-width:800px){
-  .app{grid-template-columns:1fr}
-  .sidebar{
-    height:40%;
-    border-right:none;
-    border-bottom:1px solid #111;
-  }
-  audio{width:100%}
-}
-
-/* ===== MODO CINE ===== */
+/* MODO CINE */
 .cinema .sidebar{display:none}
 .cinema .app{grid-template-columns:1fr}
-.cinema .stage{background:#000}
-.cinema video{
-  width:100%;
-  height:100%;
-  max-width:100vw;
-  max-height:100vh;
-}
 .cinema-toggle{
   position:fixed;
   bottom:16px;
@@ -121,11 +161,14 @@ audio{
   border-radius:999px;
   cursor:pointer;
   z-index:999;
-  font-size:.85rem;
 }
-.cinema-toggle:hover{
-  background:var(--accent);
-  color:#000;
+.cinema-toggle:hover{background:#1db954;color:#000}
+
+/* MOBILE */
+@media(max-width:800px){
+  .app{grid-template-columns:1fr}
+  .sidebar{border-bottom:1px solid #111}
+  audio{width:100%}
 }
 </style>
 </head>
@@ -136,72 +179,95 @@ audio{
 
 <div class="app">
 
-  <!-- LISTA -->
-  <aside class="sidebar">
-    <div class="section">🎵 AUDIOS</div>
-    <div class="item" onclick="playAudio('Aceso','audio/aceso.mp3',event)">Aceso</div>
-    <div class="item" onclick="playAudio('DD','audio/dd.mp3',event)">DD</div>
-    <div class="item" onclick="playAudio('Del','audio/del.mp3',event)">Del</div>
-    <div class="item" onclick="playAudio('Expancivo','audio/expancivo.mp3',event)">Expancivo</div>
-    <div class="item" onclick="playAudio('GDS','audio/gds.mp3',event)">GDS</div>
-    <div class="item" onclick="playAudio('Inbi','audio/inbi.mp3',event)">Inbi</div>
-    <div class="item" onclick="playAudio('Ind','audio/ind.mp3',event)">Ind</div>
-    <div class="item" onclick="playAudio('Inter','audio/inter.mp3',event)">Inter</div>
-    <div class="item" onclick="playAudio('Mapa','audio/mapa.mp3',event)">Mapa</div>
-    <div class="item" onclick="playAudio('Navegar','audio/navegar.mp3',event)">Navegar</div>
-    <div class="item" onclick="playAudio('Porr','audio/porr.mp3',event)">Porr</div>
-    <div class="item" onclick="playAudio('Premi','audio/premi.mp3',event)">Premi</div>
-    <div class="item" onclick="playAudio('Rune','audio/rune.mp3',event)">Rune</div>
-    <div class="item" onclick="playAudio('Wera','audio/wera.mp3',event)">Wera</div>
+<aside class="sidebar">
 
-    <div class="section">🎥 VIDEOS</div>
-    <div class="item" onclick="playVideo('Ami','videos/ami.mp4',event)">Ami</div>
-    <div class="item" onclick="playVideo('Caminar','videos/caminar.mp4',event)">Caminar</div>
-    <div class="item" onclick="playVideo('Cielo','videos/cielo.mp4',event)">Cielo</div>
-    <div class="item" onclick="playVideo('Enmi','videos/enmi.mp4',event)">Enmi</div>
-    <div class="item" onclick="playVideo('Envidi','videos/envidi.mp4',event)">Envidi</div>
-    <div class="item" onclick="playVideo('Mejura','videos/mejura.mp4',event)">Mejura</div>
-    <div class="item" onclick="playVideo('Song','videos/song.mp4',event)">Song</div>
-  </aside>
+<div class="section">🎵 AUDIOS</div>
+<div class="item audio" data-src="audio/aceso.mp3"><div class="thumb audio-thumb"></div>Aceso</div>
+<div class="item audio" data-src="audio/dd.mp3"><div class="thumb audio-thumb"></div>DD</div>
+<div class="item audio" data-src="audio/del.mp3"><div class="thumb audio-thumb"></div>Del</div>
+<div class="item audio" data-src="audio/expancivo.mp3"><div class="thumb audio-thumb"></div>Expancivo</div>
+<div class="item audio" data-src="audio/gds.mp3"><div class="thumb audio-thumb"></div>GDS</div>
+<div class="item audio" data-src="audio/inbi.mp3"><div class="thumb audio-thumb"></div>Inbi</div>
+<div class="item audio" data-src="audio/ind.mp3"><div class="thumb audio-thumb"></div>Ind</div>
+<div class="item audio" data-src="audio/inter.mp3"><div class="thumb audio-thumb"></div>Inter</div>
+<div class="item audio" data-src="audio/mapa.mp3"><div class="thumb audio-thumb"></div>Mapa</div>
+<div class="item audio" data-src="audio/navegar.mp3"><div class="thumb audio-thumb"></div>Navegar</div>
+<div class="item audio" data-src="audio/porr.mp3"><div class="thumb audio-thumb"></div>Porr</div>
+<div class="item audio" data-src="audio/premi.mp3"><div class="thumb audio-thumb"></div>Premi</div>
+<div class="item audio" data-src="audio/rune.mp3"><div class="thumb audio-thumb"></div>Rune</div>
+<div class="item audio" data-src="audio/wera.mp3"><div class="thumb audio-thumb"></div>Wera</div>
 
-  <!-- PLAYER -->
-  <main class="player">
-    <div class="stage" id="stage">
-      <div style="color:#555">Selecciona un audio o video</div>
-    </div>
-    <div class="info" id="info">URU · Player</div>
-  </main>
+<div class="section">🎥 VIDEOS</div>
+<div class="item video" data-src="videos/ami.mp4"><div class="thumb video-thumb"></div>Ami</div>
+<div class="item video" data-src="videos/caminar.mp4"><div class="thumb video-thumb"></div>Caminar</div>
+<div class="item video" data-src="videos/cielo.mp4"><div class="thumb video-thumb"></div>Cielo</div>
+<div class="item video" data-src="videos/enmi.mp4"><div class="thumb video-thumb"></div>Enmi</div>
+<div class="item video" data-src="videos/envidi.mp4"><div class="thumb video-thumb"></div>Envidi</div>
+<div class="item video" data-src="videos/mejura.mp4"><div class="thumb video-thumb"></div>Mejura</div>
+<div class="item video" data-src="videos/song.mp4"><div class="thumb video-thumb"></div>Song</div>
+
+</aside>
+
+<main class="player">
+  <div class="stage" id="stage">
+    <div style="color:#555">Selecciona un audio o video</div>
+  </div>
+  <div class="info" id="info">URU · Player</div>
+</main>
 
 </div>
 
-<button class="cinema-toggle" onclick="toggleCinema()">🎬 Modo Cine</button>
+<button class="cinema-toggle" onclick="document.body.classList.toggle('cinema')">🎬 Cine</button>
 
 <script>
 const stage=document.getElementById('stage');
 const info=document.getElementById('info');
-const items=document.querySelectorAll('.item');
+const items=[...document.querySelectorAll('.item')];
+
+let currentIndex=-1;
+let currentType=null;
 
 function clearActive(){
   items.forEach(i=>i.classList.remove('active'));
 }
 
-function playAudio(name,src,e){
+function playIndex(i){
+  const item=items[i];
+  if(!item) return;
+
   clearActive();
-  e.target.classList.add('active');
-  stage.innerHTML=`<audio src="${src}" controls autoplay></audio>`;
-  info.textContent="🎵 "+name;
+  item.classList.add('active');
+
+  currentIndex=i;
+  currentType=item.classList.contains('audio')?'audio':'video';
+
+  const src=item.dataset.src;
+  const name=item.textContent.trim();
+
+  if(currentType==='audio'){
+    stage.innerHTML=`<audio src="${src}" controls autoplay></audio>`;
+    info.textContent="🎵 "+name;
+  }else{
+    stage.innerHTML=`<video src="${src}" controls autoplay></video>`;
+    info.textContent="🎥 "+name;
+  }
+
+  const media=stage.querySelector('audio,video');
+  media.onended=autoNext;
 }
 
-function playVideo(name,src,e){
-  clearActive();
-  e.target.classList.add('active');
-  stage.innerHTML=`<video src="${src}" controls autoplay></video>`;
-  info.textContent="🎥 "+name;
+function autoNext(){
+  for(let i=currentIndex+1;i<items.length;i++){
+    if(items[i].classList.contains(currentType)){
+      playIndex(i);
+      return;
+    }
+  }
 }
 
-function toggleCinema(){
-  document.body.classList.toggle('cinema');
-}
+items.forEach((item,i)=>{
+  item.onclick=()=>playIndex(i);
+});
 </script>
 
 </body>
