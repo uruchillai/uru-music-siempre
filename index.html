@@ -29,14 +29,14 @@ header{
   padding:14px;
   text-align:center;
   font-weight:600;
-  letter-spacing:1px;
+  letter-spacing:2px;
   border-bottom:1px solid #111;
 }
 
 /* LAYOUT */
 .app{
   display:grid;
-  grid-template-columns:280px 1fr;
+  grid-template-columns:260px 1fr 320px;
   height:calc(100vh - 52px);
 }
 
@@ -54,16 +54,12 @@ header{
   letter-spacing:1px;
 }
 
-/* ITEMS */
 .item{
   padding:10px 14px;
   cursor:pointer;
   font-size:.85rem;
   color:#ddd;
   transition:.2s;
-  display:flex;
-  align-items:center;
-  gap:10px;
 }
 
 .item:hover,
@@ -72,57 +68,10 @@ header{
   color:#fff;
 }
 
-/* MINIATURAS */
-.thumb{
-  width:42px;
-  height:42px;
-  border-radius:8px;
-  background:#111;
-  position:relative;
-  overflow:hidden;
-  flex-shrink:0;
-}
-
-.thumb::before{
-  content:"";
-  position:absolute;
-  inset:-40%;
-  background:conic-gradient(
-    transparent,
-    #1db95455,
-    transparent 40%
-  );
-  animation:spin 8s linear infinite;
-  opacity:.2;
-}
-
-.thumb::after{
-  content:"▶";
-  position:absolute;
-  inset:0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:1rem;
-  color:#ffffffcc;
-}
-
-.audio-thumb::after{content:"🎵"}
-.video-thumb::after{content:"🎬"}
-
-.item.active .thumb{
-  box-shadow:0 0 16px #1db95488;
-}
-
-@keyframes spin{
-  to{transform:rotate(360deg)}
-}
-
 /* PLAYER */
 .player{
   display:flex;
   flex-direction:column;
-  background:#000;
 }
 
 .stage{
@@ -132,43 +81,76 @@ header{
   justify-content:center;
 }
 
-video{
-  max-width:100%;
-  max-height:100%;
-}
-
-audio{
-  width:90%;
-}
+video{max-width:100%;max-height:100%}
+audio{width:90%}
 
 .info{
   padding:10px 14px;
+  border-top:1px solid #111;
   font-size:.85rem;
+}
+
+/* POESÍA */
+.soul{
+  background:#050505;
+  border-left:1px solid #111;
+  padding:20px;
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+  overflow-y:auto;
+}
+
+.soul img{
+  width:100%;
+  max-width:220px;
+  align-self:center;
+  filter:drop-shadow(0 0 20px #000);
+}
+
+.poem{
+  font-size:.85rem;
+  line-height:1.6;
+  color:#cfcfcf;
+  font-style:italic;
+}
+
+.poem span{
+  color:#1db954;
+}
+
+/* RADIO */
+.radio{
+  margin-top:auto;
+  padding-top:12px;
   border-top:1px solid #111;
 }
 
-/* MODO CINE */
-.cinema .sidebar{display:none}
-.cinema .app{grid-template-columns:1fr}
-.cinema-toggle{
-  position:fixed;
-  bottom:16px;
-  right:16px;
+.radio a{
+  display:block;
+  text-align:center;
+  padding:10px;
+  border-radius:999px;
   background:#111;
   color:#fff;
-  border:1px solid #222;
-  padding:10px 14px;
-  border-radius:999px;
-  cursor:pointer;
-  z-index:999;
+  text-decoration:none;
+  font-size:.85rem;
+  transition:.2s;
 }
-.cinema-toggle:hover{background:#1db954;color:#000}
+
+.radio a:hover{
+  background:#1db954;
+  color:#000;
+}
 
 /* MOBILE */
-@media(max-width:800px){
-  .app{grid-template-columns:1fr}
-  .sidebar{border-bottom:1px solid #111}
-  audio{width:100%}
+@media(max-width:1000px){
+  .app{
+    grid-template-columns:1fr;
+  }
+  .sidebar,.soul{
+    display:none;
+  }
 }
 </style>
 </head>
@@ -179,94 +161,79 @@ audio{
 
 <div class="app">
 
+<!-- LISTA -->
 <aside class="sidebar">
+  <div class="section">🎵 AUDIOS</div>
+  <div class="item audio" data-src="audio/aceso.mp3">Aceso</div>
+  <div class="item audio" data-src="audio/del.mp3">Del</div>
+  <div class="item audio" data-src="audio/rune.mp3">Rune</div>
 
-<div class="section">🎵 AUDIOS</div>
-<div class="item audio" data-src="audio/aceso.mp3"><div class="thumb audio-thumb"></div>Aceso</div>
-<div class="item audio" data-src="audio/dd.mp3"><div class="thumb audio-thumb"></div>DD</div>
-<div class="item audio" data-src="audio/del.mp3"><div class="thumb audio-thumb"></div>Del</div>
-<div class="item audio" data-src="audio/expancivo.mp3"><div class="thumb audio-thumb"></div>Expancivo</div>
-<div class="item audio" data-src="audio/gds.mp3"><div class="thumb audio-thumb"></div>GDS</div>
-<div class="item audio" data-src="audio/inbi.mp3"><div class="thumb audio-thumb"></div>Inbi</div>
-<div class="item audio" data-src="audio/ind.mp3"><div class="thumb audio-thumb"></div>Ind</div>
-<div class="item audio" data-src="audio/inter.mp3"><div class="thumb audio-thumb"></div>Inter</div>
-<div class="item audio" data-src="audio/mapa.mp3"><div class="thumb audio-thumb"></div>Mapa</div>
-<div class="item audio" data-src="audio/navegar.mp3"><div class="thumb audio-thumb"></div>Navegar</div>
-<div class="item audio" data-src="audio/porr.mp3"><div class="thumb audio-thumb"></div>Porr</div>
-<div class="item audio" data-src="audio/premi.mp3"><div class="thumb audio-thumb"></div>Premi</div>
-<div class="item audio" data-src="audio/rune.mp3"><div class="thumb audio-thumb"></div>Rune</div>
-<div class="item audio" data-src="audio/wera.mp3"><div class="thumb audio-thumb"></div>Wera</div>
-
-<div class="section">🎥 VIDEOS</div>
-<div class="item video" data-src="videos/ami.mp4"><div class="thumb video-thumb"></div>Ami</div>
-<div class="item video" data-src="videos/caminar.mp4"><div class="thumb video-thumb"></div>Caminar</div>
-<div class="item video" data-src="videos/cielo.mp4"><div class="thumb video-thumb"></div>Cielo</div>
-<div class="item video" data-src="videos/enmi.mp4"><div class="thumb video-thumb"></div>Enmi</div>
-<div class="item video" data-src="videos/envidi.mp4"><div class="thumb video-thumb"></div>Envidi</div>
-<div class="item video" data-src="videos/mejura.mp4"><div class="thumb video-thumb"></div>Mejura</div>
-<div class="item video" data-src="videos/song.mp4"><div class="thumb video-thumb"></div>Song</div>
-
+  <div class="section">🎥 VIDEOS</div>
+  <div class="item video" data-src="videos/ami.mp4">Ami</div>
+  <div class="item video" data-src="videos/enmi.mp4">Enmi</div>
 </aside>
 
+<!-- PLAYER -->
 <main class="player">
   <div class="stage" id="stage">
-    <div style="color:#555">Selecciona un audio o video</div>
+    <div style="color:#555">elige un sonido</div>
   </div>
-  <div class="info" id="info">URU · Player</div>
+  <div class="info" id="info">URU · música & visión</div>
 </main>
 
-</div>
+<!-- POESÍA -->
+<aside class="soul">
+  <img src="img/corazon-negro.png" alt="corazón negro roto">
 
-<button class="cinema-toggle" onclick="document.body.classList.toggle('cinema')">🎬 Cine</button>
+  <div class="poem">
+    No canto para gustar.<br>
+    <span>Canto para no romperme.</span><br><br>
+
+    Cada pista es una herida abierta,<br>
+    cada video un recuerdo que sangra negro.<br><br>
+
+    Si escuchas atento,<br>
+    tal vez te escuches a ti.
+  </div>
+
+  <div class="poem">
+    La música no salva,<br>
+    pero acompaña.<br><br>
+
+    Y a veces,<br>
+    eso es suficiente.
+  </div>
+
+  <div class="radio">
+    <a href="https://radio.uruchillaimusiconline.online/stream" target="_blank">
+      📻 Escuchar Radio URU (Icecast)
+    </a>
+  </div>
+</aside>
+
+</div>
 
 <script>
 const stage=document.getElementById('stage');
 const info=document.getElementById('info');
 const items=[...document.querySelectorAll('.item')];
 
-let currentIndex=-1;
-let currentType=null;
+items.forEach(item=>{
+  item.onclick=()=>{
+    items.forEach(i=>i.classList.remove('active'));
+    item.classList.add('active');
 
-function clearActive(){
-  items.forEach(i=>i.classList.remove('active'));
-}
+    const src=item.dataset.src;
+    const name=item.textContent;
 
-function playIndex(i){
-  const item=items[i];
-  if(!item) return;
-
-  clearActive();
-  item.classList.add('active');
-
-  currentIndex=i;
-  currentType=item.classList.contains('audio')?'audio':'video';
-
-  const src=item.dataset.src;
-  const name=item.textContent.trim();
-
-  if(currentType==='audio'){
-    stage.innerHTML=`<audio src="${src}" controls autoplay></audio>`;
-    info.textContent="🎵 "+name;
-  }else{
-    stage.innerHTML=`<video src="${src}" controls autoplay></video>`;
-    info.textContent="🎥 "+name;
-  }
-
-  const media=stage.querySelector('audio,video');
-  media.onended=autoNext;
-}
-
-function autoNext(){
-  for(let i=currentIndex+1;i<items.length;i++){
-    if(items[i].classList.contains(currentType)){
-      playIndex(i);
-      return;
+    if(item.classList.contains('audio')){
+      stage.innerHTML=`<audio src="${src}" controls autoplay></audio>`;
+      info.textContent="🎵 "+name;
+    }else{
+      stage.innerHTML=`<video src="${src}" controls autoplay></video>`;
+      info.textContent="🎥 "+name;
     }
-  }
-}
-
-items.forEach((item,i)=>{
-  item.onclick=()=>playIndex(i);
+  };
 });
 </script>
 
