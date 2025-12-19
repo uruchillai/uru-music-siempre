@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
-<title>URU · Player</title>
+<title>URU · Portal</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
@@ -79,6 +79,7 @@ header{
   display:flex;
   align-items:center;
   justify-content:center;
+  background:#000;
 }
 
 video{max-width:100%;max-height:100%}
@@ -90,11 +91,11 @@ audio{width:90%}
   font-size:.85rem;
 }
 
-/* POESÍA */
+/* MENSAJES */
 .soul{
   background:#050505;
   border-left:1px solid #111;
-  padding:20px;
+  padding:18px;
   display:flex;
   flex-direction:column;
   gap:16px;
@@ -105,7 +106,6 @@ audio{width:90%}
   width:100%;
   max-width:220px;
   align-self:center;
-  filter:drop-shadow(0 0 20px #000);
 }
 
 .poem{
@@ -115,9 +115,7 @@ audio{width:90%}
   font-style:italic;
 }
 
-.poem span{
-  color:#1db954;
-}
+.poem span{color:var(--accent)}
 
 /* RADIO */
 .radio{
@@ -135,23 +133,39 @@ audio{width:90%}
   color:#fff;
   text-decoration:none;
   font-size:.85rem;
-  transition:.2s;
 }
 
 .radio a:hover{
-  background:#1db954;
+  background:var(--accent);
   color:#000;
+}
+
+/* MODO CINE */
+.cinema .sidebar,
+.cinema .soul{
+  display:none;
+}
+
+.cinema .app{
+  grid-template-columns:1fr;
 }
 
 /* MOBILE */
 @media(max-width:1000px){
   .app{
     grid-template-columns:1fr;
-    grid-template-rows:auto 1fr auto;
+    grid-template-rows:auto auto auto;
+    height:auto;
   }
 
   .sidebar{
-    display:none;
+    display:block;
+    border-right:none;
+    border-bottom:1px solid #111;
+  }
+
+  .player{
+    min-height:60vh;
   }
 
   .soul{
@@ -160,7 +174,6 @@ audio{width:90%}
     border-top:1px solid #111;
   }
 }
-
 </style>
 </head>
 
@@ -170,16 +183,32 @@ audio{width:90%}
 
 <div class="app">
 
-<!-- LISTA -->
+<!-- CANCIONES -->
 <aside class="sidebar">
   <div class="section">🎵 AUDIOS</div>
   <div class="item audio" data-src="audio/aceso.mp3">Aceso</div>
+  <div class="item audio" data-src="audio/dd.mp3">DD</div>
   <div class="item audio" data-src="audio/del.mp3">Del</div>
+  <div class="item audio" data-src="audio/expancivo.mp3">Expancivo</div>
+  <div class="item audio" data-src="audio/gds.mp3">GDS</div>
+  <div class="item audio" data-src="audio/inbi.mp3">Inbi</div>
+  <div class="item audio" data-src="audio/ind.mp3">Ind</div>
+  <div class="item audio" data-src="audio/inter.mp3">Inter</div>
+  <div class="item audio" data-src="audio/mapa.mp3">Mapa</div>
+  <div class="item audio" data-src="audio/navegar.mp3">Navegar</div>
+  <div class="item audio" data-src="audio/porr.mp3">Porr</div>
+  <div class="item audio" data-src="audio/premi.mp3">Premi</div>
   <div class="item audio" data-src="audio/rune.mp3">Rune</div>
+  <div class="item audio" data-src="audio/wera.mp3">Wera</div>
 
   <div class="section">🎥 VIDEOS</div>
   <div class="item video" data-src="videos/ami.mp4">Ami</div>
+  <div class="item video" data-src="videos/caminar.mp4">Caminar</div>
+  <div class="item video" data-src="videos/cielo.mp4">Cielo</div>
   <div class="item video" data-src="videos/enmi.mp4">Enmi</div>
+  <div class="item video" data-src="videos/envidi.mp4">Envidi</div>
+  <div class="item video" data-src="videos/mejura.mp4">Mejura</div>
+  <div class="item video" data-src="videos/song.mp4">Song</div>
 </aside>
 
 <!-- PLAYER -->
@@ -190,59 +219,93 @@ audio{width:90%}
   <div class="info" id="info">URU · música & visión</div>
 </main>
 
-<!-- POESÍA -->
+<!-- MENSAJES -->
 <aside class="soul">
   <img src="img/corazon-negro.png" alt="corazón negro roto">
 
   <div class="poem">
     No canto para gustar.<br>
     <span>Canto para no romperme.</span><br><br>
-
-    Cada pista es una herida abierta,<br>
-    cada video un recuerdo que sangra negro.<br><br>
-
-    Si escuchas atento,<br>
-    tal vez te escuches a ti.
+    Cada pista sangra lo que callo.
   </div>
 
   <div class="poem">
-    La música no salva,<br>
-    pero acompaña.<br><br>
-
-    Y a veces,<br>
-    eso es suficiente.
+    Si escuchas despacio,<br>
+    quizás escuches tu sombra.
   </div>
 
   <div class="radio">
     <a href="https://radio.uruchillaimusiconline.online/stream" target="_blank">
-      📻 Escuchar Radio URU (Icecast)
+      📻 Radio URU (Icecast)
     </a>
   </div>
 </aside>
 
 </div>
 
+<button style="
+position:fixed;
+bottom:16px;
+right:16px;
+padding:10px 14px;
+border-radius:999px;
+background:#111;
+color:#fff;
+border:1px solid #222;
+cursor:pointer;
+z-index:999"
+onclick="document.body.classList.toggle('cinema')">
+🎬 Cine
+</button>
+
 <script>
 const stage=document.getElementById('stage');
 const info=document.getElementById('info');
 const items=[...document.querySelectorAll('.item')];
 
-items.forEach(item=>{
-  item.onclick=()=>{
-    items.forEach(i=>i.classList.remove('active'));
-    item.classList.add('active');
+let currentIndex=-1;
+let currentType=null;
 
-    const src=item.dataset.src;
-    const name=item.textContent;
+function clearActive(){
+  items.forEach(i=>i.classList.remove('active'));
+}
 
-    if(item.classList.contains('audio')){
-      stage.innerHTML=`<audio src="${src}" controls autoplay></audio>`;
-      info.textContent="🎵 "+name;
-    }else{
-      stage.innerHTML=`<video src="${src}" controls autoplay></video>`;
-      info.textContent="🎥 "+name;
+function playIndex(i){
+  const item=items[i];
+  if(!item) return;
+
+  clearActive();
+  item.classList.add('active');
+
+  currentIndex=i;
+  currentType=item.classList.contains('audio')?'audio':'video';
+
+  const src=item.dataset.src;
+  const name=item.textContent.trim();
+
+  if(currentType==='audio'){
+    stage.innerHTML=`<audio src="${src}" controls autoplay></audio>`;
+    info.textContent="🎵 "+name;
+  }else{
+    stage.innerHTML=`<video src="${src}" controls autoplay></video>`;
+    info.textContent="🎥 "+name;
+  }
+
+  const media=stage.querySelector('audio,video');
+  media.onended=autoNext;
+}
+
+function autoNext(){
+  for(let i=currentIndex+1;i<items.length;i++){
+    if(items[i].classList.contains(currentType)){
+      playIndex(i);
+      return;
     }
-  };
+  }
+}
+
+items.forEach((item,i)=>{
+  item.onclick=()=>playIndex(i);
 });
 </script>
 
