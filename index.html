@@ -1,161 +1,145 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<title>Mi Música</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <title>Uru Music</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<style>
-body{
-  margin:0;
-  background:#0f0f0f;
-  color:#fff;
-  font-family:Arial, Helvetica, sans-serif;
-}
-header{
-  padding:15px;
-  background:#181818;
-  font-size:20px;
-  font-weight:bold;
-}
-.container{
-  display:flex;
-  height:calc(100vh - 120px);
-}
-.playlist{
-  width:300px;
-  background:#121212;
-  overflow-y:auto;
-  border-right:1px solid #222;
-}
-.song{
-  padding:12px;
-  cursor:pointer;
-  border-bottom:1px solid #222;
-}
-.song:hover{
-  background:#272727;
-}
-.song.active{
-  background:#ff0000;
-}
-.main{
-  flex:1;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:22px;
-  color:#aaa;
-}
-.player{
-  position:fixed;
-  bottom:0;
-  left:0;
-  right:0;
-  background:#181818;
-  padding:10px;
-}
-.controls{
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-button{
-  background:#ff0000;
-  border:none;
-  color:#fff;
-  padding:8px 12px;
-  cursor:pointer;
-}
-button:hover{
-  opacity:0.8;
-}
-input[type=range]{
-  width:100%;
-}
-.title{
-  font-size:14px;
-  margin-bottom:5px;
-}
-</style>
+  <style>
+    :root {
+      --bg: #0e0e0e;
+      --card: #161616;
+      --text: #eaeaea;
+      --muted: #9a9a9a;
+      --accent: #4caf50;
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    header {
+      padding: 20px;
+      text-align: center;
+      border-bottom: 1px solid #222;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.6rem;
+      letter-spacing: 1px;
+    }
+
+    header p {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    main {
+      max-width: 700px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .track {
+      background: var(--card);
+      border-radius: 10px;
+      padding: 14px;
+      margin-bottom: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .track-title {
+      font-size: 0.95rem;
+      color: var(--text);
+    }
+
+    audio {
+      width: 100%;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+  </style>
 </head>
 
 <body>
 
-<header>🎵 Mi Música</header>
+<header>
+  <h1>🎧 Uru Music</h1>
+  <p>Escucha • Relájate • Explora</p>
+</header>
 
-<div class="container">
-  <div class="playlist" id="playlist"></div>
-  <div class="main" id="now">Selecciona una canción</div>
-</div>
+<main>
 
-<div class="player">
-  <div class="title" id="title">—</div>
-  <input type="range" id="progress" value="0">
-  <div class="controls">
-    <button onclick="prev()">⏮</button>
-    <button onclick="toggle()">▶ / ⏸</button>
-    <button onclick="next()">⏭</button>
+  <div class="track">
+    <div class="track-title">Aceso</div>
+    <audio controls src="musica/aceso.mp3"></audio>
   </div>
-</div>
 
-<audio id="audio"></audio>
+  <div class="track">
+    <div class="track-title">DD</div>
+    <audio controls src="musica/dd.mp3"></audio>
+  </div>
 
-<script>
-const songs = [
-  "acceso.mp3","dd.mp3","del.mp3","expansivo.mp3","gds.mp3",
-  "inbi.mp3","ind.mp3","inter.mp3","mapa.mp3","navegar.mp3",
-  "porr.mp3","premi.mp3","rune.mp3","wera.mp3"
-];
+  <div class="track">
+    <div class="track-title">Del</div>
+    <audio controls src="musica/del.mp3"></audio>
+  </div>
 
-const playlist = document.getElementById("playlist");
-const audio = document.getElementById("audio");
-const title = document.getElementById("title");
-const now = document.getElementById("now");
-const progress = document.getElementById("progress");
+  <div class="track">
+    <div class="track-title">Expancivo</div>
+    <audio controls src="musica/expancivo.mp3"></audio>
+  </div>
 
-let index = 0;
+  <div class="track">
+    <div class="track-title">GDS</div>
+    <audio controls src="musica/gds.mp3"></audio>
+  </div>
 
-songs.forEach((song,i)=>{
-  const div = document.createElement("div");
-  div.className = "song";
-  div.textContent = song.replace(".mp3","");
-  div.onclick = ()=> play(i);
-  playlist.appendChild(div);
-});
+  <div class="track">
+    <div class="track-title">Porr</div>
+    <audio controls src="musica/porr.mp3"></audio>
+  </div>
 
-function play(i){
-  index = i;
-  audio.src = "musica/" + songs[i];
-  audio.play();
-  title.textContent = songs[i];
-  now.textContent = "Reproduciendo: " + songs[i];
-  document.querySelectorAll(".song").forEach((s,j)=>{
-    s.classList.toggle("active", j===i);
-  });
-}
+  <div class="track">
+    <div class="track-title">Premi</div>
+    <audio controls src="musica/premi.mp3"></audio>
+  </div>
 
-function toggle(){
-  audio.paused ? audio.play() : audio.pause();
-}
+  <div class="track">
+    <div class="track-title">Rune</div>
+    <audio controls src="musica/rune.mp3"></audio>
+  </div>
 
-function next(){
-  index = (index + 1) % songs.length;
-  play(index);
-}
+  <div class="track">
+    <div class="track-title">Wera</div>
+    <audio controls src="musica/wera.mp3"></audio>
+  </div>
 
-function prev(){
-  index = (index - 1 + songs.length) % songs.length;
-  play(index);
-}
+</main>
 
-audio.ontimeupdate = ()=>{
-  progress.value = (audio.currentTime / audio.duration) * 100 || 0;
-};
+<footer>
+  © 2025 · Uru Music
+</footer>
 
-progress.oninput = ()=>{
-  audio.currentTime = (progress.value / 100) * audio.duration;
-};
+</body>
+</html>
+
 
 audio.onended = next;
 </script>
