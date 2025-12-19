@@ -2,215 +2,189 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
-<title>URU · Music & Video</title>
+<title>URU · Player</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
 :root{
-  --bg:#0b0b0b;
-  --panel:#141414;
+  --bg:#000;
+  --panel:#0f0f0f;
   --card:#1c1c1c;
   --text:#eaeaea;
   --muted:#9a9a9a;
   --accent:#1db954;
-  --soft:#232326;
 }
 
 *{box-sizing:border-box}
 
 body{
   margin:0;
-  font-family:system-ui,-apple-system,Segoe UI,Roboto;
-  background:linear-gradient(180deg,#0b0b0b,#050505);
+  font-family:system-ui,Segoe UI,Roboto;
+  background:var(--bg);
   color:var(--text);
 }
 
 /* HEADER */
 header{
-  position:sticky;
-  top:0;
-  z-index:10;
-  backdrop-filter:blur(14px);
-  background:rgba(0,0,0,.6);
-  padding:16px 20px;
-  display:flex;
-  gap:12px;
-  align-items:center;
-  border-bottom:1px solid #1f1f1f;
+  padding:14px;
+  text-align:center;
+  font-weight:600;
+  letter-spacing:1px;
+  border-bottom:1px solid #111;
 }
 
-header h1{
-  margin:0;
-  font-size:1rem;
-  letter-spacing:.5px;
-}
-
-header input{
-  flex:1;
-  background:var(--soft);
-  border:none;
-  color:#fff;
-  padding:10px 14px;
-  border-radius:999px;
-  outline:none;
-}
-
-/* MAIN */
-main{
-  max-width:1100px;
-  margin:auto;
-  padding:20px 16px 60px;
-}
-
-.grid{
+/* LAYOUT */
+.app{
   display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
-  gap:16px;
+  grid-template-columns:280px 1fr;
+  height:calc(100vh - 52px);
 }
 
-/* CARD */
-.card{
-  background:var(--card);
-  border-radius:14px;
-  padding:12px;
+/* SIDEBAR */
+.sidebar{
+  background:var(--panel);
+  border-right:1px solid #111;
+  overflow-y:auto;
+}
+
+.section{
+  padding:10px 14px;
+  font-size:.7rem;
+  color:var(--muted);
+  letter-spacing:1px;
+}
+
+.item{
+  padding:10px 14px;
+  cursor:pointer;
+  font-size:.85rem;
+  color:#ddd;
   transition:.2s;
 }
 
-.card:hover{
-  transform:translateY(-4px);
-  background:#222;
+.item:hover,
+.item.active{
+  background:#1a1a1a;
+  color:#fff;
 }
 
-.title{
+/* PLAYER */
+.player{
+  display:flex;
+  flex-direction:column;
+  background:#000;
+}
+
+.stage{
+  flex:1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#000;
+}
+
+video{
+  max-width:100%;
+  max-height:100%;
+}
+
+audio{
+  width:90%;
+}
+
+.info{
+  padding:10px 14px;
   font-size:.85rem;
-  color:#ddd;
-  margin-bottom:8px;
+  border-top:1px solid #111;
 }
 
-/* COVER */
-.cover{
-  height:120px;
-  border-radius:12px;
-  background:
-    radial-gradient(circle at 30% 30%, #1db95433, transparent 60%),
-    radial-gradient(circle at 70% 70%, #ffffff22, transparent 60%),
-    #121212;
-  margin-bottom:10px;
-}
-
-/* MEDIA */
-audio,video{
-  width:100%;
-  border-radius:10px;
-  background:#000;
-  margin-top:8px;
-}
-
-/* CINEMA */
-.cinema{
-  position:fixed;
-  inset:0;
-  background:#000;
-  z-index:999;
-  padding:20px;
-}
-
-.cinema video{
-  width:100%;
-  height:100%;
-}
-
-/* FOOTER */
-footer{
-  text-align:center;
-  color:#666;
-  font-size:.75rem;
-  padding:24px;
+/* MOBILE */
+@media(max-width:800px){
+  .app{
+    grid-template-columns:1fr;
+  }
+  .sidebar{
+    height:40%;
+    border-right:none;
+    border-bottom:1px solid #111;
+  }
+  audio{
+    width:100%;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<header>
-  <h1>URU</h1>
-  <input id="search" placeholder="Buscar música o video…">
-</header>
+<header>URU</header>
 
-<main>
-  <div class="grid" id="grid">
+<div class="app">
 
-    <!-- AUDIOS -->
-    <div class="card" data-name="aceso">
-      <div class="cover"></div>
-      <div class="title">Aceso</div>
-      <audio src="audio/aceso.mp3" controls></audio>
+  <!-- LISTA -->
+  <aside class="sidebar">
+
+    <div class="section">🎵 AUDIOS</div>
+    <div class="item" onclick="playAudio('aceso','audio/aceso.mp3')">Aceso</div>
+    <div class="item" onclick="playAudio('dd','audio/dd.mp3')">DD</div>
+    <div class="item" onclick="playAudio('del','audio/del.mp3')">Del</div>
+    <div class="item" onclick="playAudio('expancivo','audio/expancivo.mp3')">Expancivo</div>
+    <div class="item" onclick="playAudio('gds','audio/gds.mp3')">GDS</div>
+    <div class="item" onclick="playAudio('inbi','audio/inbi.mp3')">Inbi</div>
+    <div class="item" onclick="playAudio('ind','audio/ind.mp3')">Ind</div>
+    <div class="item" onclick="playAudio('inter','audio/inter.mp3')">Inter</div>
+    <div class="item" onclick="playAudio('mapa','audio/mapa.mp3')">Mapa</div>
+    <div class="item" onclick="playAudio('navegar','audio/navegar.mp3')">Navegar</div>
+    <div class="item" onclick="playAudio('porr','audio/porr.mp3')">Porr</div>
+    <div class="item" onclick="playAudio('premi','audio/premi.mp3')">Premi</div>
+    <div class="item" onclick="playAudio('rune','audio/rune.mp3')">Rune</div>
+    <div class="item" onclick="playAudio('wera','audio/wera.mp3')">Wera</div>
+
+    <div class="section">🎥 VIDEOS</div>
+    <div class="item" onclick="playVideo('Ami','videos/ami.mp4')">Ami</div>
+    <div class="item" onclick="playVideo('Caminar','videos/caminar.mp4')">Caminar</div>
+    <div class="item" onclick="playVideo('Cielo','videos/cielo.mp4')">Cielo</div>
+    <div class="item" onclick="playVideo('Enmi','videos/enmi.mp4')">Enmi</div>
+    <div class="item" onclick="playVideo('Envidi','videos/envidi.mp4')">Envidi</div>
+    <div class="item" onclick="playVideo('Mejura','videos/mejura.mp4')">Mejura</div>
+    <div class="item" onclick="playVideo('Song','videos/song.mp4')">Song</div>
+
+  </aside>
+
+  <!-- PLAYER -->
+  <main class="player">
+    <div class="stage" id="stage">
+      <div style="color:#555">Selecciona un audio o video</div>
     </div>
+    <div class="info" id="info">URU · Player</div>
+  </main>
 
-    <div class="card" data-name="dd">
-      <div class="cover"></div>
-      <div class="title">DD</div>
-      <audio src="audio/dd.mp3" controls></audio>
-    </div>
-
-    <div class="card" data-name="del">
-      <div class="cover"></div>
-      <div class="title">Del</div>
-      <audio src="audio/del.mp3" controls></audio>
-    </div>
-
-    <!-- VIDEOS -->
-    <div class="card" data-name="ami">
-      <div class="cover"></div>
-      <div class="title">Ami</div>
-      <video src="videos/ami.mp4" controls></video>
-    </div>
-
-    <div class="card" data-name="caminar">
-      <div class="cover"></div>
-      <div class="title">Caminar</div>
-      <video src="videos/caminar.mp4" controls></video>
-    </div>
-
-  </div>
-</main>
-
-<footer>© 2025 · URU</footer>
+</div>
 
 <script>
-const search = document.getElementById("search");
-const cards = document.querySelectorAll(".card");
-const media = document.querySelectorAll("audio, video");
+const stage=document.getElementById('stage');
+const info=document.getElementById('info');
+const items=document.querySelectorAll('.item');
 
-/* BUSCADOR */
-search.addEventListener("input", () => {
-  const q = search.value.toLowerCase();
-  cards.forEach(card => {
-    card.style.display =
-      card.dataset.name.includes(q) ? "block" : "none";
-  });
-});
+let current=null;
 
-/* PAUSAR OTROS */
-media.forEach(m => {
-  m.addEventListener("play", () => {
-    media.forEach(o => { if (o !== m) o.pause(); });
-  });
-});
+function clearActive(){
+  items.forEach(i=>i.classList.remove('active'));
+}
 
-/* MODO CINE */
-document.querySelectorAll("video").forEach(v => {
-  v.addEventListener("dblclick", () => {
-    const wrap = document.createElement("div");
-    wrap.className = "cinema";
-    const clone = v.cloneNode(true);
-    clone.controls = true;
-    clone.play();
-    wrap.appendChild(clone);
-    wrap.onclick = () => wrap.remove();
-    document.body.appendChild(wrap);
-  });
-});
+function playAudio(name,src){
+  clearActive();
+  event.target.classList.add('active');
+  stage.innerHTML=`<audio src="${src}" controls autoplay></audio>`;
+  info.textContent="🎵 "+name;
+}
+
+function playVideo(name,src){
+  clearActive();
+  event.target.classList.add('active');
+  stage.innerHTML=`<video src="${src}" controls autoplay></video>`;
+  info.textContent="🎥 "+name;
+}
 </script>
 
 </body>
