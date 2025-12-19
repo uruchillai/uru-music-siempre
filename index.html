@@ -4,98 +4,126 @@
 <meta charset="utf-8">
 <title>URU · Music & Video</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#000000">
 
 <style>
 :root{
-  --bg:#0b0b0b;
-  --panel:#141414;
+  --bg:#000;
   --card:#1c1c1c;
   --text:#eaeaea;
   --muted:#9a9a9a;
   --accent:#1db954;
-  --soft:#232326;
 }
 
 *{box-sizing:border-box}
 
 body{
   margin:0;
-  font-family:system-ui,-apple-system,Segoe UI,Roboto;
-  background:linear-gradient(180deg,#0b0b0b,#050505);
+  font-family:system-ui,Segoe UI,Roboto;
+  background:#000;
   color:var(--text);
 }
 
 /* HEADER */
 header{
-  position:sticky;
-  top:0;
-  z-index:10;
-  backdrop-filter:blur(14px);
-  background:rgba(0,0,0,.6);
-  padding:16px 20px;
+  text-align:center;
+  padding:14px;
+  font-weight:600;
+  letter-spacing:1px;
+}
+
+/* TABS */
+.tabs{
   display:flex;
-  gap:12px;
-  align-items:center;
-  border-bottom:1px solid #1f1f1f;
+  justify-content:center;
+  gap:8px;
+  margin-bottom:12px;
 }
 
-header h1{
-  margin:0;
-  font-size:1rem;
-  letter-spacing:.5px;
+.tabs button{
+  background:#111;
+  border:1px solid #222;
+  color:#aaa;
+  padding:8px 16px;
+  border-radius:999px;
+  cursor:pointer;
 }
 
-header input{
-  flex:1;
-  background:var(--soft);
-  border:none;
+.tabs button.active{
   color:#fff;
+  border-color:var(--accent);
+}
+
+/* SEARCH */
+.search{
+  display:block;
+  margin:0 auto 16px;
+  width:90%;
+  max-width:420px;
   padding:10px 14px;
   border-radius:999px;
-  outline:none;
+  border:none;
+  background:#1a1a1a;
+  color:#fff;
 }
 
-/* MAIN */
-main{
-  max-width:1100px;
-  margin:auto;
-  padding:20px 16px 60px;
-}
-
+/* GRID */
 .grid{
   display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
-  gap:16px;
+  grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
+  gap:14px;
+  padding:0 14px 90px;
 }
 
-/* CARD */
 .card{
   background:var(--card);
   border-radius:14px;
   padding:12px;
-  transition:.2s;
 }
 
-.card:hover{
-  transform:translateY(-4px);
-  background:#222;
+/* MINIATURA */
+.thumb{
+  width:100%;
+  aspect-ratio:16/9;
+  border-radius:10px;
+  object-fit:cover;
+  margin-bottom:8px;
+  transition:.3s;
+}
+
+/* ANIMACIÓN */
+.card.playing .thumb{
+  animation:pulse 1.2s infinite;
+  box-shadow:0 0 25px #1db95455;
+}
+
+@keyframes pulse{
+  0%{transform:scale(1)}
+  50%{transform:scale(1.03)}
+  100%{transform:scale(1)}
 }
 
 .title{
-  font-size:.85rem;
+  font-size:.8rem;
   color:#ddd;
-  margin-bottom:8px;
+  margin-bottom:6px;
 }
 
-/* COVER */
-.cover{
-  height:120px;
-  border-radius:12px;
-  background:
-    radial-gradient(circle at 30% 30%, #1db95433, transparent 60%),
-    radial-gradient(circle at 70% 70%, #ffffff22, transparent 60%),
-    #121212;
-  margin-bottom:10px;
+/* PROGRESS BAR */
+.progress{
+  height:4px;
+  background:#333;
+  border-radius:99px;
+  overflow:hidden;
+  margin:6px 0;
+}
+
+.bar{
+  height:100%;
+  width:0%;
+  background:linear-gradient(90deg,var(--accent),#3cffb0);
+  transition:width .2s linear;
 }
 
 /* MEDIA */
@@ -103,114 +131,97 @@ audio,video{
   width:100%;
   border-radius:10px;
   background:#000;
-  margin-top:8px;
 }
 
-/* CINEMA */
-.cinema{
-  position:fixed;
-  inset:0;
-  background:#000;
-  z-index:999;
-  padding:20px;
-}
+.hidden{display:none}
 
-.cinema video{
-  width:100%;
-  height:100%;
-}
-
-/* FOOTER */
-footer{
-  text-align:center;
-  color:#666;
-  font-size:.75rem;
-  padding:24px;
+/* MOBILE */
+@media(max-width:600px){
+  .grid{grid-template-columns:1fr 1fr}
+  .thumb{aspect-ratio:1/1}
+  .tabs button{font-size:.75rem;padding:6px 12px}
 }
 </style>
 </head>
 
 <body>
 
-<header>
-  <h1>URU</h1>
-  <input id="search" placeholder="Buscar música o video…">
-</header>
+<header>URU</header>
 
-<main>
-  <div class="grid" id="grid">
+<div class="tabs">
+  <button class="active" onclick="showTab('audio')">🎵 Audios</button>
+  <button onclick="showTab('video')">🎥 Videos</button>
+</div>
 
-    <!-- AUDIOS -->
-    <div class="card" data-name="aceso">
-      <div class="cover"></div>
-      <div class="title">Aceso</div>
-      <audio src="audio/aceso.mp3" controls></audio>
-    </div>
+<input id="search" class="search" placeholder="Buscar…">
 
-    <div class="card" data-name="dd">
-      <div class="cover"></div>
-      <div class="title">DD</div>
-      <audio src="audio/dd.mp3" controls></audio>
-    </div>
-
-    <div class="card" data-name="del">
-      <div class="cover"></div>
-      <div class="title">Del</div>
-      <audio src="audio/del.mp3" controls></audio>
-    </div>
-
-    <!-- VIDEOS -->
-    <div class="card" data-name="ami">
-      <div class="cover"></div>
-      <div class="title">Ami</div>
-      <video src="videos/ami.mp4" controls></video>
-    </div>
-
-    <div class="card" data-name="caminar">
-      <div class="cover"></div>
-      <div class="title">Caminar</div>
-      <video src="videos/caminar.mp4" controls></video>
-    </div>
-
+<!-- AUDIOS -->
+<div class="grid" id="audio">
+  <div class="card" data-name="aceso">
+    <img class="thumb" src="thumbs/aceso.jpg">
+    <div class="title">Aceso</div>
+    <div class="progress"><div class="bar"></div></div>
+    <audio src="audio/aceso.mp3" controls></audio>
   </div>
-</main>
+</div>
 
-<footer>© 2025 · URU</footer>
+<!-- VIDEOS -->
+<div class="grid hidden" id="video">
+  <div class="card" data-name="ami">
+    <img class="thumb" src="thumbs/ami.jpg">
+    <div class="title">Ami</div>
+    <div class="progress"><div class="bar"></div></div>
+    <video src="videos/ami.mp4" controls></video>
+  </div>
+</div>
 
 <script>
-const search = document.getElementById("search");
-const cards = document.querySelectorAll(".card");
-const media = document.querySelectorAll("audio, video");
+/* TABS */
+function showTab(tab){
+  document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('active'));
+  event.target.classList.add('active');
+  audio.classList.toggle('hidden',tab!=='audio');
+  video.classList.toggle('hidden',tab!=='video');
+}
 
-/* BUSCADOR */
-search.addEventListener("input", () => {
-  const q = search.value.toLowerCase();
-  cards.forEach(card => {
-    card.style.display =
-      card.dataset.name.includes(q) ? "block" : "none";
+/* SEARCH */
+search.oninput=()=>{
+  const q=search.value.toLowerCase();
+  document.querySelectorAll('.card').forEach(c=>{
+    c.style.display=c.dataset.name.includes(q)?'block':'none';
+  });
+};
+
+/* MEDIA CONTROL + PROGRESS */
+const media=document.querySelectorAll('audio,video');
+
+media.forEach(m=>{
+  const card=m.closest('.card');
+  const bar=card.querySelector('.bar');
+
+  m.addEventListener('play',()=>{
+    media.forEach(o=>{
+      if(o!==m){
+        o.pause();
+        o.closest('.card')?.classList.remove('playing');
+      }
+    });
+    card.classList.add('playing');
+  });
+
+  m.addEventListener('timeupdate',()=>{
+    bar.style.width=(m.currentTime/m.duration*100||0)+'%';
+  });
+
+  ['pause','ended'].forEach(e=>{
+    m.addEventListener(e,()=>card.classList.remove('playing'));
   });
 });
 
-/* PAUSAR OTROS */
-media.forEach(m => {
-  m.addEventListener("play", () => {
-    media.forEach(o => { if (o !== m) o.pause(); });
-  });
-});
-
-/* MODO CINE */
-document.querySelectorAll("video").forEach(v => {
-  v.addEventListener("dblclick", () => {
-    const wrap = document.createElement("div");
-    wrap.className = "cinema";
-    const clone = v.cloneNode(true);
-    clone.controls = true;
-    clone.play();
-    wrap.appendChild(clone);
-    wrap.onclick = () => wrap.remove();
-    document.body.appendChild(wrap);
-  });
-});
+/* SERVICE WORKER */
+if('serviceWorker'in navigator){
+  navigator.serviceWorker.register('sw.js');
+}
 </script>
 
 </body>
