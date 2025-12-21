@@ -292,4 +292,16 @@ document.addEventListener("DOMContentLoaded", () => {
         video.controls = true;
         video.autoplay = true;
         stage.appendChild(video);
-        info.textContent = "▶ Video
+        info.textContent = "▶ Video: " + item.textContent;
+      } else if(item.classList.contains("audio")){
+        const audio = document.createElement("audio");
+        audio.src = src;
+        audio.controls = true;
+        audio.autoplay = true;
+        stage.appendChild(audio);
+        info.textContent = "🎵 Audio: " + item.textContent;
+      }
+    });
+  });
+});
+</script>
