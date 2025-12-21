@@ -1,170 +1,151 @@
-<style>
-:root{
-  --bg:#000;
-  --panel:#0f0f0f;
-  --card:#1c1c1c;
-  --text:#eaeaea;
-  --muted:#9a9a9a;
-  --accent:#1db954;
+/* Reset básico */
+body {
+  margin: 0;
+  background: #000;
+  color: #fff;
+  font-family: 'Courier New', monospace;
 }
 
-*{box-sizing:border-box}
-
-body{
-  margin:0;
-  font-family:system-ui,Segoe UI,Roboto;
-  background:var(--bg);
-  color:var(--text);
+/* Encabezado */
+header {
+  text-align: center;
+  font-size: 2rem;
+  padding: 20px;
+  background: #111;
+  color: #fff;
 }
 
-/* HEADER */
-header{
-  padding:14px;
-  text-align:center;
-  font-weight:600;
-  letter-spacing:2px;
-  border-bottom:1px solid #111;
+/* Sección de portada */
+#uru-musica {
+  margin: 40px 0;
+  text-align: center;
 }
 
-/* LAYOUT */
-.app{
-  display:grid;
-  grid-template-columns:260px 1fr 320px;
-  height:calc(100vh - 52px);
+#uru-musica h2 {
+  font-family: 'Courier New', monospace;
+  color: #fff;
 }
 
-/* SIDEBAR */
-.sidebar{
-  background:var(--panel);
-  border-right:1px solid #111;
-  overflow-y:auto;
+#uru-musica img {
+  width: 100%;
+  max-width: 900px;
+  height: auto;
+  box-shadow: 0 0 20px #ff00ff;
+  border-radius: 8px;
 }
 
-.section{
-  padding:10px 14px;
-  font-size:.7rem;
-  color:var(--muted);
-  letter-spacing:1px;
+/* Layout principal */
+.app {
+  display: flex;
+  flex-wrap: wrap;
+  min-height: 80vh;
 }
 
-.item{
-  padding:10px 14px;
-  cursor:pointer;
-  font-size:.85rem;
-  color:#ddd;
-  transition:.2s;
+/* Sidebar */
+.sidebar {
+  background: #111;
+  color: #eee;
+  padding: 10px;
+  width: 250px;
+  flex-shrink: 0;
 }
 
-.item:hover,
-.item.active{
-  background:#1a1a1a;
-  color:#fff;
+.sidebar .section {
+  font-weight: bold;
+  margin: 10px 0;
 }
 
-/* PLAYER */
-.player{
-  display:flex;
-  flex-direction:column;
+.item {
+  padding: 6px 8px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 0.3s;
 }
 
-.stage{
-  flex:1;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:#000;
+.item:hover {
+  background: #222;
 }
 
-video{max-width:50%;max-height:50%}
-audio{width:90%}
-
-.info{
-  padding:10px 14px;
-  border-top:1px solid #111;
-  font-size:.85rem;
+.item.active {
+  background: #333;
+  color: #ff0;
 }
 
-/* MENSAJES */
-.soul{
-  background:#050505;
-  border-left:1px solid #111;
-  padding:18px;
-  display:flex;
-  flex-direction:column;
-  gap:16px;
-  overflow-y:auto;
+/* Player */
+.player {
+  flex: 1;
+  padding: 20px;
+  background: #222;
+  color: #ccc;
 }
 
-.soul img{
-  width:100%;
-  max-width:220px;
-  align-self:center;
+.stage {
+  margin-bottom: 20px;
 }
 
-.poem{
-  font-size:.85rem;
-  line-height:1.6;
-  color:#cfcfcf;
-  font-style:italic;
+.stage audio,
+.stage video {
+  width: 100%;
+  max-height: 400px;
 }
 
-.poem span{color:var(--accent)}
-
-/* RADIO */
-.radio{
-  margin-top:auto;
-  padding-top:12px;
-  border-top:1px solid #111;
+/* Soul (poemas y radio) */
+.soul {
+  background: #111;
+  color: #ddd;
+  padding: 20px;
+  text-align: center;
+  width: 250px;
+  flex-shrink: 0;
 }
 
-.radio a{
-  display:block;
-  text-align:center;
-  padding:10px;
-  border-radius:999px;
-  background:#111;
-  color:#fff;
-  text-decoration:none;
-  font-size:.85rem;
+.soul img {
+  max-width: 150px;
+  margin-bottom: 20px;
 }
 
-.radio a:hover{
-  background:var(--accent);
-  color:#000;
+.poem {
+  margin: 20px 0;
+  font-style: italic;
 }
 
-/* MODO CINE */
-.cinema .sidebar,
-.cinema .soul{
-  display:none;
+.radio a {
+  color: #0ff;
+  text-decoration: none;
 }
 
-.cinema .app{
-  grid-template-columns:1fr;
+.radio a:hover {
+  text-decoration: underline;
 }
 
-/* MOBILE */
-@media(max-width:1000px){
-  .app{
-    grid-template-columns:1fr;
-    grid-template-rows:auto auto auto;
-    height:auto;
-  }
-
-  .sidebar{
-    display:block;
-    border-right:none;
-    border-bottom:1px solid #111;
-  }
-
-  .player{
-    min-height:60vh;
-  }
-
-  .soul{
-    display:block;
-    border-left:none;
-    border-top:1px solid #111;
-  }
+/* Botón cine */
+button {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: #111;
+  color: #fff;
+  border: 1px solid #222;
+  cursor: pointer;
+  z-index: 999;
 }
-</style>
+
+/* Modo cinema */
+body.cinema .app {
+  flex-direction: column;
+}
+
+body.cinema .sidebar,
+body.cinema .soul {
+  display: none;
+}
+
+body.cinema .player {
+  flex: none;
+  width: 100%;
+  background: #000;
+  color: #fff;
+}
+
