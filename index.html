@@ -288,9 +288,33 @@ function playIndex(i){
   item.classList.add('active');
 
   currentIndex=i;
-  currentType=item.classList.contains('audio')?'audio':'video';
+  currentType=item.classList.contains('audio') ? 'audio' : 'video';
 
   const src=item.dataset.src;
   const name=item.textContent.trim();
 
   if(currentType==='audio'){
+    stage.innerHTML=`<audio src="${src}" controls autoplay></audio>`;
+    info.textContent="🎵 "+name;
+  }else{
+    stage.innerHTML=`<video src="${src}" controls autoplay></video>`;
+    info.textContent="🎥 "+name;
+  }
+
+  const media=stage.querySelector('audio,video');
+  media.onended=autoNext;
+}
+
+function autoNext(){
+  for(let i=currentIndex+1;i<items.length;i++){
+    if(items[i].classList.contains(currentType)){
+      playIndex(i);
+      return;
+    }
+  }
+}
+
+items.forEach((item,i)=>{
+  item.onclick=()=>playIndex(i);
+});
+</script>
