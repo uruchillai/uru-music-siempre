@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
-<title>URU Truenos y Cantos· Portal</title>
+<title>URU Truenos y Cantos · Portal</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
@@ -183,7 +183,7 @@ audio{width:90%}
 <div style="text-align:center; margin:40px 0;">
   <a href="https://urumusic.my.canva.site" target="_blank"
      style="padding:12px 20px; background:#111; color:#fff; border-radius:999px; text-decoration:none; font-size:1rem;">
-    ✨ entra  a NATY producciones!
+    ✨ entra a NATY producciones!
   </a>
 </div>
 
@@ -199,12 +199,12 @@ audio{width:90%}
   <div class="item video" data-src="videos/envidi.mp4">Envidi</div>
   <div class="item video" data-src="videos/mejura.mp4">Mejura</div>
   <div class="item video" data-src="videos/song.mp4">Song</div>
-  <div class="item video" data-src="videos/leon.mp4">leon</div>
-  <div class="item video" data-src="videos/miedos.mp4">miedos</div>
-  <div class="item video" data-src="videos/gosar.mp4">gosar</div>
-  <div class="item video" data-src="videos/mienergia.mp4">mienergia</div>
-  <div class="item video" data-src="videos/camino.mp4">camino</div>
-  <div class="item video" data-src="videos/laultima.mp4">laultima</div>
+  <div class="item video" data-src="videos/leon.mp4">Leon</div>
+  <div class="item video" data-src="videos/miedos.mp4">Miedos</div>
+  <div class="item video" data-src="videos/gosar.mp4">Gosar</div>
+  <div class="item video" data-src="videos/mienergia.mp4">Mienergia</div>
+  <div class="item video" data-src="videos/camino.mp4">Camino</div>
+  <div class="item video" data-src="videos/laultima.mp4">La Última</div>
 
   <div class="section">🎵 AUDIOS</div>
   <div class="item audio" data-src="audio/aceso.mp3">Aceso</div>
@@ -216,10 +216,10 @@ audio{width:90%}
   <div class="item audio" data-src="audio/premi.mp3">Premi</div>
   <div class="item audio" data-src="audio/rune.mp3">Rune</div>
   <div class="item audio" data-src="audio/wera.mp3">Wera</div>
-  <div class="item audio" data-src="audio/sir.mp3">sir</div>
-  <div class="item audio" data-src="audio/ser.mp3">ser</div>
-  <div class="item audio" data-src="audio/sar.mp3">sar</div>
-  <div class="item audio" data-src="audio/vida.mp3">vida</div>
+  <div class="item audio" data-src="audio/sir.mp3">Sir</div>
+  <div class="item audio" data-src="audio/ser.mp3">Ser</div>
+  <div class="item audio" data-src="audio/sar.mp3">Sar</div>
+  <div class="item audio" data-src="audio/vida.mp3">Vida</div>
 </aside>
 
 <!-- PLAYER -->
@@ -269,173 +269,27 @@ onclick="document.body.classList.toggle('cinema')">
 🎬 Cine
 </button>
 
-<style>
-:root{
-  --bg:#000;
-  --panel:#0f0f0f;
-  --card:#1c1c1c;
-  --text:#eaeaea;
-  --muted:#9a9a9a;
-  --accent:#1db954;
-}
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const stage = document.getElementById("stage");
+  const info = document.getElementById("info");
+  const items = document.querySelectorAll(".item");
 
-*{box-sizing:border-box}
+  items.forEach(item => {
+    item.addEventListener("click", () => {
+      // limpiar stage
+      stage.innerHTML = "";
 
-body{
-  margin:0;
-  font-family:system-ui,Segoe UI,Roboto;
-  background:var(--bg);
-  color:var(--text);
-}
+      // quitar activo previo
+      items.forEach(i => i.classList.remove("active"));
+      item.classList.add("active");
 
-/* HEADER */
-header{
-  padding:14px;
-  text-align:center;
-  font-weight:600;
-  letter-spacing:2px;
-  border-bottom:1px solid #111;
-}
+      const src = item.getAttribute("data-src");
 
-/* LAYOUT */
-.app{
-  display:grid;
-  grid-template-columns:260px 1fr 320px;
-  height:calc(100vh - 52px);
-}
-
-/* SIDEBAR */
-.sidebar{
-  background:var(--panel);
-  border-right:1px solid #111;
-  overflow-y:auto;
-}
-
-.section{
-  padding:10px 14px;
-  font-size:.7rem;
-  color:var(--muted);
-  letter-spacing:1px;
-}
-
-.item{
-  padding:10px 14px;
-  cursor:pointer;
-  font-size:.85rem;
-  color:#ddd;
-  transition:.2s;
-}
-
-.item:hover,
-.item.active{
-  background:#1a1a1a;
-  color:#fff;
-}
-
-/* PLAYER */
-.player{
-  display:flex;
-  flex-direction:column;
-}
-
-.stage{
-  flex:1;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:#000;
-}
-
-video{max-width:50%;max-height:50%}
-audio{width:90%}
-
-.info{
-  padding:10px 14px;
-  border-top:1px solid #111;
-  font-size:.85rem;
-}
-
-/* MENSAJES */
-.soul{
-  background:#050505;
-  border-left:1px solid #111;
-  padding:18px;
-  display:flex;
-  flex-direction:column;
-  gap:16px;
-  overflow-y:auto;
-}
-
-.soul img{
-  width:100%;
-  max-width:220px;
-  align-self:center;
-}
-
-.poem{
-  font-size:.85rem;
-  line-height:1.6;
-  color:#cfcfcf;
-  font-style:italic;
-}
-
-.poem span{color:var(--accent)}
-
-/* RADIO */
-.radio{
-  margin-top:auto;
-  padding-top:12px;
-  border-top:1px solid #111;
-}
-
-.radio a{
-  display:block;
-  text-align:center;
-  padding:10px;
-  border-radius:999px;
-  background:#111;
-  color:#fff;
-  text-decoration:none;
-  font-size:.85rem;
-}
-
-.radio a:hover{
-  background:var(--accent);
-  color:#000;
-}
-
-/* MODO CINE */
-.cinema .sidebar,
-.cinema .soul{
-  display:none;
-}
-
-.cinema .app{
-  grid-template-columns:1fr;
-}
-
-/* MOBILE */
-@media(max-width:1000px){
-  .app{
-    grid-template-columns:1fr;
-    grid-template-rows:auto auto auto;
-    height:auto;
-  }
-
-  .sidebar{
-    display:block;
-    border-right:none;
-    border-bottom:1px solid #111;
-  }
-
-  .player{
-    min-height:60vh;
-  }
-
-  .soul{
-    display:block;
-    border-left:none;
-    border-top:1px solid #111;
-  }
-}
-</style>
+      if(item.classList.contains("video")){
+        const video = document.createElement("video");
+        video.src = src;
+        video.controls = true;
+        video.autoplay = true;
+        stage.appendChild(video);
+        info.textContent = "▶ Video
