@@ -181,10 +181,6 @@ audio{width:90%}
 
 <header>URU</header>
 
-<section id="uru-musica" style="margin:40px 0; text-align:center;">
-  <h2 style="font-family:'Courier New', monospace; color:#fff;">URU MÚSICA · SEÑALES QUE VIBRAN</h2>
-  <img src="img/urumusica.png" alt="URU MÚSICA" style="width:100%; max-width:900px; height:auto; box-shadow: 0 0 20px #ff00ff;">
-</section>
 
 <div class="app">
 
@@ -268,53 +264,173 @@ onclick="document.body.classList.toggle('cinema')">
 🎬 Cine
 </button>
 
-<script>
-const stage=document.getElementById('stage');
-const info=document.getElementById('info');
-const items=[...document.querySelectorAll('.item')];
-
-let currentIndex=-1;
-let currentType=null;
-
-function clearActive(){
-  items.forEach(i=>i.classList.remove('active'));
+<style>
+:root{
+  --bg:#000;
+  --panel:#0f0f0f;
+  --card:#1c1c1c;
+  --text:#eaeaea;
+  --muted:#9a9a9a;
+  --accent:#1db954;
 }
 
-function playIndex(i){
-  const item=items[i];
-  if(!item) return;
+*{box-sizing:border-box}
 
-  clearActive();
-  item.classList.add('active');
+body{
+  margin:0;
+  font-family:system-ui,Segoe UI,Roboto;
+  background:var(--bg);
+  color:var(--text);
+}
 
-  currentIndex=i;
-  currentType=item.classList.contains('audio') ? 'audio' : 'video';
+/* HEADER */
+header{
+  padding:14px;
+  text-align:center;
+  font-weight:600;
+  letter-spacing:2px;
+  border-bottom:1px solid #111;
+}
 
-  const src=item.dataset.src;
-  const name=item.textContent.trim();
+/* LAYOUT */
+.app{
+  display:grid;
+  grid-template-columns:260px 1fr 320px;
+  height:calc(100vh - 52px);
+}
 
-  if(currentType==='audio'){
-    stage.innerHTML=`<audio src="${src}" controls autoplay></audio>`;
-    info.textContent="🎵 "+name;
-  }else{
-    stage.innerHTML=`<video src="${src}" controls autoplay></video>`;
-    info.textContent="🎥 "+name;
+/* SIDEBAR */
+.sidebar{
+  background:var(--panel);
+  border-right:1px solid #111;
+  overflow-y:auto;
+}
+
+.section{
+  padding:10px 14px;
+  font-size:.7rem;
+  color:var(--muted);
+  letter-spacing:1px;
+}
+
+.item{
+  padding:10px 14px;
+  cursor:pointer;
+  font-size:.85rem;
+  color:#ddd;
+  transition:.2s;
+}
+
+.item:hover,
+.item.active{
+  background:#1a1a1a;
+  color:#fff;
+}
+
+/* PLAYER */
+.player{
+  display:flex;
+  flex-direction:column;
+}
+
+.stage{
+  flex:1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#000;
+}
+
+video{max-width:50%;max-height:50%}
+audio{width:90%}
+
+.info{
+  padding:10px 14px;
+  border-top:1px solid #111;
+  font-size:.85rem;
+}
+
+/* MENSAJES */
+.soul{
+  background:#050505;
+  border-left:1px solid #111;
+  padding:18px;
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+  overflow-y:auto;
+}
+
+.soul img{
+  width:100%;
+  max-width:220px;
+  align-self:center;
+}
+
+.poem{
+  font-size:.85rem;
+  line-height:1.6;
+  color:#cfcfcf;
+  font-style:italic;
+}
+
+.poem span{color:var(--accent)}
+
+/* RADIO */
+.radio{
+  margin-top:auto;
+  padding-top:12px;
+  border-top:1px solid #111;
+}
+
+.radio a{
+  display:block;
+  text-align:center;
+  padding:10px;
+  border-radius:999px;
+  background:#111;
+  color:#fff;
+  text-decoration:none;
+  font-size:.85rem;
+}
+
+.radio a:hover{
+  background:var(--accent);
+  color:#000;
+}
+
+/* MODO CINE */
+.cinema .sidebar,
+.cinema .soul{
+  display:none;
+}
+
+.cinema .app{
+  grid-template-columns:1fr;
+}
+
+/* MOBILE */
+@media(max-width:1000px){
+  .app{
+    grid-template-columns:1fr;
+    grid-template-rows:auto auto auto;
+    height:auto;
   }
 
-  const media=stage.querySelector('audio,video');
-  media.onended=autoNext;
-}
+  .sidebar{
+    display:block;
+    border-right:none;
+    border-bottom:1px solid #111;
+  }
 
-function autoNext(){
-  for(let i=currentIndex+1;i<items.length;i++){
-    if(items[i].classList.contains(currentType)){
-      playIndex(i);
-      return;
-    }
+  .player{
+    min-height:60vh;
+  }
+
+  .soul{
+    display:block;
+    border-left:none;
+    border-top:1px solid #111;
   }
 }
-
-items.forEach((item,i)=>{
-  item.onclick=()=>playIndex(i);
-});
-</script>
+</style>
