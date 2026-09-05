@@ -1,307 +1,101 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="utf-8">
-<title>URU Truenos y Cantos · Portal</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<style>
-:root{
-  --bg:#000;
-  --panel:#0f0f0f;
-  --card:#1c1c1c;
-  --text:#eaeaea;
-  --muted:#9a9a9a;
-  --accent:#1db954;
-}
-
-*{box-sizing:border-box}
-
-body{
-  margin:0;
-  font-family:system-ui,Segoe UI,Roboto;
-  background:var(--bg);
-  color:var(--text);
-}
-
-/* HEADER */
-header{
-  padding:14px;
-  text-align:center;
-  font-weight:600;
-  letter-spacing:2px;
-  border-bottom:1px solid #111;
-}
-
-/* LAYOUT */
-.app{
-  display:grid;
-  grid-template-columns:260px 1fr 320px;
-  height:calc(100vh - 52px);
-}
-
-/* SIDEBAR */
-.sidebar{
-  background:var(--panel);
-  border-right:1px solid #111;
-  overflow-y:auto;
-}
-
-.section{
-  padding:10px 14px;
-  font-size:.7rem;
-  color:var(--muted);
-  letter-spacing:1px;
-}
-
-.item{
-  padding:10px 14px;
-  cursor:pointer;
-  font-size:.85rem;
-  color:#ddd;
-  transition:.2s;
-}
-
-.item:hover,
-.item.active{
-  background:#1a1a1a;
-  color:#fff;
-}
-
-/* PLAYER */
-.player{
-  display:flex;
-  flex-direction:column;
-}
-
-.stage{
-  flex:1;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:#000;
-}
-
-video{max-width:50%;max-height:50%}
-audio{width:90%}
-
-.info{
-  padding:10px 14px;
-  border-top:1px solid #111;
-  font-size:.85rem;
-}
-
-/* MENSAJES */
-.soul{
-  background:#050505;
-  border-left:1px solid #111;
-  padding:18px;
-  display:flex;
-  flex-direction:column;
-  gap:16px;
-  overflow-y:auto;
-}
-
-.soul img{
-  width:100%;
-  max-width:220px;
-  align-self:center;
-}
-
-.poem{
-  font-size:.85rem;
-  line-height:1.6;
-  color:#cfcfcf;
-  font-style:italic;
-}
-
-.poem span{color:var(--accent)}
-
-/* RADIO */
-.radio{
-  margin-top:auto;
-  padding-top:12px;
-  border-top:1px solid #111;
-}
-
-.radio a{
-  display:block;
-  text-align:center;
-  padding:10px;
-  border-radius:999px;
-  background:#111;
-  color:#fff;
-  text-decoration:none;
-  font-size:.85rem;
-}
-
-.radio a:hover{
-  background:var(--accent);
-  color:#000;
-}
-
-/* MODO CINE */
-.cinema .sidebar,
-.cinema .soul{
-  display:none;
-}
-
-.cinema .app{
-  grid-template-columns:1fr;
-}
-
-/* MOBILE */
-@media(max-width:1000px){
-  .app{
-    grid-template-columns:1fr;
-    grid-template-rows:auto auto auto;
-    height:auto;
-  }
-
-  .sidebar{
-    display:block;
-    border-right:none;
-    border-bottom:1px solid #111;
-  }
-
-  .player{
-    min-height:60vh;
-  }
-
-  .soul{
-    display:block;
-    border-left:none;
-    border-top:1px solid #111;
-  }
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MiAppDrive - Video IA Astral</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      color: #fff;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #111;
+      padding: 20px;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5em;
+      color: #00ffff;
+    }
+    nav {
+      margin-top: 10px;
+    }
+    nav a {
+      color: #fff;
+      margin: 0 15px;
+      text-decoration: none;
+    }
+    section {
+      padding: 40px;
+      text-align: center;
+    }
+    .btn {
+      display: inline-block;
+      margin: 10px;
+      padding: 12px 20px;
+      background: #00ffff;
+      color: #111;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+    footer {
+      background: #111;
+      padding: 20px;
+      text-align: center;
+      font-size: 0.9em;
+    }
+  </style>
 </head>
-  
 <body>
+  <header>
+    <h1>🌌 MiAppDrive</h1>
+    <nav>
+      <a href="#servicios">Servicios</a>
+      <a href="#galeria">Galería</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </header>
 
-<header>URU</header>
-<div style="text-align:center; margin:40px 0;">
-  <a href="https://urumusic.my.canva.site" target="_blank"
-     style="padding:12px 20px; background:#111; color:#fff; border-radius:999px; text-decoration:none; font-size:1rem;">
-    ✨ entra a NATY producciones!
-  </a>
-</div>
+  <section id="inicio">
+    <h2>Bienvenido a MiAppDrive</h2>
+    <p>Portal astral de servicios de <strong>Video IA</strong> con Colab, Drive y pipelines experimentales.</p>
+    <a class="btn" href="https://colab.research.google.com/tu-notebook">Abrir demo en Colab</a>
+    <a class="btn" href="https://drive.google.com/tu-carpeta">Ver ejemplos en Drive</a>
+  </section>
 
-<div class="app">
+  <section id="servicios">
+    <h2>Servicios</h2>
+    <p>Ofrecemos generación de videos con <em>AnimateDiff</em>, edición con <em>ffmpeg</em> y pipelines astrales.</p>
+    <ul style="list-style:none; padding:0;">
+      <li>✨ Generación de clips IA en Colab</li>
+      <li>🎥 Edición y concatenación de videos</li>
+      <li>🌠 Portadas astrales y urbanas</li>
+    </ul>
+  </section>
 
-<!-- CANCIONES -->
-<aside class="sidebar">
-  <div class="section">🎥 VIDEOS</div>
-  <div class="item video" data-src="videos/ami.mp4">Ami</div>
-  <div class="item video" data-src="videos/caminar.mp4">Caminar</div>
-  <div class="item video" data-src="videos/cielo.mp4">Cielo</div>
-  <div class="item video" data-src="videos/enmi.mp4">Enmi</div>
-  <div class="item video" data-src="videos/envidi.mp4">Envidi</div>
-  <div class="item video" data-src="videos/mejura.mp4">Mejura</div>
-  <div class="item video" data-src="videos/song.mp4">Song</div>
-  <div class="item video" data-src="videos/leon.mp4">Leon</div>
-  <div class="item video" data-src="videos/miedos.mp4">Miedos</div>
-  <div class="item video" data-src="videos/gosar.mp4">Gosar</div>
-  <div class="item video" data-src="videos/mienergia.mp4">Mienergia</div>
-  <div class="item video" data-src="videos/camino.mp4">Camino</div>
-  <div class="item video" data-src="videos/laultima.mp4">La Última</div>
+  <section id="galeria">
+    <h2>Galería</h2>
+    <p>Ejemplos de videos generados:</p>
+    <video width="320" height="240" controls>
+      <source src="https://drive.google.com/uc?id=TU_VIDEO_ID" type="video/mp4">
+      Tu navegador no soporta video embebido.
+    </video>
+  </section>
 
-  <div class="section">🎵 AUDIOS</div>
-  <div class="item audio" data-src="audio/aceso.mp3">Aceso</div>
-  <div class="item audio" data-src="audio/dd.mp3">DD</div>
-  <div class="item audio" data-src="audio/del.mp3">Del</div>
-  <div class="item audio" data-src="audio/expancivo.mp3">Expancivo</div>
-  <div class="item audio" data-src="audio/navegar.mp3">Navegar</div>
-  <div class="item audio" data-src="audio/porr.mp3">Porr</div>
-  <div class="item audio" data-src="audio/premi.mp3">Premi</div>
-  <div class="item audio" data-src="audio/rune.mp3">Rune</div>
-  <div class="item audio" data-src="audio/wera.mp3">Wera</div>
-  <div class="item audio" data-src="audio/sir.mp3">Sir</div>
-  <div class="item audio" data-src="audio/ser.mp3">Ser</div>
-  <div class="item audio" data-src="audio/sar.mp3">Sar</div>
-  <div class="item audio" data-src="audio/vida.mp3">Vida</div>
-</aside>
+  <section id="contacto">
+    <h2>Contacto</h2>
+    <p>¿Quieres colaborar o pedir un servicio?</p>
+    <p>📧 Escríbeme: <strong>carloslondo196619@gmail.com</strong></p>
+  </section>
 
-<!-- PLAYER -->
-<main class="player">
-  <div class="stage" id="stage">
-    <div style="color:#555">elige un sonido</div>
-  </div>
-  <div class="info" id="info">URU · música & visión</div>
-</main>
-
-<!-- MENSAJES -->
-<aside class="soul">
-  <img src="img/corazon-negro.png" alt="VVD">
-
-  <div class="poem">
-    No escribo para gustar.<br>
-    <span>escribo para no romperme.</span><br><br>
-    Cada pista sangra lo que callo.
-  </div>
-
-  <div class="poem">
-    Si escuchas despacio,<br>
-    quizás escuches tu sombra.
-  </div>
-
-  <div class="radio">
-    <a href="https://radio.uruchillaimusiconline.online/stream" target="_blank">
-      📻 Radio URU (Icecast)
-    </a>
-  </div>
-</aside>
-
-</div>
-
-<button style="
-position:fixed;
-bottom:16px;
-right:16px;
-padding:10px 14px;
-border-radius:999px;
-background:#111;
-color:#fff;
-border:1px solid #222;
-cursor:pointer;
-z-index:999"
-onclick="document.body.classList.toggle('cinema')">
-🎬 Cine
-</button>
-
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const stage = document.getElementById("stage");
-  const info = document.getElementById("info");
-  const items = document.querySelectorAll(".item");
-
-  items.forEach(item => {
-    item.addEventListener("click", () => {
-      // limpiar stage
-      stage.innerHTML = "";
-
-      // quitar activo previo
-      items.forEach(i => i.classList.remove("active"));
-      item.classList.add("active");
-
-      const src = item.getAttribute("data-src");
-
-      if(item.classList.contains("video")){
-        const video = document.createElement("video");
-        video.src = src;
-        video.controls = true;
-        video.autoplay = true;
-        stage.appendChild(video);
-        info.textContent = "▶ Video: " + item.textContent;
-      } else if(item.classList.contains("audio")){
-        const audio = document.createElement("audio");
-        audio.src = src;
-        audio.controls = true;
-        audio.autoplay = true;
-        stage.appendChild(audio);
-        info.textContent = "🎵 Audio: " + item.textContent;
-      }
-    });
-  });
-});
-</script>
+  <footer>
+    <p>© 2026 MiAppDrive - Portal astral de Video IA</p>
+  </footer>
+</body>
+</html>
