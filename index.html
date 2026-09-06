@@ -12,37 +12,40 @@
 <body>
   <!-- Encabezado -->
   <header>
-    <h1>🌌 MiAppDrive</h1>
+    <div class="logo">
+      <h1>🌌 MiAppDrive</h1>
+    </div>
     <nav>
-      <a href="#inicio">Inicio</a>
-      <a href="#servicios">Servicios</a>
-      <a href="#galeria">Galería</a>
-      <a href="#contacto">Contacto</a>
+      <ul>
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#galeria">Galería</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
     </nav>
   </header>
 
   <!-- Sección inicio -->
-  <section id="inicio">
+  <section id="inicio" class="hero">
     <h2>Bienvenido a MiAppDrive</h2>
     <p>Portal astral de servicios de <strong>Video IA</strong> con Colab, Drive y pipelines experimentales.</p>
-    <!-- Botón Colab enlazado -->
-    <a class="btn" href="https://colab.research.google.com/github/usuario/proyecto/blob/main/videoIA_demo.ipynb" target="_blank">
-      🚀 Ejecutar Video IA en Colab
-    </a>
-    <!-- Botón Drive -->
-    <a class="btn" href="https://drive.google.com/drive/folders/TU_CARPETA_ID" target="_blank">
-      📂 Ver ejemplos en Drive
-    </a>
-    <!-- Botón Cloud -->
-    <a class="btn" href="https://cloud.google.com/shell" target="_blank">
-      ☁️ Acceder a Cloud Shell
-    </a>
+    <div class="btn-group">
+      <a class="btn" href="https://colab.research.google.com/github/TU_USUARIO/miappdrive/blob/main/videoIA_demo.ipynb" target="_blank">
+        🚀 Ejecutar Video IA en Colab
+      </a>
+      <a class="btn" href="https://drive.google.com/drive/folders/TU_CARPETA_ID" target="_blank">
+        📂 Ver ejemplos en Drive
+      </a>
+      <a class="btn" href="https://cloud.google.com/shell" target="_blank">
+        ☁️ Acceder a Cloud Shell
+      </a>
+    </div>
   </section>
 
   <!-- Sección servicios -->
   <section id="servicios">
     <h2>Servicios</h2>
-    <ul>
+    <ul class="servicios-lista">
       <li>✨ Generación de clips IA en Colab</li>
       <li>🎥 Edición y concatenación de videos con ffmpeg</li>
       <li>🌠 Portadas astrales y urbanas</li>
@@ -54,15 +57,15 @@
   <section id="galeria">
     <h2>Galería</h2>
     <p>Ejemplos de videos generados:</p>
-    <!-- Video embebido desde Drive -->
-    <video width="640" controls>
-      <source src="https://drive.google.com/uc?id=TU_VIDEO_ID" type="video/mp4">
-      Tu navegador no soporta video embebido.
-    </video>
-    <!-- Puedes añadir más videos -->
-    <video width="640" controls>
-      <source src="https://drive.google.com/uc?id=OTRO_VIDEO_ID" type="video/mp4">
-    </video>
+    <div class="galeria-videos">
+      <video controls width="100%">
+        <source src="https://drive.google.com/uc?id=TU_VIDEO_ID" type="video/mp4">
+        Tu navegador no soporta video embebido.
+      </video>
+      <video controls width="100%">
+        <source src="https://drive.google.com/uc?id=OTRO_VIDEO_ID" type="video/mp4">
+      </video>
+    </div>
   </section>
 
   <!-- Sección contacto -->
@@ -78,3 +81,4 @@
   </footer>
 </body>
 </html>
+
