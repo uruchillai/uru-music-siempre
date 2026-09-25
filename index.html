@@ -3,105 +3,154 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MiAppDrive - Portal de Video IA</title>
+
+<title>MiAppDrive AI Portal</title>
 
 <style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
 body{
-    font-family:Arial,sans-serif;
-    margin:0;
-    padding:0;
-    background:#0b1020;
-    color:white;
+font-family:Arial,sans-serif;
+background:#0b1020;
+color:white;
+line-height:1.6;
 }
 
 header{
-    background:#111827;
-    padding:15px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    flex-wrap:wrap;
-}
-
-.logo h1{
-    margin:0;
-    color:#4fc3f7;
+background:#111827;
+padding:20px;
+position:sticky;
+top:0;
+z-index:100;
 }
 
 nav ul{
-    list-style:none;
-    display:flex;
-    gap:15px;
-    padding:0;
-    flex-wrap:wrap;
+list-style:none;
+display:flex;
+gap:15px;
+flex-wrap:wrap;
+justify-content:center;
 }
 
 nav a{
-    color:white;
-    text-decoration:none;
+color:white;
+text-decoration:none;
+font-weight:bold;
 }
 
-section{
-    padding:40px 20px;
+nav a:hover{
+color:#4fc3f7;
 }
 
 .hero{
-    text-align:center;
-    background:linear-gradient(135deg,#16213e,#0f3460);
+text-align:center;
+padding:80px 20px;
+background:linear-gradient(135deg,#16213e,#0f3460);
+}
+
+.hero h1{
+font-size:3rem;
+margin-bottom:10px;
+}
+
+.hero p{
+font-size:1.2rem;
+margin-bottom:20px;
 }
 
 .btn{
-    display:inline-block;
-    background:#2196f3;
-    color:white;
-    padding:12px 20px;
-    margin:8px;
-    border-radius:8px;
-    text-decoration:none;
+display:inline-block;
+background:#2196f3;
+color:white;
+padding:12px 20px;
+border-radius:10px;
+text-decoration:none;
+margin:5px;
 }
 
 .btn:hover{
-    background:#1976d2;
+background:#1976d2;
 }
 
-.servicios-lista li{
-    margin:10px 0;
+section{
+padding:40px 20px;
+animation:fade 1s ease;
 }
 
-.galeria-videos{
-    display:grid;
-    gap:20px;
+.card{
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(8px);
+padding:20px;
+border-radius:15px;
+margin:10px;
+}
+
+.stats{
+display:flex;
+flex-wrap:wrap;
+gap:20px;
+justify-content:center;
+}
+
+.stat{
+background:#1e293b;
+padding:20px;
+border-radius:15px;
+text-align:center;
+min-width:180px;
 }
 
 input,
 textarea{
-    width:100%;
-    max-width:600px;
-    padding:10px;
-    margin:5px 0;
-    border:none;
-    border-radius:8px;
+width:100%;
+max-width:600px;
+padding:12px;
+margin:8px 0;
+border:none;
+border-radius:10px;
 }
 
 button{
-    padding:10px 15px;
-    margin:5px;
-    border:none;
-    border-radius:8px;
-    background:#4caf50;
-    color:white;
-    cursor:pointer;
+padding:12px 15px;
+background:#4caf50;
+border:none;
+color:white;
+border-radius:8px;
+cursor:pointer;
+margin:4px;
 }
 
 button:hover{
-    background:#2e7d32;
+background:#2e7d32;
+}
+
+video{
+border-radius:15px;
+margin-top:15px;
 }
 
 footer{
-    text-align:center;
-    padding:20px;
-    background:#111827;
+background:#111827;
+padding:20px;
+text-align:center;
 }
+
+@keyframes fade{
+from{
+opacity:0;
+transform:translateY(20px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
 </style>
 
 </head>
@@ -109,120 +158,173 @@ footer{
 
 <header>
 
-<div class="logo">
-<h1>🌌 MiAppDrive</h1>
-</div>
-
 <nav>
 <ul>
+
 <li>#inicioInicio</a></li>
 <li>#serviciosServicios</a></li>
 <li>#galeriaGalería</a></li>
-<li>#spaceSpace</a></li>
 <li>#calculadoraCalculadora</a></li>
+<li>#cientificaCientífica</a></li>
+<li>#monedasMonedas</a></li>
+<li>#unidadesUnidades</a></li>
+<li>#relojReloj</a></li>
 <li>#traductorTraductor</a></li>
 <li>#contactoContacto</a></li>
+
 </ul>
 </nav>
 
 </header>
 
-<section id="inicio" class="hero">
+<section class="hero" id="inicio">
 
-<h2>Bienvenido a MiAppDrive</h2>
+<h1>🚀 MiAppDrive AI Portal</h1>
 
 <p>
-Portal astral de servicios de
-<strong>Video IA</strong>
-con Colab, Drive y pipelines experimentales.
+Video IA • Hugging Face • Google Colab • Drive • Herramientas Online
 </p>
 
-<a class="btn"
-href="https://colab.research.google.com/github/TU_USUARIO/miappdrive/blob/main/videoIA_demo.ipynb"
-target="_blank">
-🚀 Ejecutar Video IA en Colab
-</a>
+#🎥 Video IA</a>
+<a  Drive</a>
+<a class="btn" href="#">🤖 IA</a>
 
-<a class="btn"
-href="https://drive.google.com/drive/folders/TU_CARPETA_ID"
-target="_blank">
-📂 Ver ejemplos en Drive
-</a>
+<h2>📊 Estadísticas</h2>
 
-<a class="btn"
-href="https://cloud.google.com/shell"
-target="_blank">
-☁️ Acceder a Cloud Shell
-</a>
+<div class="stats">
+
+<div class="stat">
+<h3>🎬 Videos IA</h3>
+<p>+100</p>
+</div>
+
+<div class="stat">
+<h3>☁️ Proyectos</h3>
+<p>+50</p>
+</div>
+
+<div class="stat">
+<h3>👥 Usuarios</h3>
+<p>+500</p>
+</div>
+
+</div>
 
 </section>
 
 <section id="servicios">
 
-<h2>Servicios</h2>
+<h2>✨ Servicios</h2>
 
-<ul class="servicios-lista">
-<li>✨ Generación de clips IA en Colab</li>
-<li>🎥 Edición de video con ffmpeg</li>
-<li>🌠 Portadas astrales y urbanas</li>
-<li>☁️ Integración con Google Drive y Cloud</li>
+<div class="card">
+
+<ul>
+
+<li>🎥 Generación de Video IA</li>
+<li>🌌 Portadas astrales</li>
+<li>☁️ Google Drive</li>
+<li>⚡ Hugging Face Spaces</li>
+<li>🧠 Automatización IA</li>
+
 </ul>
+
+</div>
 
 </section>
 
 <section id="galeria">
 
-<h2>Galería</h2>
+<h2>🎬 Galería IA</h2>
 
-<p>Ejemplos de videos generados:</p>
-
-<div class="galeria-videos">
+<div class="card">
 
 <video controls width="100%">
-<source src="https://drive.google.com/uc?id=TU_VIDEO_ID" type="video/mp4">
-</video>
-
-<video controls width="100%">
-<source src="https://drive.google.com/uc?id=OTRO_VIDEO_ID" type="video/mp4">
+video1.mp4
 </video>
 
 </div>
 
 </section>
 
-<section id="space">
-
-<h2>Demo en Hugging Face</h2>
-
-<p>Prueba la aplicación aquí:</p>
-
-<iframe
-src="https://ernimu-uruchillai-gradio.hf.space"
-width="100%"
-height="800"
-style="border:none;background:white;">
-</iframe>
-
-</section>
-
 <section id="calculadora">
 
-<h2>🧮 Calculadora Online</h2>
+<h2>🧮 Calculadora Básica</h2>
 
 <input type="number" id="num1" placeholder="Número 1">
-
 <input type="number" id="num2" placeholder="Número 2">
 
 <br>
 
-<button onclick="calcular('+')">➕ Sumar</button>
-<button onclick="calcular('-')">➖ Restar</button>
-<button onclick="calcular('*')">✖ Multiplicar</button>
-<button onclick="calcular('/')">➗ Dividir</button>
+<button onclick="calcular('+')">+</button>
+<button onclick="calcular('-')">-</button>
+<button onclick="calcular('*')">*</button>
+<button onclick="calcular('/')">/</button>
 
-<h3 id="resultadoCalc">
-Resultado: 0
-</h3>
+<h3 id="resultadoCalc">Resultado: 0</h3>
+
+</section>
+
+<section id="cientifica">
+
+<h2>🧮 Calculadora Científica</h2>
+
+<input type="number" id="cientificaNum" placeholder="Número">
+
+<br>
+
+<button onclick="raiz()">√</button>
+<button onclick="potencia()">x²</button>
+<button onclick="porcentaje()">%</button>
+<button onclick="logaritmo()">log</button>
+
+<h3 id="resultadoCientifica"></h3>
+
+</section>
+
+<section id="monedas">
+
+<h2>💱 Conversor de Monedas</h2>
+
+<input type="number" id="money" placeholder="Cantidad">
+
+<br>
+
+<button onclick="usdcop()">USD→COP</button>
+<button onclick="copusd()">COP→USD</button>
+<button onclick="eurcop()">EUR→COP</button>
+
+<h3 id="resultadoMoneda"></h3>
+
+</section>
+
+<section id="unidades">
+
+<h2>📏 Conversor de Unidades</h2>
+
+<input type="number" id="unidad" placeholder="Valor">
+
+<br>
+
+<button onclick="metrosPies()">Metros→Pies</button>
+<button onclick="kmMillas()">Km→Millas</button>
+<button onclick="kgLibras()">Kg→Libras</button>
+
+<h3 id="resultadoUnidad"></h3>
+
+</section>
+
+<section id="reloj">
+
+<h2>⏰ Reloj Mundial</h2>
+
+<div class="card">
+
+<p id="horaColombia"></p>
+<p id="horaEspana"></p>
+<p id="horaMexico"></p>
+<p id="horaUSA"></p>
+
+</div>
 
 </section>
 
@@ -230,14 +332,10 @@ Resultado: 0
 
 <h2>🌍 Traductor</h2>
 
-<p>
-Escribe un texto y se abrirá Google Translate.
-</p>
-
 <textarea
 id="textoTraducir"
 rows="6"
-placeholder="Escribe aquí tu texto">
+placeholder="Escribe aquí">
 </textarea>
 
 <br>
@@ -248,85 +346,201 @@ Traducir
 
 </section>
 
+<section>
+
+<h2>📅 Agenda Personal</h2>
+
+<input type="date">
+
+<textarea
+rows="5"
+placeholder="Escribe tus tareas aquí...">
+</textarea>
+
+</section>
+
 <section id="contacto">
 
-<h2>Contacto</h2>
+<h2>📧 Contacto</h2>
 
 <p>
-📧
-<strong>carloslondo196619@gmail.com</strong>
+carloslondo196619@gmail.com
 </p>
 
 <a class="btn"
 href="mailto:carloslondo196619@gmail.com">
-Enviar correo
+Enviar Correo
 </a>
 
 </section>
 
 <footer>
+
 <p>
-© 2026 MiAppDrive - Portal astral de Video IA
+© 2026 MiAppDrive AI Portal
 </p>
+
 </footer>
 
 <script>
 
 function calcular(op){
 
-let a = parseFloat(
-document.getElementById("num1").value
-) || 0;
+let a=parseFloat(document.getElementById("num1").value)||0;
+let b=parseFloat(document.getElementById("num2").value)||0;
 
-let b = parseFloat(
-document.getElementById("num2").value
-) || 0;
-
-let resultado = 0;
+let r=0;
 
 switch(op){
 
 case "+":
-resultado = a + b;
+r=a+b;
 break;
 
 case "-":
-resultado = a - b;
+r=a-b;
 break;
 
 case "*":
-resultado = a * b;
+r=a*b;
 break;
 
 case "/":
-resultado = b !== 0 ? a / b : "Error";
+r=b!==0?a/b:"Error";
 break;
 
 }
 
-document.getElementById(
-"resultadoCalc"
-).innerHTML =
-"Resultado: " + resultado;
+document.getElementById("resultadoCalc").innerHTML=
+"Resultado: "+r;
+
+}
+
+function raiz(){
+
+let n=parseFloat(document.getElementById("cientificaNum").value);
+
+document.getElementById("resultadoCientifica").innerHTML=
+Math.sqrt(n);
+
+}
+
+function potencia(){
+
+let n=parseFloat(document.getElementById("cientificaNum").value);
+
+document.getElementById("resultadoCientifica").innerHTML=
+n*n;
+
+}
+
+function porcentaje(){
+
+let n=parseFloat(document.getElementById("cientificaNum").value);
+
+document.getElementById("resultadoCientifica").innerHTML=
+n/100;
+
+}
+
+function logaritmo(){
+
+let n=parseFloat(document.getElementById("cientificaNum").value);
+
+document.getElementById("resultadoCientifica").innerHTML=
+Math.log10(n);
+
+}
+
+function usdcop(){
+
+let n=parseFloat(document.getElementById("money").value);
+
+document.getElementById("resultadoMoneda").innerHTML=
+(n*4000).toFixed(2)+" COP";
+
+}
+
+function copusd(){
+
+let n=parseFloat(document.getElementById("money").value);
+
+document.getElementById("resultadoMoneda").innerHTML=
+(n/4000).toFixed(2)+" USD";
+
+}
+
+function eurcop(){
+
+let n=parseFloat(document.getElementById("money").value);
+
+document.getElementById("resultadoMoneda").innerHTML=
+(n*4500).toFixed(2)+" COP";
+
+}
+
+function metrosPies(){
+
+let n=parseFloat(document.getElementById("unidad").value);
+
+document.getElementById("resultadoUnidad").innerHTML=
+(n*3.28084).toFixed(2)+" pies";
+
+}
+
+function kmMillas(){
+
+let n=parseFloat(document.getElementById("unidad").value);
+
+document.getElementById("resultadoUnidad").innerHTML=
+(n*0.621371).toFixed(2)+" millas";
+
+}
+
+function kgLibras(){
+
+let n=parseFloat(document.getElementById("unidad").value);
+
+document.getElementById("resultadoUnidad").innerHTML=
+(n*2.20462).toFixed(2)+" libras";
 
 }
 
 function abrirTraductor(){
 
-let texto = encodeURIComponent(
-document.getElementById(
-"textoTraducir"
-).value
+let texto=encodeURIComponent(
+document.getElementById("textoTraducir").value
 );
 
 window.open(
-"https://translate.google.com/?sl=es&tl=en&text="
-+ texto +
-"&op=translate",
-"_blank"
+"https://translate.google.com/?sl=es&tl=en&text=" +
+texto +
+"&op=translate"
 );
 
 }
+
+function actualizarReloj(){
+
+document.getElementById("horaColombia").innerHTML=
+"🇨🇴 Colombia: " +
+new Date().toLocaleTimeString("es-CO");
+
+document.getElementById("horaEspana").innerHTML=
+"🇪🇸 España: " +
+new Date().toLocaleTimeString("es-ES");
+
+document.getElementById("horaMexico").innerHTML=
+"🇲🇽 México: " +
+new Date().toLocaleTimeString("es-MX");
+
+document.getElementById("horaUSA").innerHTML=
+"🇺🇸 USA: " +
+new Date().toLocaleTimeString("en-US");
+
+}
+
+setInterval(actualizarReloj,1000);
 
 </script>
 
