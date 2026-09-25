@@ -1,93 +1,339 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MiAppDrive - Portal de Video IA</title>
-  <!-- Estilos externos -->
-  <link rel="stylesheet" href="style.css">
-  <!-- Script de interactividad -->
-  <script src="script.js" defer></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MiAppDrive - Portal de Video IA</title>
+
+<style>
+body{
+    font-family:Arial,sans-serif;
+    margin:0;
+    padding:0;
+    background:#0b1020;
+    color:white;
+}
+
+header{
+    background:#111827;
+    padding:15px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+}
+
+.logo h1{
+    margin:0;
+    color:#4fc3f7;
+}
+
+nav ul{
+    list-style:none;
+    display:flex;
+    gap:15px;
+    padding:0;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+}
+
+section{
+    padding:40px 20px;
+}
+
+.hero{
+    text-align:center;
+    background:linear-gradient(135deg,#16213e,#0f3460);
+}
+
+.btn{
+    display:inline-block;
+    background:#2196f3;
+    color:white;
+    padding:12px 20px;
+    margin:8px;
+    border-radius:8px;
+    text-decoration:none;
+}
+
+.btn:hover{
+    background:#1976d2;
+}
+
+.servicios-lista li{
+    margin:10px 0;
+}
+
+.galeria-videos{
+    display:grid;
+    gap:20px;
+}
+
+iframe{
+    background:white;
+    border-radius:10px;
+}
+
+input,textarea{
+    width:100%;
+    padding:10px;
+    margin:5px 0;
+    border-radius:8px;
+    border:none;
+}
+
+button{
+    padding:10px 15px;
+    margin:5px;
+    border:none;
+    border-radius:8px;
+    background:#4caf50;
+    color:white;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#2e7d32;
+}
+
+footer{
+    text-align:center;
+    padding:20px;
+    background:#111827;
+}
+</style>
+
 </head>
 <body>
-  <!-- Encabezado -->
-  <header>
-    <div class="logo">
-      <h1>🌌 MiAppDrive</h1>
-    </div>
-    <nav>
-      <ul>
-        <li><a href="#inicio">Inicio</a></li>
-        <li><a href="#servicios">Servicios</a></li>
-        <li><a href="#galeria">Galería</a></li>
-        <li><a href="#space">Space</a></li>
-        <li><a href="#contacto">Contacto</a></li>
-      </ul>
-    </nav>
-  </header>
 
-  <!-- Sección inicio -->
-  <section id="inicio" class="hero">
-    <h2>Bienvenido a MiAppDrive</h2>
-    <p>Portal astral de servicios de <strong>Video IA</strong> con Colab, Drive y pipelines experimentales.</p>
-    <div class="btn-group">
-      <a class="btn" href="https://colab.research.google.com/github/TU_USUARIO/miappdrive/blob/main/videoIA_demo.ipynb" target="_blank">
-        🚀 Ejecutar Video IA en Colab
-      </a>
-      <a class="btn" href="https://drive.google.com/drive/folders/TU_CARPETA_ID" target="_blank">
-        📂 Ver ejemplos en Drive
-      </a>
-      <a class="btn" href="https://cloud.google.com/shell" target="_blank">
-        ☁️ Acceder a Cloud Shell
-      </a>
-    </div>
-  </section>
+<header>
+<div class="logo">
+<h1>🌌 MiAppDrive</h1>
+</div>
 
-  <!-- Sección servicios -->
-  <section id="servicios">
-    <h2>Servicios</h2>
-    <ul class="servicios-lista">
-      <li>✨ Generación de clips IA en Colab</li>
-      <li>🎥 Edición y concatenación de videos con ffmpeg</li>
-      <li>🌠 Portadas astrales y urbanas</li>
-      <li>☁️ Integración con Google Drive y Cloud</li>
-    </ul>
-  </section>
+<nav>
+<ul>
+<li>#inicioInicio</a></li>
+<li>#serviciosServicios</a></li>
+<li>#galeriaGalería</a></li>
+<li>#spaceSpace</a></li>
+<li>#calculadoraCalculadora</a></li>
+<li>#traductorTraductor</a></li>
+<li>#contactoContacto</a></li>
+</ul>
+</nav>
+</header>
 
-  <!-- Sección galería -->
-  <section id="galeria">
-    <h2>Galería</h2>
-    <p>Ejemplos de videos generados:</p>
-    <div class="galeria-videos">
-      <video controls width="100%">
-        <source src="https://drive.google.com/uc?id=TU_VIDEO_ID" type="video/mp4">
-        Tu navegador no soporta video embebido.
-      </video>
-      <video controls width="100%">
-        <source src="https://drive.google.com/uc?id=OTRO_VIDEO_ID" type="video/mp4">
-      </video>
-    </div>
-  </section>
+<section id="inicio" class="hero">
+<h2>Bienvenido a MiAppDrive</h2>
 
-  <!-- Sección Hugging Face Space -->
-  <section id="space">
-    <h2>Demo en Hugging Face</h2>
-    <p>Prueba la aplicación interactiva directamente aquí:</p>
-    <iframe src="https://ernimu-uruchillai-gradio.hf.space"
-            width="100%" height="800" style="border:none;">
-    </iframe>
-  </section>
+<p>
+Portal astral de servicios de
+<strong>Video IA</strong>
+con Colab, Drive y pipelines experimentales.
+</p>
 
-  <!-- Sección contacto -->
-  <section id="contacto">
-    <h2>Contacto</h2>
-    <p>📧 Escríbeme: <strong>carloslondo196619@gmail.com</strong></p>
-    <a class="btn" href="mailto:carloslondo196619@gmail.com">Enviar correo</a>
-  </section>
+<a class="btn"
+href="https://colab.research.google.com/github/TU_USUARIO/miappdrive/blob/main/videoIA_demo.ipynb"
+target="_blank">
+🚀 Ejecutar Video IA en Colab
+</a>
 
-  <!-- Pie de página -->
-  <footer>
-    <p>© 2026 MiAppDrive - Portal astral de Video IA</p>
-  </footer>
+<a class="btn"
+href="https://drive.google.com/drive/folders/TU_CARPETA_ID"
+target="_blank">
+📂 Ver ejemplos en Drive
+</a>
+
+<a class="btn"
+href="https://cloud.google.com/shell"
+target="_blank">
+☁️ Acceder a Cloud Shell
+</a>
+
+</section>
+
+<section id="servicios">
+<h2>Servicios</h2>
+
+<ul class="servicios-lista">
+<li>✨ Generación de clips IA en Colab</li>
+<li>🎥 Edición y concatenación con ffmpeg</li>
+<li>🌠 Portadas astrales y urbanas</li>
+<li>☁️ Integración con Google Drive y Cloud</li>
+</ul>
+</section>
+
+<section id="galeria">
+<h2>Galería</h2>
+
+<p>Ejemplos de videos generados:</p>
+
+<div class="galeria-videos">
+
+<video controls width="100%">
+<source src="https://drive.google.com/uc?id=TU_VIDEO_ID" type="video/mp4">
+</video>
+
+<video controls width="100%">
+<source src="https://drive.google.com/uc?id=OTRO_VIDEO_ID" type="video/mp4">
+</video>
+
+</div>
+</section>
+
+<section id="space">
+
+<h2>Demo en Hugging Face</h2>
+
+<p>
+Prueba la aplicación interactiva directamente aquí:
+</p>
+
+<iframe
+src="https://ernimu-uruchillai-gradio.hf.space"
+width="100%"
+height="800">
+</iframe>
+
+</section>
+
+<section id="calculadora">
+
+<h2>🧮 Calculadora Online</h2>
+
+<input type="number" id="num1" placeholder="Número 1">
+
+<input type="number" id="num2" placeholder="Número 2">
+
+<br>
+
+<button onclick="calcular('+')">➕ Sumar</button>
+<button onclick="calcular('-')">➖ Restar</button>
+<button onclick="calcular('*')">✖ Multiplicar</button>
+<button onclick="calcular('/')">➗ Dividir</button>
+
+<h3 id="resultadoCalc">Resultado: 0</h3>
+
+</section>
+
+<section id="traductor">
+
+<h2>🌍 Traductor Libre</h2>
+
+<textarea
+id="textoTraducir"
+rows="6"
+placeholder="Escribe aquí en español"></textarea>
+
+<button onclick="traducirTexto()">
+Traducir al Inglés
+</button>
+
+<h3>Resultado</h3>
+
+<div id="textoTraducido"></div>
+
+</section>
+
+<section id="contacto">
+
+<h2>Contacto</h2>
+
+<p>
+📧 Escríbeme:
+<strong>carloslondo196619@gmail.com</strong>
+</p>
+
+<a class="btn"
+href="mailto:carloslondo196619@gmail.com">
+Enviar correo
+</a>
+
+</section>
+
+<footer>
+<p>© 2026 MiAppDrive - Portal astral de Video IA</p>
+</footer>
+
+<script>
+
+function calcular(op){
+
+let a =
+parseFloat(document.getElementById('num1').value)||0;
+
+let b =
+parseFloat(document.getElementById('num2').value)||0;
+
+let r=0;
+
+switch(op){
+
+case '+':
+r=a+b;
+break;
+
+case '-':
+r=a-b;
+break;
+
+case '*':
+r=a*b;
+break;
+
+case '/':
+r=(b!==0)?a/b:'Error';
+break;
+
+}
+
+document.getElementById('resultadoCalc').innerHTML=
+'Resultado: '+r;
+
+}
+
+async function traducirTexto(){
+
+const texto=
+document.getElementById('textoTraducir').value;
+
+try{
+
+const respuesta=await fetch(
+'https://translate.argosopentech.com/translate',
+{
+method:'POST',
+headers:{
+'Content-Type':'application/json'
+},
+body:JSON.stringify({
+q:texto,
+source:'es',
+target:'en',
+format:'text'
+})
+}
+);
+
+const datos=await respuesta.json();
+
+document.getElementById('textoTraducido').innerHTML=
+datos.translatedText;
+
+}catch(error){
+
+document.getElementById('textoTraducido').innerHTML=
+'Error al conectar con el traductor.';
+
+}
+
+}
+
+</script>
+
 </body>
 </html>
