@@ -33,6 +33,7 @@ nav ul{
     display:flex;
     gap:15px;
     padding:0;
+    flex-wrap:wrap;
 }
 
 nav a{
@@ -72,17 +73,14 @@ section{
     gap:20px;
 }
 
-iframe{
-    background:white;
-    border-radius:10px;
-}
-
-input,textarea{
+input,
+textarea{
     width:100%;
+    max-width:600px;
     padding:10px;
     margin:5px 0;
-    border-radius:8px;
     border:none;
+    border-radius:8px;
 }
 
 button{
@@ -110,6 +108,7 @@ footer{
 <body>
 
 <header>
+
 <div class="logo">
 <h1>🌌 MiAppDrive</h1>
 </div>
@@ -125,9 +124,11 @@ footer{
 <li>#contactoContacto</a></li>
 </ul>
 </nav>
+
 </header>
 
 <section id="inicio" class="hero">
+
 <h2>Bienvenido a MiAppDrive</h2>
 
 <p>
@@ -157,17 +158,20 @@ target="_blank">
 </section>
 
 <section id="servicios">
+
 <h2>Servicios</h2>
 
 <ul class="servicios-lista">
 <li>✨ Generación de clips IA en Colab</li>
-<li>🎥 Edición y concatenación con ffmpeg</li>
+<li>🎥 Edición de video con ffmpeg</li>
 <li>🌠 Portadas astrales y urbanas</li>
 <li>☁️ Integración con Google Drive y Cloud</li>
 </ul>
+
 </section>
 
 <section id="galeria">
+
 <h2>Galería</h2>
 
 <p>Ejemplos de videos generados:</p>
@@ -183,20 +187,20 @@ target="_blank">
 </video>
 
 </div>
+
 </section>
 
 <section id="space">
 
 <h2>Demo en Hugging Face</h2>
 
-<p>
-Prueba la aplicación interactiva directamente aquí:
-</p>
+<p>Prueba la aplicación aquí:</p>
 
 <iframe
 src="https://ernimu-uruchillai-gradio.hf.space"
 width="100%"
-height="800">
+height="800"
+style="border:none;background:white;">
 </iframe>
 
 </section>
@@ -216,26 +220,31 @@ height="800">
 <button onclick="calcular('*')">✖ Multiplicar</button>
 <button onclick="calcular('/')">➗ Dividir</button>
 
-<h3 id="resultadoCalc">Resultado: 0</h3>
+<h3 id="resultadoCalc">
+Resultado: 0
+</h3>
 
 </section>
 
 <section id="traductor">
 
-<h2>🌍 Traductor Libre</h2>
+<h2>🌍 Traductor</h2>
+
+<p>
+Escribe un texto y se abrirá Google Translate.
+</p>
 
 <textarea
 id="textoTraducir"
 rows="6"
-placeholder="Escribe aquí en español"></textarea>
+placeholder="Escribe aquí tu texto">
+</textarea>
 
-<button onclick="traducirTexto()">
-Traducir al Inglés
+<br>
+
+<button onclick="abrirTraductor()">
+Traducir
 </button>
-
-<h3>Resultado</h3>
-
-<div id="textoTraducido"></div>
 
 </section>
 
@@ -244,7 +253,7 @@ Traducir al Inglés
 <h2>Contacto</h2>
 
 <p>
-📧 Escríbeme:
+📧
 <strong>carloslondo196619@gmail.com</strong>
 </p>
 
@@ -256,80 +265,66 @@ Enviar correo
 </section>
 
 <footer>
-<p>© 2026 MiAppDrive - Portal astral de Video IA</p>
+<p>
+© 2026 MiAppDrive - Portal astral de Video IA
+</p>
 </footer>
 
 <script>
 
 function calcular(op){
 
-let a =
-parseFloat(document.getElementById('num1').value)||0;
+let a = parseFloat(
+document.getElementById("num1").value
+) || 0;
 
-let b =
-parseFloat(document.getElementById('num2').value)||0;
+let b = parseFloat(
+document.getElementById("num2").value
+) || 0;
 
-let r=0;
+let resultado = 0;
 
 switch(op){
 
-case '+':
-r=a+b;
+case "+":
+resultado = a + b;
 break;
 
-case '-':
-r=a-b;
+case "-":
+resultado = a - b;
 break;
 
-case '*':
-r=a*b;
+case "*":
+resultado = a * b;
 break;
 
-case '/':
-r=(b!==0)?a/b:'Error';
+case "/":
+resultado = b !== 0 ? a / b : "Error";
 break;
 
 }
 
-document.getElementById('resultadoCalc').innerHTML=
-'Resultado: '+r;
+document.getElementById(
+"resultadoCalc"
+).innerHTML =
+"Resultado: " + resultado;
 
 }
 
-async function traducirTexto(){
+function abrirTraductor(){
 
-const texto=
-document.getElementById('textoTraducir').value;
-
-try{
-
-const respuesta=await fetch(
-'https://translate.argosopentech.com/translate',
-{
-method:'POST',
-headers:{
-'Content-Type':'application/json'
-},
-body:JSON.stringify({
-q:texto,
-source:'es',
-target:'en',
-format:'text'
-})
-}
+let texto = encodeURIComponent(
+document.getElementById(
+"textoTraducir"
+).value
 );
 
-const datos=await respuesta.json();
-
-document.getElementById('textoTraducido').innerHTML=
-datos.translatedText;
-
-}catch(error){
-
-document.getElementById('textoTraducido').innerHTML=
-'Error al conectar con el traductor.';
-
-}
+window.open(
+"https://translate.google.com/?sl=es&tl=en&text="
++ texto +
+"&op=translate",
+"_blank"
+);
 
 }
 
