@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>🌌 MiAppDrive AI Portal</title>
+<title>🌌 UruchillAI Portal</title>
 
 <style>
 
@@ -17,13 +18,15 @@ box-sizing:border-box;
 
 body{
 font-family:Arial,sans-serif;
-background:#0b1020;
+background:
+radial-gradient(circle at top,#1d4ed8,#020617);
 color:white;
-line-height:1.6;
+min-height:100vh;
 }
 
 header{
-background:#111827;
+background:rgba(0,0,0,.5);
+backdrop-filter:blur(10px);
 padding:15px;
 position:sticky;
 top:0;
@@ -31,11 +34,11 @@ z-index:1000;
 }
 
 nav ul{
-list-style:none;
 display:flex;
 justify-content:center;
 gap:20px;
 flex-wrap:wrap;
+list-style:none;
 }
 
 nav a{
@@ -45,37 +48,38 @@ font-weight:bold;
 }
 
 nav a:hover{
-color:#4fc3f7;
+color:#38bdf8;
 }
 
 .hero{
-background:linear-gradient(135deg,#16213e,#0f3460);
-padding:80px 20px;
+padding:100px 20px;
 text-align:center;
 }
 
 .hero h1{
 font-size:3rem;
-margin-bottom:10px;
+text-shadow:0 0 20px #38bdf8;
 }
 
 .hero p{
+margin-top:15px;
 font-size:1.2rem;
-margin-bottom:20px;
 }
 
 .btn{
 display:inline-block;
+background:#2563eb;
 padding:12px 20px;
-background:#2196f3;
-color:white;
-border-radius:10px;
-text-decoration:none;
 margin:5px;
+border-radius:12px;
+text-decoration:none;
+color:white;
+border:none;
+cursor:pointer;
 }
 
 .btn:hover{
-background:#1976d2;
+background:#3b82f6;
 }
 
 section{
@@ -83,278 +87,71 @@ padding:40px 20px;
 }
 
 .card{
-background:rgba(255,255,255,0.08);
+background:rgba(255,255,255,.07);
+backdrop-filter:blur(12px);
 padding:20px;
-border-radius:15px;
+border-radius:20px;
 margin-top:15px;
-backdrop-filter:blur(10px);
 }
 
 .stats{
 display:flex;
-justify-content:center;
-gap:20px;
 flex-wrap:wrap;
+gap:15px;
+justify-content:center;
 }
 
 .stat{
-background:#1e293b;
+background:#0f172a;
 padding:20px;
-border-radius:12px;
-min-width:180px;
+border-radius:15px;
+min-width:200px;
 text-align:center;
 }
 
-video,
-audio{
+audio,
+video{
 width:100%;
 margin-top:15px;
-border-radius:10px;
+border-radius:12px;
 }
 
 iframe{
+width:100%;
+height:800px;
 border:none;
-border-radius:15px;
+border-radius:20px;
+}
+
+#songTitle{
+text-align:center;
+margin-bottom:10px;
+color:#38bdf8;
+}
+
+#songCounter{
+margin-top:15px;
+text-align:center;
 }
 
 footer{
-background:#111827;
-padding:20px;
+padding:30px;
 text-align:center;
+background:#020617;
+margin-top:50px;
 }
 
 </style>
 
 </head>
+
 <body>
 
 <header>
 
 <nav>
+
 <ul>
+
 <li><a href="#inicio">Inicio</a></li>
-<li><a href="#servicios">Servicios</a></li>
-<li>#musicaMúsica</a></li>
-<li>#videosVideos</a></li>
-<li><a href="#space">Space IA</a></li>
-<li><a href="#contacto">Contacto</a></li>
-</ul>
-</nav>
-
-</header>
-
-<section id="inicio" class="hero">
-
-<h1>🚀 MiAppDrive AI Portal</h1>
-
-<p>
-Video IA • Hugging Face • Google Drive • Automatización • Streaming
-</p>
-
-https://github.com/uruchillai/uru-music-siempre
-📂 GitHub
-</a>
-
-<a class="btn" href="https://ernimu-uruchillai-gradio.hf.space" target="_blank">
-🤖 Abrir Space IA
-</a>
-
-</section>
-
-<section>
-
-<h2>📊 Estadísticas</h2>
-
-<div class="stats">
-
-<div class="stat">
-<h3>🎬 Videos</h3>
-<p>Auto</p>
-</div>
-
-<div class="stat">
-<h3>🎵 Música</h3>
-<p>Auto</p>
-</div>
-
-<div class="stat">
-<h3>☁️ GitHub</h3>
-<p>Conectado</p>
-</div>
-
-</div>
-
-</section>
-
-<section id="servicios">
-
-<h2>✨ Servicios</h2>
-
-<div class="card">
-
-<ul>
-
-<li>🎥 Generación de Video IA</li>
-<li>🌌 Portadas astrales</li>
-<li>☁️ Google Drive</li>
-<li>🤖 Hugging Face</li>
-<li>🎵 Reproductor multimedia automático</li>
-
-</ul>
-
-</div>
-
-</section>
-
-<section id="musica">
-
-<h2>🎵 Música Automática</h2>
-
-<div class="card">
-
-<audio
-id="audioPlayer"
-controls
-autoplay>
-</audio>
-
-<p>
-La música se carga automáticamente desde la carpeta <b>musica</b>.
-</p>
-
-</div>
-
-</section>
-
-<section id="videos">
-
-<h2>🎬 Videos Automáticos</h2>
-
-<div class="card">
-
-<video
-id="videoPlayer"
-controls>
-</video>
-
-<p>
-Los videos se cargan automáticamente desde la carpeta <b>videos</b>.
-</p>
-
-</div>
-
-</section>
-
-<section id="space">
-
-<h2>🤖 Demo Hugging Face</h2>
-
-<iframe
-src="https://ernimu-uruchillai-gradio.hf.space"
-width="100%"
-height="800">
-</iframe>
-
-</section>
-
-<section id="contacto">
-
-<h2>📧 Contacto</h2>
-
-<p>carloslondo196619@gmail.com</p>
-
-<a
-class="btn"
-href="mailto:carloslondo196619@gmail.com">
-Enviar correo
-</a>
-
-</section>
-
-<footer>
-
-<p>
-© 2026 MiAppDrive AI Portal
-</p>
-
-</footer>
-
-<script>
-
-const usuarioGit = "uruchillai";
-const repoGit = "uru-music-siempre";
-
-/* MUSICA */
-
-fetch(
-`https://api.github.com/repos/${usuarioGit}/${repoGit}/contents/musica`
-)
-.then(r=>r.json())
-.then(files=>{
-
-const canciones = files
-.filter(f=>f.name.toLowerCase().endsWith(".mp3"))
-.map(f=>f.download_url);
-
-if(canciones.length===0)return;
-
-let actual=0;
-
-const audio=document.getElementById("audioPlayer");
-
-audio.src=canciones[0];
-
-audio.addEventListener("ended",()=>{
-
-actual++;
-
-if(actual>=canciones.length){
-actual=0;
-}
-
-audio.src=canciones[actual];
-audio.play();
-
-});
-
-});
-
-/* VIDEOS */
-
-fetch(
-`https://api.github.com/repos/${usuarioGit}/${repoGit}/contents/videos`
-)
-.then(r=>r.json())
-.then(files=>{
-
-const videos = files
-.filter(f=>f.name.toLowerCase().endsWith(".mp4"))
-.map(f=>f.download_url);
-
-if(videos.length===0)return;
-
-let actual=0;
-
-const video=document.getElementById("videoPlayer");
-
-video.src=videos[0];
-
-video.addEventListener("ended",()=>{
-
-actual++;
-
-if(actual>=videos.length){
-actual=0;
-}
-
-video.src=videos[actual];
-video.play();
-
-});
-
-});
-
-</script>
-
-</body>
-</html>
+<li><a 
