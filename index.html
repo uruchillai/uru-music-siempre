@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -13,16 +11,16 @@
 *{
 margin:0;
 padding:0;
-box-sizing:*order-box;
+box-sizing:border-box;
 }
 
 html{
-scroll-behavio*:smooth;
+scroll-behavior:smooth;
 }
 
 body{
-font-family:Sego* UI, Arial, sans-serif;
-background*linear-gradient(180deg,#020617,#0f*72a,#1e3a8a);
+font-family:'Segoe UI',sans-serif;
+background:linear-gradient(180deg,#020617,#0f172a,#1e3a8a);
 color:white;
 min-height:100vh;
 }
@@ -31,15 +29,15 @@ header{
 position:sticky;
 top:0;
 z-index:1000;
-background:rgba(0,0,0,.55);
-backdrop-filter:blur(10px);
+background:rgba(0,0,0,.5);
+backdrop-filter:blur(12px);
 padding:15px;
 }
 
 nav{
 display:flex;
 justify-content:center;
-gap:20px;
+gap:25px;
 flex-wrap:wrap;
 }
 
@@ -55,14 +53,14 @@ color:#38bdf8;
 }
 
 .hero{
-padding:80px 20px;
 text-align:center;
+padding:80px 20px;
 }
 
 .hero h1{
 font-size:3rem;
-margin-bottom:15px;
 color:#38bdf8;
+margin-bottom:10px;
 }
 
 .hero p{
@@ -72,12 +70,12 @@ opacity:.9;
 
 .btn{
 display:inline-block;
-margin:10px;
-padding:12px 22px;
-border-radius:12px;
+padding:12px 24px;
+margin:6px;
 background:#2563eb;
-color:white;
+border-radius:12px;
 text-decoration:none;
+color:white;
 font-weight:bold;
 transition:.3s;
 }
@@ -88,48 +86,27 @@ transform:translateY(-3px);
 }
 
 section{
-max-width:1100px;
-margin:auto;
 padding:30px;
+max-width:1200px;
+margin:auto;
 }
 
 .card{
 background:rgba(255,255,255,.08);
 padding:25px;
 border-radius:20px;
-backdrop-filter:blur(10px);
-box-shadow:0 0 20px rgba(0,0,0,.2);
+backdrop-filter:blur(12px);
+box-shadow:0 0 20px rgba(0,0,0,.25);
 margin-bottom:25px;
 }
 
 h2{
-margin-bottom:15px;
 color:#38bdf8;
+margin-bottom:15px;
 }
 
-audio,
-video{
-width:100%;
-margin-top:15px;
-border-radius:10px;
-}
-
-button{
-padding:10px 15px;
-border:none;
-border-radius:10px;
-cursor:pointer;
-background:#3b82f6;
-color:white;
-font-size:16px;
-margin:5px;
-}
-
-button:hover{
-background:#60a5fa;
-}
-
-#songTitle{
+#songTitle,
+#videoTitle{
 text-align:center;
 margin:15px 0;
 color:#38bdf8;
@@ -140,8 +117,31 @@ text-align:center;
 margin-top:10px;
 }
 
+audio,
+video{
+width:100%;
+margin-top:15px;
+border-radius:10px;
+}
+
 .controls{
 text-align:center;
+margin-top:15px;
+}
+
+button{
+padding:10px 15px;
+border:none;
+border-radius:10px;
+cursor:pointer;
+margin:5px;
+background:#3b82f6;
+color:white;
+font-size:15px;
+}
+
+button:hover{
+background:#60a5fa;
 }
 
 iframe{
@@ -153,20 +153,13 @@ background:white;
 }
 
 footer{
-margin-top:50px;
 text-align:center;
 padding:25px;
+margin-top:40px;
 background:#020617;
 }
 
-.status{
-text-align:center;
-padding:10px;
-color:#93c5fd;
-}
-
 </style>
-
 </head>
 
 <body>
@@ -186,7 +179,7 @@ color:#93c5fd;
 
 <h1>🚀 UruchillAI Portal</h1>
 
-<p>Streaming • Música • Video • Inteligencia Artificial</p>
+<p>Streaming • Música • Vídeos • Inteligencia Artificial</p>
 
 <br>
 
@@ -223,9 +216,9 @@ controls>
 
 <div class="controls">
 
-<button id="prevBtn">⏮</button>
-<button id="nextBtn">⏭</button>
-<button id="randomBtn">🔀</button>
+<button id="prevBtn">⏮ Anterior</button>
+<button id="nextBtn">⏭ Siguiente</button>
+<button id="randomBtn">🔀 Aleatoria</button>
 
 </div>
 
@@ -243,13 +236,300 @@ controls>
 
 <h2>🎬 Reproductor de Videos</h2>
 
+<h3 id="videoTitle">
+Cargando videos...
+</h3>
+
 <video
 id="videoPlayer"
 controls>
 </video>
 
-<div id="videoStatus" class="status">
-Cargando videos...
+<div class="controls">
+
+<button id="prevVideoBtn">
+⏮ Anterior
+</button>
+
+<button id="nextVideoBtn">
+⏭ Siguiente
+</button>
+
+<button id="randomVideoBtn">
+🔀 Aleatorio
+</button>
+
 </div>
 
-</div
+</div>
+
+</section>
+
+<section id="space">
+
+<div class="card">
+
+<h2>🤖 UruchillAI Space</h2>
+
+<iframe
+src="https://ernimu-uruchillai-gradio.hf.space">
+</iframe>
+
+</div>
+
+</section>
+
+<footer>
+
+🌌 UruchillAI Portal © 2026
+
+</footer>
+
+<script>
+
+/* CONFIGURACION */
+
+const usuarioGit = "uruchillai";
+const repoGit = "uru-music-siempre";
+
+/* MUSICA */
+
+let canciones = [];
+let actual = 0;
+
+const audio =
+document.getElementById("audioPlayer");
+
+function cargarCancion(i){
+
+actual = i;
+
+audio.src = canciones[i].url;
+
+document.getElementById(
+"songTitle"
+).textContent =
+canciones[i].nombre;
+
+document.getElementById(
+"songCounter"
+).textContent =
+(actual + 1) +
+" / " +
+canciones.length;
+
+audio.play().catch(()=>{});
+
+}
+
+fetch(
+`https://api.github.com/repos/${usuarioGit}/${repoGit}/contents/musica`
+)
+
+.then(r=>r.json())
+
+.then(data=>{
+
+canciones = data
+.filter(f=>
+f.name.toLowerCase().endsWith(".mp3")
+)
+.map(f=>({
+nombre:f.name,
+url:f.download_url
+}));
+
+if(canciones.length){
+
+cargarCancion(0);
+
+}else{
+
+document.getElementById(
+"songTitle"
+).textContent =
+"No hay canciones";
+
+}
+
+})
+
+.catch(()=>{
+
+document.getElementById(
+"songTitle"
+).textContent =
+"Error cargando canciones";
+
+});
+
+document
+.getElementById("nextBtn")
+.onclick=()=>{
+
+if(!canciones.length)return;
+
+cargarCancion(
+(actual+1)%canciones.length
+);
+
+};
+
+document
+.getElementById("prevBtn")
+.onclick=()=>{
+
+if(!canciones.length)return;
+
+cargarCancion(
+(actual-1+canciones.length)%
+canciones.length
+);
+
+};
+
+document
+.getElementById("randomBtn")
+.onclick=()=>{
+
+if(!canciones.length)return;
+
+cargarCancion(
+Math.floor(
+Math.random()*canciones.length
+)
+);
+
+};
+
+audio.addEventListener(
+"ended",
+()=>{
+if(!canciones.length)return;
+
+cargarCancion(
+(actual+1)%canciones.length
+);
+}
+);
+
+/* VIDEOS */
+
+let videos = [];
+let actualVideo = 0;
+
+const player =
+document.getElementById("videoPlayer");
+
+function cargarVideo(i){
+
+actualVideo = i;
+
+player.src = videos[i].url;
+
+document.getElementById(
+"videoTitle"
+).textContent =
+videos[i].nombre;
+
+player.play().catch(()=>{});
+
+}
+
+fetch(
+`https://api.github.com/repos/${usuarioGit}/${repoGit}/contents/videos`
+)
+
+.then(r=>r.json())
+
+.then(data=>{
+
+videos = data
+.filter(f=>
+f.name.toLowerCase().endsWith(".mp4")
+)
+.map(f=>({
+nombre:f.name,
+url:f.download_url
+}));
+
+if(videos.length){
+
+cargarVideo(0);
+
+}else{
+
+document.getElementById(
+"videoTitle"
+).textContent =
+"No hay videos";
+
+}
+
+})
+
+.catch(()=>{
+
+document.getElementById(
+"videoTitle"
+).textContent =
+"Error cargando videos";
+
+});
+
+document
+.getElementById("nextVideoBtn")
+.onclick=()=>{
+
+if(!videos.length)return;
+
+cargarVideo(
+(actualVideo+1)%videos.length
+);
+
+};
+
+document
+.getElementById("prevVideoBtn")
+.onclick=()=>{
+
+if(!videos.length)return;
+
+cargarVideo(
+(actualVideo-1+videos.length)%
+videos.length
+);
+
+};
+
+document
+.getElementById("randomVideoBtn")
+.onclick=()=>{
+
+if(!videos.length)return;
+
+cargarVideo(
+Math.floor(
+Math.random()*videos.length
+)
+);
+
+};
+
+player.addEventListener(
+"ended",
+()=>{
+
+if(!videos.length)return;
+
+cargarVideo(
+(actualVideo+1)%videos.length
+);
+
+}
+);
+
+</script>
+
+</body>
+</html>
