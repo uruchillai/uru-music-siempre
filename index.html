@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>🌌 UruchillAI Portal</title>
 
 <style>
@@ -10,23 +13,27 @@
 *{
 margin:0;
 padding:0;
-box-sizing:border-box;
+box-sizing:*order-box;
+}
+
+html{
+scroll-behavio*:smooth;
 }
 
 body{
-font-family:Arial,sans-serif;
-background:linear-gradient(180deg,#020617,#0f172a,#1e3a8a);
+font-family:Sego* UI, Arial, sans-serif;
+background*linear-gradient(180deg,#020617,#0f*72a,#1e3a8a);
 color:white;
 min-height:100vh;
 }
 
 header{
-background:rgba(0,0,0,.5);
-backdrop-filter:blur(10px);
-padding:15px;
 position:sticky;
 top:0;
-z-index:100;
+z-index:1000;
+background:rgba(0,0,0,.55);
+backdrop-filter:blur(10px);
+padding:15px;
 }
 
 nav{
@@ -40,63 +47,82 @@ nav a{
 color:white;
 text-decoration:none;
 font-weight:bold;
+transition:.3s;
+}
+
+nav a:hover{
+color:#38bdf8;
 }
 
 .hero{
-text-align:center;
 padding:80px 20px;
+text-align:center;
 }
 
 .hero h1{
 font-size:3rem;
+margin-bottom:15px;
 color:#38bdf8;
-margin-bottom:10px;
+}
+
+.hero p{
+font-size:1.2rem;
+opacity:.9;
 }
 
 .btn{
 display:inline-block;
-padding:12px 20px;
-margin:5px;
+margin:10px;
+padding:12px 22px;
+border-radius:12px;
 background:#2563eb;
-border-radius:10px;
 color:white;
 text-decoration:none;
 font-weight:bold;
+transition:.3s;
 }
 
 .btn:hover{
 background:#3b82f6;
+transform:translateY(-3px);
 }
 
 section{
-padding:30px;
-max-width:1000px;
+max-width:1100px;
 margin:auto;
+padding:30px;
 }
 
 .card{
 background:rgba(255,255,255,.08);
-padding:20px;
-border-radius:15px;
+padding:25px;
+border-radius:20px;
 backdrop-filter:blur(10px);
-margin-bottom:20px;
+box-shadow:0 0 20px rgba(0,0,0,.2);
+margin-bottom:25px;
+}
+
+h2{
+margin-bottom:15px;
+color:#38bdf8;
 }
 
 audio,
 video{
 width:100%;
 margin-top:15px;
+border-radius:10px;
 }
 
 button{
 padding:10px 15px;
 border:none;
 border-radius:10px;
-margin:5px;
 cursor:pointer;
 background:#3b82f6;
 color:white;
 font-size:16px;
+margin:5px;
 }
 
 button:hover{
@@ -105,13 +131,17 @@ background:#60a5fa;
 
 #songTitle{
 text-align:center;
-margin:10px 0;
+margin:15px 0;
 color:#38bdf8;
 }
 
 #songCounter{
 text-align:center;
 margin-top:10px;
+}
+
+.controls{
+text-align:center;
 }
 
 iframe{
@@ -123,10 +153,16 @@ background:white;
 }
 
 footer{
-text-align:center;
-padding:20px;
 margin-top:50px;
+text-align:center;
+padding:25px;
 background:#020617;
+}
+
+.status{
+text-align:center;
+padding:10px;
+color:#93c5fd;
 }
 
 </style>
@@ -150,7 +186,7 @@ background:#020617;
 
 <h1>🚀 UruchillAI Portal</h1>
 
-<p>Streaming • Música • Video • IA</p>
+<p>Streaming • Música • Video • Inteligencia Artificial</p>
 
 <br>
 
@@ -174,7 +210,7 @@ target="_blank">
 
 <div class="card">
 
-<h2>🎵 Reproductor</h2>
+<h2>🎵 Reproductor Musical</h2>
 
 <h3 id="songTitle">
 Cargando canciones...
@@ -185,19 +221,11 @@ id="audioPlayer"
 controls>
 </audio>
 
-<div style="text-align:center">
+<div class="controls">
 
-<button id="prevBtn">
-⏮
-</button>
-
-<button id="nextBtn">
-⏭
-</button>
-
-<button id="randomBtn">
-🔀
-</button>
+<button id="prevBtn">⏮</button>
+<button id="nextBtn">⏭</button>
+<button id="randomBtn">🔀</button>
 
 </div>
 
@@ -213,202 +241,15 @@ controls>
 
 <div class="card">
 
-<h2>🎬 Video Automático</h2>
+<h2>🎬 Reproductor de Videos</h2>
 
 <video
 id="videoPlayer"
 controls>
 </video>
 
+<div id="videoStatus" class="status">
+Cargando videos...
 </div>
 
-</section>
-
-<section id="space">
-
-<div class="card">
-
-<h2>🤖 Hugging Face Space</h2>
-
-<iframe
-src="https://ernimu-uruchillai-gradio.hf.space">
-</iframe>
-
-</div>
-
-</section>
-
-<footer>
-
-🌌 UruchillAI Portal 2026
-
-</footer>
-
-<script>
-
-const usuarioGit = "uruchillai";
-const repoGit = "uru-music-siempre";
-
-let canciones = [];
-let actual = 0;
-
-const audio = document.getElementById("audioPlayer");
-
-function cargarCancion(i){
-
-actual = i;
-
-audio.src = canciones[i].url;
-
-document.getElementById("songTitle").textContent =
-canciones[i].nombre;
-
-document.getElementById("songCounter").textContent =
-(actual + 1) + " / " + canciones.length;
-
-audio.play().catch(() => {});
-
-}
-
-/* MUSICA */
-
-fetch(
-`https://api.github.com/repos/${usuarioGit}/${repoGit}/contents/musica`
-)
-
-.then(r => {
-if(!r.ok){
-throw new Error("No se encontró la carpeta musica");
-}
-return r.json();
-})
-
-.then(data => {
-
-canciones = data
-.filter(f => f.name.toLowerCase().endsWith(".mp3"))
-.map(f => ({
-nombre:f.name,
-url:f.download_url
-}));
-
-if(canciones.length > 0){
-cargarCancion(0);
-}else{
-document.getElementById("songTitle").textContent =
-"No hay canciones";
-}
-
-})
-
-.catch(error => {
-
-console.error(error);
-
-document.getElementById("songTitle").textContent =
-"Error cargando música";
-
-});
-
-document.getElementById("nextBtn").onclick = () => {
-
-if(!canciones.length) return;
-
-cargarCancion(
-(actual + 1) % canciones.length
-);
-
-};
-
-document.getElementById("prevBtn").onclick = () => {
-
-if(!canciones.length) return;
-
-cargarCancion(
-(actual - 1 + canciones.length) %
-canciones.length
-);
-
-};
-
-document.getElementById("randomBtn").onclick = () => {
-
-if(!canciones.length) return;
-
-cargarCancion(
-Math.floor(
-Math.random() * canciones.length
-)
-);
-
-};
-
-audio.addEventListener("ended", () => {
-
-if(!canciones.length) return;
-
-cargarCancion(
-(actual + 1) % canciones.length
-);
-
-});
-
-/* VIDEOS */
-
-fetch(
-`https://api.github.com/repos/${usuarioGit}/${repoGit}/contents/videos`
-)
-
-.then(r => {
-if(!r.ok){
-throw new Error("No se encontró la carpeta videos");
-}
-return r.json();
-})
-
-.then(data => {
-
-const videos = data
-.filter(f => f.name.toLowerCase().endsWith(".mp4"))
-.map(f => f.download_url);
-
-if(videos.length === 0){
-return;
-}
-
-const player =
-document.getElementById("videoPlayer");
-
-let actualVideo = 0;
-
-player.src = videos[0];
-
-player.addEventListener("ended", () => {
-
-actualVideo++;
-
-if(actualVideo >= videos.length){
-actualVideo = 0;
-}
-
-player.src = videos[actualVideo];
-
-player.play().catch(() => {});
-
-});
-
-})
-
-.catch(error => {
-
-console.error(
-"Error videos:",
-error
-);
-
-});
-
-</script>
-
-</body>
-</html>
+</div
