@@ -4,174 +4,155 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>MiAppDrive AI Portal</title>
+<title>URU Music AI Portal</title>
 
 <style>
 
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
 body{
-font-family:Arial,sans-serif;
-background:#0b1020;
-color:white;
-line-height:1.6;
+    font-family:Arial,sans-serif;
+    background:#0b1020;
+    color:white;
+    line-height:1.6;
 }
 
 header{
-background:#111827;
-padding:20px;
-position:sticky;
-top:0;
-z-index:100;
+    background:#111827;
+    position:sticky;
+    top:0;
+    z-index:999;
+    padding:15px;
 }
 
 nav ul{
-list-style:none;
-display:flex;
-gap:15px;
-flex-wrap:wrap;
-justify-content:center;
+    list-style:none;
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:15px;
 }
 
 nav a{
-color:white;
-text-decoration:none;
-font-weight:bold;
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
 }
 
 nav a:hover{
-color:#4fc3f7;
+    color:#4fc3f7;
 }
 
 .hero{
-text-align:center;
-padding:80px 20px;
-background:linear-gradient(135deg,#16213e,#0f3460);
+    text-align:center;
+    padding:80px 20px;
+    background:linear-gradient(135deg,#16213e,#0f3460);
 }
 
 .hero h1{
-font-size:3rem;
-margin-bottom:10px;
+    font-size:3rem;
 }
 
 .hero p{
-font-size:1.2rem;
-margin-bottom:20px;
+    margin-top:15px;
 }
 
 .btn{
-display:inline-block;
-background:#2196f3;
-color:white;
-padding:12px 20px;
-border-radius:10px;
-text-decoration:none;
-margin:5px;
-}
-
-.btn:hover{
-background:#1976d2;
+    display:inline-block;
+    padding:12px 20px;
+    border-radius:10px;
+    background:#2196f3;
+    color:white;
+    text-decoration:none;
+    margin-top:15px;
 }
 
 section{
-padding:40px 20px;
-animation:fade 1s ease;
+    padding:40px 20px;
 }
 
 .card{
-background:rgba(255,255,255,0.08);
-backdrop-filter:blur(8px);
-padding:20px;
-border-radius:15px;
-margin:10px;
+    background:rgba(255,255,255,0.08);
+    border-radius:15px;
+    padding:20px;
+    margin-top:15px;
 }
 
 .stats{
-display:flex;
-flex-wrap:wrap;
-gap:20px;
-justify-content:center;
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:20px;
 }
 
 .stat{
-background:#1e293b;
-padding:20px;
-border-radius:15px;
-text-align:center;
-min-width:180px;
+    background:#1e293b;
+    padding:20px;
+    border-radius:15px;
+    min-width:180px;
+    text-align:center;
 }
 
 input,
 textarea{
-width:100%;
-max-width:600px;
-padding:12px;
-margin:8px 0;
-border:none;
-border-radius:10px;
+    width:100%;
+    max-width:600px;
+    padding:12px;
+    border:none;
+    border-radius:10px;
+    margin:8px 0;
 }
 
 button{
-padding:12px 15px;
-background:#4caf50;
-border:none;
-color:white;
-border-radius:8px;
-cursor:pointer;
-margin:4px;
+    padding:12px 15px;
+    border:none;
+    border-radius:8px;
+    background:#4caf50;
+    color:white;
+    cursor:pointer;
 }
 
 button:hover{
-background:#2e7d32;
+    background:#2e7d32;
 }
 
-video{
-border-radius:15px;
-margin-top:15px;
+video,
+audio{
+    width:100%;
+    margin-top:10px;
+    border-radius:12px;
 }
 
 footer{
-background:#111827;
-padding:20px;
-text-align:center;
-}
-
-@keyframes fade{
-from{
-opacity:0;
-transform:translateY(20px);
-}
-to{
-opacity:1;
-transform:translateY(0);
-}
+    background:#111827;
+    text-align:center;
+    padding:20px;
 }
 
 </style>
 
+https://cdn.jsdelivr.net/npm/hls.js@latestscript>
+
 </head>
+
 <body>
 
 <header>
 
 <nav>
 <ul>
-
-<li>#inicioInicio</a></li>
-<li>#serviciosServicios</a></li>
-<li>#galeriaGalería</a></li>
-<li>#calculadoraCalculadora</a></li>
-<li>#cientificaCientífica</a></li>
-<li>#monedasMonedas</a></li>
-<li>#unidadesUnidades</a></li>
-<li>#relojReloj</a></li>
-<li>#traductorTraductor</a></li>
-<li>#contactoContacto</a></li>
-
+<li><a href="#inicio">Inicio</a></li>
+<li>#radioRadio</a></li>
+<li>#tvTV</a></li>
+<li><a href="#galeria">Videos IA</a></li>
+<li><a href="#calculadora">Calculadora</a></li>
+<li><a href="#reloj">Reloj</a></li>
+<li><a href="#traductor">Traductor</a></li>
+<li><a href="#contacto">Contacto</a></li>
 </ul>
 </nav>
 
@@ -179,54 +160,80 @@ transform:translateY(0);
 
 <section class="hero" id="inicio">
 
-<h1>🚀 MiAppDrive AI Portal</h1>
+<h1>🚀 URU Music AI Portal</h1>
 
 <p>
-Video IA • Hugging Face • Google Colab • Drive • Herramientas Online
+Radio Online • IA • Streaming • Herramientas
 </p>
 
-#🎥 Video IA</a>
-<a  Drive</a>
-<a class="btn" href="#">🤖 IA</a>
+#radio
+Escuchar Radio
+</a>
+
+</section>
+
+<section>
 
 <h2>📊 Estadísticas</h2>
 
 <div class="stats">
 
 <div class="stat">
-<h3>🎬 Videos IA</h3>
-<p>+100</p>
+<h3>🎵 Radio</h3>
+<p>24/7</p>
 </div>
 
 <div class="stat">
-<h3>☁️ Proyectos</h3>
-<p>+50</p>
+<h3>🤖 IA</h3>
+<p>Activa</p>
 </div>
 
 <div class="stat">
-<h3>👥 Usuarios</h3>
-<p>+500</p>
+<h3>🌎 Global</h3>
+<p>Online</p>
 </div>
 
 </div>
 
 </section>
 
-<section id="servicios">
+<section id="radio">
 
-<h2>✨ Servicios</h2>
+<h2>📻 Radio URU Music</h2>
 
 <div class="card">
 
-<ul>
+<audio controls autoplay>
+https://urumusic.online/stream
+</audio>
 
-<li>🎥 Generación de Video IA</li>
-<li>🌌 Portadas astrales</li>
-<li>☁️ Google Drive</li>
-<li>⚡ Hugging Face Spaces</li>
-<li>🧠 Automatización IA</li>
+<p>
+Escucha nuestra radio en vivo.
+</p>
 
-</ul>
+</div>
+
+</section>
+
+<section id="tv">
+
+<h2>📺 TV Online</h2>
+
+<div class="card">
+
+<button onclick="cargarCanal('URL_CANAL_1.m3u8')">
+Canal 1
+</button>
+
+<button onclick="cargarCanal('URL_CANAL_2.m3u8')">
+Canal 2
+</button>
+
+<button onclick="cargarCanal('URL_CANAL_3.m3u8')">
+Canal 3
+</button>
+
+<video id="tvPlayer" controls autoplay></video>
 
 </div>
 
@@ -234,12 +241,12 @@ Video IA • Hugging Face • Google Colab • Drive • Herramientas Online
 
 <section id="galeria">
 
-<h2>🎬 Galería IA</h2>
+<h2>🎬 Videos IA</h2>
 
 <div class="card">
 
-<video controls width="100%">
-video1.mp4
+<video controls>
+<source src="video1.mp4" type="video/mp4">
 </video>
 
 </div>
@@ -248,74 +255,28 @@ video1.mp4
 
 <section id="calculadora">
 
-<h2>🧮 Calculadora Básica</h2>
+<h2>🧮 Calculadora</h2>
 
 <input type="number" id="num1" placeholder="Número 1">
+
 <input type="number" id="num2" placeholder="Número 2">
 
-<br>
+<br><br>
 
 <button onclick="calcular('+')">+</button>
 <button onclick="calcular('-')">-</button>
 <button onclick="calcular('*')">*</button>
 <button onclick="calcular('/')">/</button>
 
-<h3 id="resultadoCalc">Resultado: 0</h3>
-
-</section>
-
-<section id="cientifica">
-
-<h2>🧮 Calculadora Científica</h2>
-
-<input type="number" id="cientificaNum" placeholder="Número">
-
-<br>
-
-<button onclick="raiz()">√</button>
-<button onclick="potencia()">x²</button>
-<button onclick="porcentaje()">%</button>
-<button onclick="logaritmo()">log</button>
-
-<h3 id="resultadoCientifica"></h3>
-
-</section>
-
-<section id="monedas">
-
-<h2>💱 Conversor de Monedas</h2>
-
-<input type="number" id="money" placeholder="Cantidad">
-
-<br>
-
-<button onclick="usdcop()">USD→COP</button>
-<button onclick="copusd()">COP→USD</button>
-<button onclick="eurcop()">EUR→COP</button>
-
-<h3 id="resultadoMoneda"></h3>
-
-</section>
-
-<section id="unidades">
-
-<h2>📏 Conversor de Unidades</h2>
-
-<input type="number" id="unidad" placeholder="Valor">
-
-<br>
-
-<button onclick="metrosPies()">Metros→Pies</button>
-<button onclick="kmMillas()">Km→Millas</button>
-<button onclick="kgLibras()">Kg→Libras</button>
-
-<h3 id="resultadoUnidad"></h3>
+<h3 id="resultadoCalc">
+Resultado: 0
+</h3>
 
 </section>
 
 <section id="reloj">
 
-<h2>⏰ Reloj Mundial</h2>
+<h2>⏰ Hora Mundial</h2>
 
 <div class="card">
 
@@ -330,7 +291,7 @@ video1.mp4
 
 <section id="traductor">
 
-<h2>🌍 Traductor</h2>
+<h2>🌎 Traductor</h2>
 
 <textarea
 id="textoTraducir"
@@ -346,38 +307,28 @@ Traducir
 
 </section>
 
-<section>
-
-<h2>📅 Agenda Personal</h2>
-
-<input type="date">
-
-<textarea
-rows="5"
-placeholder="Escribe tus tareas aquí...">
-</textarea>
-
-</section>
-
 <section id="contacto">
 
 <h2>📧 Contacto</h2>
+
+<div class="card">
 
 <p>
 carloslondo196619@gmail.com
 </p>
 
-<a class="btn"
-href="mailto:carloslondo196619@gmail.com">
-Enviar Correo
-</a>
+<p>
+Cali - Colombia
+</p>
+
+</div>
 
 </section>
 
 <footer>
 
 <p>
-© 2026 MiAppDrive AI Portal
+© 2026 URU Music AI Portal
 </p>
 
 </footer>
@@ -416,96 +367,6 @@ document.getElementById("resultadoCalc").innerHTML=
 
 }
 
-function raiz(){
-
-let n=parseFloat(document.getElementById("cientificaNum").value);
-
-document.getElementById("resultadoCientifica").innerHTML=
-Math.sqrt(n);
-
-}
-
-function potencia(){
-
-let n=parseFloat(document.getElementById("cientificaNum").value);
-
-document.getElementById("resultadoCientifica").innerHTML=
-n*n;
-
-}
-
-function porcentaje(){
-
-let n=parseFloat(document.getElementById("cientificaNum").value);
-
-document.getElementById("resultadoCientifica").innerHTML=
-n/100;
-
-}
-
-function logaritmo(){
-
-let n=parseFloat(document.getElementById("cientificaNum").value);
-
-document.getElementById("resultadoCientifica").innerHTML=
-Math.log10(n);
-
-}
-
-function usdcop(){
-
-let n=parseFloat(document.getElementById("money").value);
-
-document.getElementById("resultadoMoneda").innerHTML=
-(n*4000).toFixed(2)+" COP";
-
-}
-
-function copusd(){
-
-let n=parseFloat(document.getElementById("money").value);
-
-document.getElementById("resultadoMoneda").innerHTML=
-(n/4000).toFixed(2)+" USD";
-
-}
-
-function eurcop(){
-
-let n=parseFloat(document.getElementById("money").value);
-
-document.getElementById("resultadoMoneda").innerHTML=
-(n*4500).toFixed(2)+" COP";
-
-}
-
-function metrosPies(){
-
-let n=parseFloat(document.getElementById("unidad").value);
-
-document.getElementById("resultadoUnidad").innerHTML=
-(n*3.28084).toFixed(2)+" pies";
-
-}
-
-function kmMillas(){
-
-let n=parseFloat(document.getElementById("unidad").value);
-
-document.getElementById("resultadoUnidad").innerHTML=
-(n*0.621371).toFixed(2)+" millas";
-
-}
-
-function kgLibras(){
-
-let n=parseFloat(document.getElementById("unidad").value);
-
-document.getElementById("resultadoUnidad").innerHTML=
-(n*2.20462).toFixed(2)+" libras";
-
-}
-
 function abrirTraductor(){
 
 let texto=encodeURIComponent(
@@ -513,9 +374,7 @@ document.getElementById("textoTraducir").value
 );
 
 window.open(
-"https://translate.google.com/?sl=es&tl=en&text=" +
-texto +
-"&op=translate"
+"https://translate.google.com/?sl=es&tl=en&text="+texto+"&op=translate"
 );
 
 }
@@ -523,27 +382,47 @@ texto +
 function actualizarReloj(){
 
 document.getElementById("horaColombia").innerHTML=
-"🇨🇴 Colombia: " +
+"🇨🇴 Colombia: "+
 new Date().toLocaleTimeString("es-CO");
 
 document.getElementById("horaEspana").innerHTML=
-"🇪🇸 España: " +
+"🇪🇸 España: "+
 new Date().toLocaleTimeString("es-ES");
 
 document.getElementById("horaMexico").innerHTML=
-"🇲🇽 México: " +
+"🇲🇽 México: "+
 new Date().toLocaleTimeString("es-MX");
 
 document.getElementById("horaUSA").innerHTML=
-"🇺🇸 USA: " +
+"🇺🇸 USA: "+
 new Date().toLocaleTimeString("en-US");
 
 }
 
 setInterval(actualizarReloj,1000);
+actualizarReloj();
+
+function cargarCanal(url){
+
+const video=document.getElementById("tvPlayer");
+
+if(Hls.isSupported()){
+
+const hls=new Hls();
+
+hls.loadSource(url);
+
+hls.attachMedia(video);
+
+}else{
+
+video.src=url;
+
+}
+
+}
 
 </script>
 
 </body>
 </html>
-
