@@ -2,8 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>🌌 UruchillAI Portal</title>
 
 <style>
@@ -27,7 +26,7 @@ backdrop-filter:blur(10px);
 padding:15px;
 position:sticky;
 top:0;
-z-index:1000;
+z-index:100;
 }
 
 nav{
@@ -43,10 +42,6 @@ text-decoration:none;
 font-weight:bold;
 }
 
-nav a:hover{
-color:#38bdf8;
-}
-
 .hero{
 text-align:center;
 padding:80px 20px;
@@ -55,7 +50,7 @@ padding:80px 20px;
 .hero h1{
 font-size:3rem;
 color:#38bdf8;
-text-shadow:0 0 20px #38bdf8;
+margin-bottom:10px;
 }
 
 .btn{
@@ -66,6 +61,7 @@ background:#2563eb;
 border-radius:10px;
 color:white;
 text-decoration:none;
+font-weight:bold;
 }
 
 .btn:hover{
@@ -83,13 +79,13 @@ background:rgba(255,255,255,.08);
 padding:20px;
 border-radius:15px;
 backdrop-filter:blur(10px);
+margin-bottom:20px;
 }
 
 audio,
 video{
 width:100%;
 margin-top:15px;
-border-radius:10px;
 }
 
 button{
@@ -100,6 +96,7 @@ margin:5px;
 cursor:pointer;
 background:#3b82f6;
 color:white;
+font-size:16px;
 }
 
 button:hover{
@@ -117,27 +114,12 @@ text-align:center;
 margin-top:10px;
 }
 
-.playlist{
-margin-top:20px;
-max-height:300px;
-overflow:auto;
-}
-
-.playlist div{
-padding:10px;
-border-bottom:1px solid rgba(255,255,255,.1);
-cursor:pointer;
-}
-
-.playlist div:hover{
-background:rgba(255,255,255,.1);
-}
-
 iframe{
 width:100%;
 height:700px;
 border:none;
 border-radius:15px;
+background:white;
 }
 
 footer{
@@ -156,12 +138,10 @@ background:#020617;
 <header>
 
 <nav>
-
-<a href="#inicio">Inicio</a>
-<a href="#musica">Música</a>
-<a href="#videos">Videos</a>
-<a href="#space">Space IA</a>
-
+#inicioInicio</a>
+#musicaMúsica</a>
+#videosVideos</a>
+#spaceSpace IA</a>
 </nav>
 
 </header>
@@ -194,10 +174,10 @@ target="_blank">
 
 <div class="card">
 
-<h2>🎵 Reproductor Musical</h2>
+<h2>🎵 Reproductor</h2>
 
 <h3 id="songTitle">
-Cargando...
+Cargando canciones...
 </h3>
 
 <audio
@@ -207,20 +187,23 @@ controls>
 
 <div style="text-align:center">
 
-<button id="prevBtn">⏮ Anterior</button>
-<button id="nextBtn">⏭ Siguiente</button>
-<button id="randomBtn">🔀 Aleatorio</button>
+<button id="prevBtn">
+⏮
+</button>
+
+<button id="nextBtn">
+⏭
+</button>
+
+<button id="randomBtn">
+🔀
+</button>
 
 </div>
 
 <p id="songCounter">
 0 / 0
 </p>
-
-<div
-id="playlist"
-class="playlist">
-</div>
 
 </div>
 
@@ -257,7 +240,7 @@ src="https://ernimu-uruchillai-gradio.hf.space">
 
 <footer>
 
-🌌 UruchillAI Portal
+🌌 UruchillAI Portal 2026
 
 </footer>
 
@@ -269,30 +252,163 @@ const repoGit = "uru-music-siempre";
 let canciones = [];
 let actual = 0;
 
-const audio =
-document.getElementById("audioPlayer");
+const audio = document.getElementById("audioPlayer");
 
 function cargarCancion(i){
 
 actual = i;
 
-audio.src =
-canciones[i].url;
+audio.src = canciones[i].url;
 
-document.getElementById(
-"songTitle"
-).textContent =
-"🎵 " + canciones[i].nombre;
+document.getElementById("songTitle").textContent =
+canciones[i].nombre;
 
-document.getElementById(
-"songCounter"
-).textContent =
-(actual+1) + " / " +
-canciones.length;
+document.getElementById("songCounter").textContent =
+(actual + 1) + " / " + canciones.length;
 
-audio.play();
+audio.play().catch(() => {});
 
 }
 
+/* MUSICA */
+
 fetch(
-`https://api.github.com/repos/${usuarioGit}/${repoGit}/contents
+`https://api.github.com/repos/${usuarioGit}/${repoGit}/contents/musica`
+)
+
+.then(r => {
+if(!r.ok){
+throw new Error("No se encontró la carpeta musica");
+}
+return r.json();
+})
+
+.then(data => {
+
+canciones = data
+.filter(f => f.name.toLowerCase().endsWith(".mp3"))
+.map(f => ({
+nombre:f.name,
+url:f.download_url
+}));
+
+if(canciones.length > 0){
+cargarCancion(0);
+}else{
+document.getElementById("songTitle").textContent =
+"No hay canciones";
+}
+
+})
+
+.catch(error => {
+
+console.error(error);
+
+document.getElementById("songTitle").textContent =
+"Error cargando música";
+
+});
+
+document.getElementById("nextBtn").onclick = () => {
+
+if(!canciones.length) return;
+
+cargarCancion(
+(actual + 1) % canciones.length
+);
+
+};
+
+document.getElementById("prevBtn").onclick = () => {
+
+if(!canciones.length) return;
+
+cargarCancion(
+(actual - 1 + canciones.length) %
+canciones.length
+);
+
+};
+
+document.getElementById("randomBtn").onclick = () => {
+
+if(!canciones.length) return;
+
+cargarCancion(
+Math.floor(
+Math.random() * canciones.length
+)
+);
+
+};
+
+audio.addEventListener("ended", () => {
+
+if(!canciones.length) return;
+
+cargarCancion(
+(actual + 1) % canciones.length
+);
+
+});
+
+/* VIDEOS */
+
+fetch(
+`https://api.github.com/repos/${usuarioGit}/${repoGit}/contents/videos`
+)
+
+.then(r => {
+if(!r.ok){
+throw new Error("No se encontró la carpeta videos");
+}
+return r.json();
+})
+
+.then(data => {
+
+const videos = data
+.filter(f => f.name.toLowerCase().endsWith(".mp4"))
+.map(f => f.download_url);
+
+if(videos.length === 0){
+return;
+}
+
+const player =
+document.getElementById("videoPlayer");
+
+let actualVideo = 0;
+
+player.src = videos[0];
+
+player.addEventListener("ended", () => {
+
+actualVideo++;
+
+if(actualVideo >= videos.length){
+actualVideo = 0;
+}
+
+player.src = videos[actualVideo];
+
+player.play().catch(() => {});
+
+});
+
+})
+
+.catch(error => {
+
+console.error(
+"Error videos:",
+error
+);
+
+});
+
+</script>
+
+</body>
+</html>
