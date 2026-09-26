@@ -2,64 +2,121 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>🌌 UruchillAI Portal</title>
 
 <style>
 
-body{
+*{
 margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
 font-family:Arial,sans-serif;
-background:#020617;
+background:linear-gradient(180deg,#020617,#0f172a,#1e3a8a);
 color:white;
+min-height:100vh;
 }
 
 header{
-background:#0f172a;
+background:rgba(0,0,0,.5);
+backdrop-filter:blur(10px);
 padding:15px;
-text-align:center;
+position:sticky;
+top:0;
+}
+
+nav{
+display:flex;
+justify-content:center;
+gap:20px;
+flex-wrap:wrap;
 }
 
 nav a{
 color:white;
 text-decoration:none;
-margin:10px;
+font-weight:bold;
 }
 
 .hero{
-padding:80px 20px;
 text-align:center;
-background:linear-gradient(135deg,#1d4ed8,#020617);
+padding:80px 20px;
+}
+
+.hero h1{
+font-size:3rem;
+color:#38bdf8;
 }
 
 .btn{
 display:inline-block;
 padding:12px 20px;
+margin:5px;
 background:#2563eb;
+border-radius:10px;
 color:white;
 text-decoration:none;
-border-radius:10px;
-margin:5px;
+}
+
+section{
+padding:30px;
+max-width:1000px;
+margin:auto;
 }
 
 .card{
-max-width:900px;
-margin:auto;
+background:rgba(255,255,255,.08);
 padding:20px;
+border-radius:15px;
+backdrop-filter:blur(10px);
 }
 
-audio{
+audio,
+video{
 width:100%;
-margin-top:20px;
+margin-top:15px;
 }
 
 button{
 padding:10px 15px;
-margin:5px;
 border:none;
 border-radius:10px;
+margin:5px;
 cursor:pointer;
+background:#3b82f6;
+color:white;
+}
+
+button:hover{
+background:#60a5fa;
+}
+
+#songTitle{
+text-align:center;
+margin:10px 0;
+color:#38bdf8;
+}
+
+#songCounter{
+text-align:center;
+margin-top:10px;
+}
+
+iframe{
+width:100%;
+height:700px;
+border:none;
+border-radius:15px;
+}
+
+footer{
+text-align:center;
+padding:20px;
+margin-top:50px;
+background:#020617;
 }
 
 </style>
@@ -71,11 +128,10 @@ cursor:pointer;
 <header>
 
 <nav>
-
 <a href="#inicio">Inicio</a>
 <a href="#musica">Música</a>
+<a href="#videos">Videos</a>
 <a href="#space">Space IA</a>
-
 </nav>
 
 </header>
@@ -84,15 +140,22 @@ cursor:pointer;
 
 <h1>🚀 UruchillAI Portal</h1>
 
-<p>
-Reproductor musical conectado a GitHub
-</p>
+<p>Streaming • Música • Video • IA</p>
+
+<br>
 
 <a
 class="btn"
 href="https://github.com/uruchillai/uru-music-siempre"
 target="_blank">
-GitHub
+📂 GitHub
+</a>
+
+<a
+class="btn"
+href="https://ernimu-uruchillai-gradio.hf.space"
+target="_blank">
+🤖 Abrir IA
 </a>
 
 </section>
@@ -101,20 +164,30 @@ GitHub
 
 <div class="card">
 
-<h2 id="songTitle">
+<h2>🎵 Reproductor</h2>
+
+<h3 id="songTitle">
 Cargando...
-</h2>
+</h3>
 
 <audio
 id="audioPlayer"
 controls>
 </audio>
 
-<div>
+<div style="text-align:center">
 
-<button id="prevBtn">⏮</button>
-<button id="nextBtn">⏭</button>
-<button id="randomBtn">🔀</button>
+<button id="prevBtn">
+⏮
+</button>
+
+<button id="nextBtn">
+⏭
+</button>
+
+<button id="randomBtn">
+🔀
+</button>
 
 </div>
 
@@ -126,17 +199,40 @@ controls>
 
 </section>
 
-<section id="space" class="card">
+<section id="videos">
 
-<h2>🤖 Space IA</h2>
+<div class="card">
 
-<iframe
-src="https://ernimu-uruchillai-gradio.hf.space"
-width="100%"
-height="700">
-</iframe>
+<h2>🎬 Video Automático</h2>
+
+<video
+id="videoPlayer"
+controls>
+</video>
+
+</div>
 
 </section>
+
+<section id="space">
+
+<div class="card">
+
+<h2>🤖 Hugging Face Space</h2>
+
+<iframe
+src="https://ernimu-uruchillai-gradio.hf.space">
+</iframe>
+
+</div>
+
+</section>
+
+<footer>
+
+🌌 UruchillAI Portal 2026
+
+</footer>
 
 <script>
 
@@ -154,10 +250,13 @@ actual=i;
 
 audio.src=canciones[i].url;
 
-document.getElementById("songTitle").innerText=
-canciones[i].nombre;
+document.getElementById(
+"songTitle"
+).textContent=canciones[i].nombre;
 
-document.getElementById("songCounter").innerText=
+document.getElementById(
+"songCounter"
+).textContent=
 (actual+1)+" / "+canciones.length;
 
 audio.play();
@@ -180,14 +279,14 @@ url:f.download_url
 }));
 
 if(canciones.length){
-
 cargarCancion(0);
-
 }
 
 });
 
-document.getElementById("nextBtn").onclick=()=>{
+document
+.getElementById("nextBtn")
+.onclick=()=>{
 
 if(!canciones.length)return;
 
@@ -197,7 +296,9 @@ cargarCancion(
 
 };
 
-document.getElementById("prevBtn").onclick=()=>{
+document
+.getElementById("prevBtn")
+.onclick=()=>{
 
 if(!canciones.length)return;
 
@@ -207,7 +308,9 @@ cargarCancion(
 
 };
 
-document.getElementById("randomBtn").onclick=()=>{
+document
+.getElementById("randomBtn")
+.onclick=()=>{
 
 if(!canciones.length)return;
 
@@ -219,13 +322,64 @@ Math.random()*canciones.length
 
 };
 
-audio.addEventListener("ended",()=>{
+audio.addEventListener(
+"ended",
+()=>{
 
 if(!canciones.length)return;
 
 cargarCancion(
 (actual+1)%canciones.length
 );
+
+}
+);
+
+/* VIDEOS */
+
+fetch(
+`https://api.github.com/repos/${usuarioGit}/${repoGit}/contents/videos`
+)
+
+.then(r=>r.json())
+
+.then(data=>{
+
+const videos=data
+.filter(f=>f.name.endsWith(".mp4"))
+.map(f=>f.download_url);
+
+if(videos.length===0)return;
+
+const player=
+document.getElementById(
+"videoPlayer"
+);
+
+let actualVideo=0;
+
+player.src=videos[0];
+
+player.addEventListener(
+"ended",
+()=>{
+
+actualVideo++;
+
+if(
+actualVideo>=videos.length
+){
+
+actualVideo=0;
+
+}
+
+player.src=
+videos[actualVideo];
+
+player.play();
+
+});
 
 });
 
