@@ -3,10 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>URU Music Portal</title>
 
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/n.css
+<title>URU Music Portal</title>
 
 https://cdn.jsdelivr.net/npm/hls.js@latestscript>
 
@@ -22,99 +20,100 @@ body{
 font-family:Segoe UI,Arial,sans-serif;
 background:#0b1020;
 color:white;
+line-height:1.6;
 }
 
 header{
+background:#111827;
 position:sticky;
 top:0;
-background:#111827;
+z-index:1000;
 padding:15px;
-z-index:999;
 }
 
 nav ul{
 display:flex;
+justify-content:center;
 flex-wrap:wrap;
 gap:15px;
-justify-content:center;
 list-style:none;
 }
 
 nav a{
-color:white;
 text-decoration:none;
+color:white;
 font-weight:bold;
 }
 
+nav a:hover{
+color:#4fc3f7;
+}
+
 .hero{
-text-align:center;
 padding:80px 20px;
+text-align:center;
 background:linear-gradient(135deg,#16213e,#0f3460);
 }
 
 .hero h1{
 font-size:3rem;
+margin-bottom:10px;
 }
 
 section{
 padding:40px 20px;
+max-width:1200px;
+margin:auto;
 }
 
 .card{
-background:rgba(255,255,255,.08);
+background:rgba(255,255,255,.07);
 padding:20px;
 border-radius:15px;
 margin-top:15px;
 }
 
-.btn{
-display:inline-block;
-padding:12px 20px;
-background:#2196f3;
-border-radius:10px;
-color:white;
-text-decoration:none;
-margin-top:10px;
-}
-
-.stats{
-display:flex;
-flex-wrap:wrap;
-justify-content:center;
-gap:20px;
-margin-top:20px;
-}
-
-.stat{
-background:#1e293b;
-padding:20px;
-border-radius:15px;
-min-width:180px;
-text-align:center;
-}
-
-input,textarea,select{
-width:100%;
-padding:10px;
-border-radius:8px;
-border:none;
-margin-top:10px;
+h2{
+margin-bottom:15px;
+color:#4fc3f7;
 }
 
 button{
-padding:10px 15px;
-background:#4caf50;
-color:white;
+background:#2196f3;
 border:none;
+padding:10px 15px;
 border-radius:8px;
+color:white;
 cursor:pointer;
-margin-top:10px;
+margin:5px;
 }
 
-video,audio,img{
+button:hover{
+background:#1976d2;
+}
+
+input,
+textarea,
+select{
+width:100%;
+padding:10px;
+border:none;
+border-radius:8px;
+margin:10px 0;
+}
+
+audio{
+width:100%;
+}
+
+.video-box{
+max-width:500px;
+margin:auto;
+}
+
+.video-box video{
 width:100%;
 border-radius:10px;
-margin-top:15px;
 }
 
 .gallery{
@@ -123,7 +122,13 @@ grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
 gap:15px;
 }
 
+img{
+width:100%;
+border-radius:10px;
+}
+
 footer{
+margin-top:30px;
 background:#111827;
 padding:20px;
 text-align:center;
@@ -135,55 +140,38 @@ text-align:center;
 <body>
 
 <header>
+
 <nav>
+
 <ul>
+
 <li><a href="#inicio">Inicio</a></li>
 <li>#radioRadio</a></li>
+<li>#musicaMP3</a></li>
+<li>#videosVideos</a></li>
 <li>#tvTV</a></li>
-<li>#videosVideos IA</a></li>
-<li>#imagenesImágenes IA</a></li>
 <li>#herramientasHerramientas</a></li>
 <li><a href="#contacto">Contacto</a></li>
+
 </ul>
+
 </nav>
+
 </header>
 
 <section class="hero" id="inicio">
 
-<h1>🎵 URU Music Portal</h1>
+<h1>🎵 URU Music</h1>
 
 <p>
-Radio Online · IA · Videos · Streaming
+Radio Online · Música · Videos · Streaming
 </p>
-
-#radio
-Escuchar Ahora
-</a>
-
-<div class="stats">
-
-<div class="stat">
-<h3>📻 Radio</h3>
-<p>24/7</p>
-</div>
-
-<div class="stat">
-<h3>🤖 IA</h3>
-<p>Activa</p>
-</div>
-
-<div class="stat">
-<h3>🌎 Online</h3>
-<p>Global</p>
-</div>
-
-</div>
 
 </section>
 
 <section id="radio">
 
-<h2>📻 Radio URU Music</h2>
+<h2>📻 Radio Icecast</h2>
 
 <div class="card">
 
@@ -191,9 +179,53 @@ Escuchar Ahora
 https://urumusic.online/stream
 </audio>
 
-<p id="song">
-Conectando...
+<p>
+🔴 Emisión en vivo 24/7
 </p>
+
+</div>
+
+</section>
+
+<section id="musica">
+
+<h2>🎵 Reproductor MP3</h2>
+
+<div class="card">
+
+<audio id="audioPlayer" controls>
+musica/cancion1.mp3
+</audio>
+
+<br>
+
+<button onclick="anteriorAudio()">⏮</button>
+<button onclick="siguienteAudio()">⏭</button>
+
+</div>
+
+</section>
+
+<section id="videos">
+
+<h2>🎬 Videos</h2>
+
+<div class="card">
+
+<div class="video-box">
+
+<video id="videoPlayer" controls>
+videos/video1.mp4
+</video>
+
+</div>
+
+<center>
+
+<button onclick="anteriorVideo()">⏮</button>
+<button onclick="siguienteVideo()">⏭</button>
+
+</center>
 
 </div>
 
@@ -208,15 +240,15 @@ Conectando...
 <select id="tvSelect">
 
 <option value="">
-Seleccione un canal
+Seleccione Canal
 </option>
 
-<option value="URL_CANAL_HLS_1">
-Canal Público 1
+<option value="URL_CANAL_1.m3u8">
+Canal 1
 </option>
 
-<option value="URL_CANAL_HLS_2">
-Canal Público 2
+<option value="URL_CANAL_2.m3u8">
+Canal 2
 </option>
 
 </select>
@@ -225,41 +257,11 @@ Canal Público 2
 Abrir Canal
 </button>
 
-<video id="tvPlayer" controls autoplay></video>
+<div class="video-box">
+
+<video id="tvPlayer" controls></video>
 
 </div>
-
-</section>
-
-<section id="videos">
-
-<h2>🎬 Videos IA</h2>
-
-<div class="gallery">
-
-<video controls>
-<source src="video1.mp4">
-</video>
-
-<video controls>
-video2.mp4
-</video>
-
-</div>
-
-</section>
-
-<section id="imagenes">
-
-<h2>🖼️ Galería IA</h2>
-
-<div class="gallery">
-
-img1.jpg
-
-img2.jpg
-
-img3.jpg
 
 </div>
 
@@ -274,7 +276,6 @@ img3.jpg
 <h3>🧮 Calculadora</h3>
 
 <input id="n1" type="number" placeholder="Número 1">
-
 <input id="n2" type="number" placeholder="Número 2">
 
 <button onclick="sumar()">
@@ -289,8 +290,7 @@ Calcular
 
 <h3>🔲 Generador QR</h3>
 
-<input id="qrtexto"
-placeholder="Texto o URL">
+<input id="qrtexto" placeholder="Texto o URL">
 
 <button onclick="crearQR()">
 Generar QR
@@ -306,7 +306,7 @@ Generar QR
 
 <textarea
 id="textoTraducir"
-rows="5">
+rows="4">
 </textarea>
 
 <button onclick="traducir()">
@@ -317,7 +317,7 @@ Traducir
 
 <div class="card">
 
-<h3>⏰ Hora Mundial</h3>
+<h3>⏰ Hora</h3>
 
 <p id="hora"></p>
 
@@ -349,11 +349,75 @@ Cali - Colombia
 
 <footer>
 
-© 2026 URU Music Portal
+© 2026 URU Music
 
 </footer>
 
 <script>
+
+const playlistAudio=[
+"musica/cancion1.mp3",
+"musica/cancion2.mp3",
+"musica/cancion3.mp3"
+];
+
+let audioActual=0;
+
+function siguienteAudio(){
+
+audioActual++;
+
+if(audioActual>=playlistAudio.length)
+audioActual=0;
+
+document.getElementById("audioPlayer").src=
+playlistAudio[audioActual];
+
+}
+
+function anteriorAudio(){
+
+audioActual--;
+
+if(audioActual<0)
+audioActual=playlistAudio.length-1;
+
+document.getElementById("audioPlayer").src=
+playlistAudio[audioActual];
+
+}
+
+const playlistVideo=[
+"videos/video1.mp4",
+"videos/video2.mp4",
+"videos/video3.mp4"
+];
+
+let videoActual=0;
+
+function siguienteVideo(){
+
+videoActual++;
+
+if(videoActual>=playlistVideo.length)
+videoActual=0;
+
+document.getElementById("videoPlayer").src=
+playlistVideo[videoActual];
+
+}
+
+function anteriorVideo(){
+
+videoActual--;
+
+if(videoActual<0)
+videoActual=playlistVideo.length-1;
+
+document.getElementById("videoPlayer").src=
+playlistVideo[videoActual];
+
+}
 
 function sumar(){
 
@@ -372,8 +436,7 @@ document.getElementById("resultado").innerHTML=
 
 function crearQR(){
 
-let texto=
-document.getElementById("qrtexto").value;
+let texto=document.getElementById("qrtexto").value;
 
 document.getElementById("qr").src=
 "https://api.qrserver.com/v1/create-qr-code/?size=250x250&data="+
@@ -383,21 +446,30 @@ encodeURIComponent(texto);
 
 function traducir(){
 
-let texto=encodeURIComponent(
+const texto=encodeURIComponent(
 document.getElementById("textoTraducir").value
 );
 
 window.open(
-"https://translate.google.com/?sl=es&tl=en&text="+
-texto+
-"&op=translate"
+"https://translate.google.com/?sl=es&tl=en&text="+texto+"&op=translate"
 );
 
 }
 
+function reloj(){
+
+document.getElementById("hora").innerHTML=
+new Date().toLocaleString("es-CO");
+
+}
+
+setInterval(reloj,1000);
+
+reloj();
+
 function cargarCanal(){
 
-let url=
+const url=
 document.getElementById("tvSelect").value;
 
 if(!url) return;
@@ -407,7 +479,7 @@ document.getElementById("tvPlayer");
 
 if(Hls.isSupported()){
 
-const hls=new Hls();
+let hls=new Hls();
 
 hls.loadSource(url);
 
@@ -420,17 +492,6 @@ video.src=url;
 }
 
 }
-
-function reloj(){
-
-document.getElementById("hora").innerHTML=
-new Date().toLocaleString();
-
-}
-
-setInterval(reloj,1000);
-
-reloj();
 
 </script>
 
