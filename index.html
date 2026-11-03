@@ -3,13 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>URU Music Portal</title>
-
-https://cdn.jsdelivr.net/npm/hls.js@latestscript>
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 
 <style>
-
 *{
 margin:0;
 padding:0;
@@ -100,6 +97,7 @@ padding:10px;
 border:none;
 border-radius:8px;
 margin:10px 0;
+color: #000;
 }
 
 audio{
@@ -133,228 +131,126 @@ background:#111827;
 padding:20px;
 text-align:center;
 }
-
 </style>
 </head>
 
 <body>
 
 <header>
-
 <nav>
-
 <ul>
-
 <li><a href="#inicio">Inicio</a></li>
-<li>#radioRadio</a></li>
-<li>#musicaMP3</a></li>
-<li>#videosVideos</a></li>
-<li>#tvTV</a></li>
-<li>#herramientasHerramientas</a></li>
+<li><a href="#radio">Radio</a></li>
+<li><a href="#musica">Música</a></li>
+<li><a href="#videos">Videos</a></li>
+<li><a href="#tv">TV Online</a></li>
+<li><a href="#herramientas">Herramientas</a></li>
 <li><a href="#contacto">Contacto</a></li>
-
 </ul>
-
 </nav>
-
 </header>
 
 <section class="hero" id="inicio">
-
 <h1>🎵 URU Music</h1>
-
-<p>
-Radio Online · Música · Videos · Streaming
-</p>
-
+<p>Radio Online · Música · Videos · Streaming</p>
 </section>
 
 <section id="radio">
-
 <h2>📻 Radio Icecast</h2>
-
 <div class="card">
-
 <audio controls autoplay>
-https://urumusic.online/stream
+    <source src="https://urumusic.online/stream" type="audio/mpeg">
+    Tu navegador no soporta audio.
 </audio>
-
-<p>
-🔴 Emisión en vivo 24/7
-</p>
-
+<p>🔴 Emisión en vivo 24/7</p>
 </div>
-
 </section>
 
 <section id="musica">
-
 <h2>🎵 Reproductor MP3</h2>
-
 <div class="card">
-
 <audio id="audioPlayer" controls>
-musica/cancion1.mp3
+    <source src="musica/cancion1.mp3" type="audio/mpeg">
 </audio>
-
 <br>
-
 <button onclick="anteriorAudio()">⏮</button>
 <button onclick="siguienteAudio()">⏭</button>
-
 </div>
-
 </section>
 
 <section id="videos">
-
 <h2>🎬 Videos</h2>
-
 <div class="card">
-
 <div class="video-box">
-
 <video id="videoPlayer" controls>
-videos/video1.mp4
+    <source src="videos/video1.mp4" type="video/mp4">
 </video>
-
 </div>
-
 <center>
-
 <button onclick="anteriorVideo()">⏮</button>
 <button onclick="siguienteVideo()">⏭</button>
-
 </center>
-
 </div>
-
 </section>
 
 <section id="tv">
-
 <h2>📺 TV Online</h2>
-
 <div class="card">
-
 <select id="tvSelect">
-
-<option value="">
-Seleccione Canal
-</option>
-
-<option value="URL_CANAL_1.m3u8">
-Canal 1
-</option>
-
-<option value="URL_CANAL_2.m3u8">
-Canal 2
-</option>
-
+<option value="">Seleccione Canal</option>
+<option value="URL_CANAL_1.m3u8">Canal 1</option>
+<option value="URL_CANAL_2.m3u8">Canal 2</option>
 </select>
-
-<button onclick="cargarCanal()">
-Abrir Canal
-</button>
-
+<button onclick="cargarCanal()">Abrir Canal</button>
 <div class="video-box">
-
 <video id="tvPlayer" controls></video>
-
 </div>
-
 </div>
-
 </section>
 
 <section id="herramientas">
-
 <h2>🛠 Herramientas</h2>
-
 <div class="card">
-
 <h3>🧮 Calculadora</h3>
-
 <input id="n1" type="number" placeholder="Número 1">
 <input id="n2" type="number" placeholder="Número 2">
-
-<button onclick="sumar()">
-Calcular
-</button>
-
+<button onclick="sumar()">Calcular</button>
 <p id="resultado"></p>
-
 </div>
 
 <div class="card">
-
 <h3>🔲 Generador QR</h3>
-
 <input id="qrtexto" placeholder="Texto o URL">
-
-<button onclick="crearQR()">
-Generar QR
-</button>
-
+<button onclick="crearQR()">Generar QR</button>
 <img id="qr">
-
 </div>
 
 <div class="card">
-
 <h3>🌍 Traductor</h3>
-
-<textarea
-id="textoTraducir"
-rows="4">
-</textarea>
-
-<button onclick="traducir()">
-Traducir
-</button>
-
+<textarea id="textoTraducir" rows="4" placeholder="Escribe algo..."></textarea>
+<button onclick="traducir()">Traducir</button>
 </div>
 
 <div class="card">
-
 <h3>⏰ Hora</h3>
-
 <p id="hora"></p>
-
 </div>
-
 </section>
 
 <section id="contacto">
-
 <h2>📧 Contacto</h2>
-
 <div class="card">
-
-<p>
-Carlos Eduardo
-</p>
-
-<p>
-carloslondo196619@gmail.com
-</p>
-
-<p>
-Cali - Colombia
-</p>
-
+<p>Carlos Eduardo</p>
+<p>carloslondo196619@gmail.com</p>
+<p>Cali - Colombia</p>
 </div>
-
 </section>
 
 <footer>
-
 © 2026 URU Music
-
 </footer>
 
 <script>
-
 const playlistAudio=[
 "musica/cancion1.mp3",
 "musica/cancion2.mp3",
@@ -364,27 +260,17 @@ const playlistAudio=[
 let audioActual=0;
 
 function siguienteAudio(){
-
 audioActual++;
-
-if(audioActual>=playlistAudio.length)
-audioActual=0;
-
-document.getElementById("audioPlayer").src=
-playlistAudio[audioActual];
-
+if(audioActual>=playlistAudio.length) audioActual=0;
+document.getElementById("audioPlayer").src=playlistAudio[audioActual];
+document.getElementById("audioPlayer").play();
 }
 
 function anteriorAudio(){
-
 audioActual--;
-
-if(audioActual<0)
-audioActual=playlistAudio.length-1;
-
-document.getElementById("audioPlayer").src=
-playlistAudio[audioActual];
-
+if(audioActual<0) audioActual=playlistAudio.length-1;
+document.getElementById("audioPlayer").src=playlistAudio[audioActual];
+document.getElementById("audioPlayer").play();
 }
 
 const playlistVideo=[
@@ -396,103 +282,54 @@ const playlistVideo=[
 let videoActual=0;
 
 function siguienteVideo(){
-
 videoActual++;
-
-if(videoActual>=playlistVideo.length)
-videoActual=0;
-
-document.getElementById("videoPlayer").src=
-playlistVideo[videoActual];
-
+if(videoActual>=playlistVideo.length) videoActual=0;
+document.getElementById("videoPlayer").src=playlistVideo[videoActual];
+document.getElementById("videoPlayer").play();
 }
 
 function anteriorVideo(){
-
 videoActual--;
-
-if(videoActual<0)
-videoActual=playlistVideo.length-1;
-
-document.getElementById("videoPlayer").src=
-playlistVideo[videoActual];
-
+if(videoActual<0) videoActual=playlistVideo.length-1;
+document.getElementById("videoPlayer").src=playlistVideo[videoActual];
+document.getElementById("videoPlayer").play();
 }
 
 function sumar(){
-
-let a=parseFloat(
-document.getElementById("n1").value
-)||0;
-
-let b=parseFloat(
-document.getElementById("n2").value
-)||0;
-
-document.getElementById("resultado").innerHTML=
-"Resultado: "+(a+b);
-
+let a=parseFloat(document.getElementById("n1").value)||0;
+let b=parseFloat(document.getElementById("n2").value)||0;
+document.getElementById("resultado").innerHTML="Resultado: "+(a+b);
 }
 
 function crearQR(){
-
 let texto=document.getElementById("qrtexto").value;
-
-document.getElementById("qr").src=
-"https://api.qrserver.com/v1/create-qr-code/?size=250x250&data="+
-encodeURIComponent(texto);
-
+document.getElementById("qr").src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data="+encodeURIComponent(texto);
 }
 
 function traducir(){
-
-const texto=encodeURIComponent(
-document.getElementById("textoTraducir").value
-);
-
-window.open(
-"https://translate.google.com/?sl=es&tl=en&text="+texto+"&op=translate"
-);
-
+const texto=encodeURIComponent(document.getElementById("textoTraducir").value);
+window.open("https://translate.google.com/?sl=es&tl=en&text="+texto+"&op=translate");
 }
 
 function reloj(){
-
-document.getElementById("hora").innerHTML=
-new Date().toLocaleString("es-CO");
-
+document.getElementById("hora").innerHTML=new Date().toLocaleString("es-CO");
 }
 
 setInterval(reloj,1000);
-
 reloj();
 
 function cargarCanal(){
-
-const url=
-document.getElementById("tvSelect").value;
-
+const url=document.getElementById("tvSelect").value;
 if(!url) return;
-
-const video=
-document.getElementById("tvPlayer");
-
+const video=document.getElementById("tvPlayer");
 if(Hls.isSupported()){
-
 let hls=new Hls();
-
 hls.loadSource(url);
-
 hls.attachMedia(video);
-
 }else{
-
 video.src=url;
-
 }
-
 }
-
 </script>
 
 </body>
