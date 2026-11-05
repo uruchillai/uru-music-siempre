@@ -3,133 +3,155 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>URU Music Portal</title>
+<title>URU Music & Radio | Portal de Código Libre</title>
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 
 <style>
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
 }
 
 body{
-font-family:Segoe UI,Arial,sans-serif;
-background:#0b1020;
-color:white;
-line-height:1.6;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background:#0b0d17;
+  color:#ffffff;
+  line-height:1.6;
 }
 
 header{
-background:#111827;
-position:sticky;
-top:0;
-z-index:1000;
-padding:15px;
+  background:#111827;
+  position:sticky;
+  top:0;
+  z-index:1000;
+  padding:15px;
+  border-bottom: 1px solid rgba(0, 255, 204, 0.1);
 }
 
 nav ul{
-display:flex;
-justify-content:center;
-flex-wrap:wrap;
-gap:15px;
-list-style:none;
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:20px;
+  list-style:none;
 }
 
 nav a{
-text-decoration:none;
-color:white;
-font-weight:bold;
+  text-decoration:none;
+  color:#a0a5c0;
+  font-weight:bold;
+  transition: color 0.3s;
 }
 
 nav a:hover{
-color:#4fc3f7;
+  color:#00ffcc;
 }
 
 .hero{
-padding:80px 20px;
-text-align:center;
-background:linear-gradient(135deg,#16213e,#0f3460);
+  padding:60px 20px;
+  text-align:center;
+  background:linear-gradient(135deg,#16192b,#0b0d17);
+  border-bottom: 1px solid rgba(0, 255, 204, 0.1);
 }
 
 .hero h1{
-font-size:3rem;
-margin-bottom:10px;
+  font-size:2.8rem;
+  margin-bottom:10px;
+  color:#fff;
+}
+
+.hero p {
+  color:#a0a5c0;
 }
 
 section{
-padding:40px 20px;
-max-width:1200px;
-margin:auto;
+  padding:40px 20px;
+  max-width:900px;
+  margin:auto;
 }
 
 .card{
-background:rgba(255,255,255,.07);
-padding:20px;
-border-radius:15px;
-margin-top:15px;
+  background:rgba(22, 25, 43, 0.8);
+  border: 1px solid rgba(0, 255, 204, 0.2);
+  padding:30px;
+  border-radius:20px;
+  margin-top:20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(0, 255, 204, 0.05);
+  text-align: center;
 }
 
 h2{
-margin-bottom:15px;
-color:#4fc3f7;
+  margin-bottom:15px;
+  color:#00ffcc;
+  font-size: 1.5rem;
 }
 
-button{
-background:#2196f3;
-border:none;
-padding:10px 15px;
-border-radius:8px;
-color:white;
-cursor:pointer;
-margin:5px;
-}
-
-button:hover{
-background:#1976d2;
-}
-
-input,
-textarea,
-select{
-width:100%;
-padding:10px;
-border:none;
-border-radius:8px;
-margin:10px 0;
-color: #000;
+.badge-live {
+  display: inline-block;
+  background: #ff0055;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+  padding: 5px 12px;
+  border-radius: 50px;
+  text-transform: uppercase;
+  margin-bottom: 15px;
+  box-shadow: 0 0 10px rgba(255, 0, 85, 0.5);
 }
 
 audio{
-width:100%;
+  width:100%;
+  height: 45px;
+  margin-top: 10px;
+  outline: none;
 }
 
-.video-box{
-max-width:500px;
-margin:auto;
+.btn-opensource {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: #00ffcc;
+  color: #0b0d17;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.1rem;
+  padding: 16px 28px;
+  border-radius: 14px;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 20px rgba(0, 255, 204, 0.3);
+  width: 100%;
+  margin-top: 15px;
 }
 
-.video-box video{
-width:100%;
-border-radius:10px;
+.btn-opensource:hover {
+  background: #00cca3;
+  transform: translateY(-2px);
+  box-shadow: 0 0 30px rgba(0, 255, 204, 0.5);
 }
 
-.gallery{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:15px;
+.btn-opensource svg {
+  width: 24px;
+  height: 24px;
+  fill: #0b0d17;
 }
 
-img{
-width:100%;
-border-radius:10px;
+.desc-codigo {
+  color: #a0a5c0;
+  font-size: 0.95rem;
+  margin-bottom: 15px;
 }
 
 footer{
-margin-top:30px;
-background:#111827;
-padding:20px;
-text-align:center;
+  margin-top:40px;
+  background:#111827;
+  padding:20px;
+  text-align:center;
+  color:#a0a5c0;
+  font-size: 0.9rem;
+  border-top: 1px solid rgba(0, 255, 204, 0.1);
 }
 </style>
 </head>
@@ -139,198 +161,60 @@ text-align:center;
 <header>
 <nav>
 <ul>
-<li><a href="#inicio">Inicio</a></li>
-<li><a href="#radio">Radio</a></li>
-<li><a href="#musica">Música</a></li>
-<li><a href="#videos">Videos</a></li>
-<li><a href="#tv">TV Online</a></li>
-<li><a href="#herramientas">Herramientas</a></li>
+<li><a href="#radio">Radio en Vivo</a></li>
+<li><a href="#codigo">Código Libre</a></li>
 <li><a href="#contacto">Contacto</a></li>
 </ul>
 </nav>
 </header>
 
 <section class="hero" id="inicio">
-<h1>🎵 URU Music</h1>
-<p>Radio Online · Música · Videos · Streaming</p>
+<h1>⚡ URU Portal Multimedia</h1>
+<p>Emisión Independiente & Hardware de Código Abierto</p>
 </section>
 
+<!-- SECCIÓN RADIO ICECAST / BUTT -->
 <section id="radio">
-<h2>📻 Radio Icecast</h2>
 <div class="card">
+<span class="badge-live">🔴 Transmitiendo vía butt</span>
+<h2>Radio Online (Icecast)</h2>
 <audio controls autoplay>
-    <source src="https://urumusic.online/stream" type="audio/mpeg">
-    Tu navegador no soporta audio.
+    <!-- Enlace directo a tu servidor configurado con el puerto 8000 -->
+    <source src="https://portal.uruchillaimusiconline.online:8000/stream" type="audio/mpeg">
+    Tu navegador no soporta audio en vivo.
 </audio>
-<p>🔴 Emisión en vivo 24/7</p>
+<p style="margin-top: 15px; color: #a0a5c0; font-size: 0.9rem;">Sintonizado en directo desde el servidor principal.</p>
 </div>
 </section>
 
-<section id="musica">
-<h2>🎵 Reproductor MP3</h2>
+<!-- SECCIÓN CÓDIGO ABIERTO (GITHUB) -->
+<section id="codigo">
 <div class="card">
-<audio id="audioPlayer" controls>
-    <source src="musica/cancion1.mp3" type="audio/mpeg">
-</audio>
-<br>
-<button onclick="anteriorAudio()">⏮</button>
-<button onclick="siguienteAudio()">⏭</button>
+<h2>🤖 Firmware Abierto: BIOSHOP 7</h2>
+<p class="desc-codigo">Diseño libre de procesamiento por nodos y control de microcontroladores de 8 bits para prótesis[cite: 1]. ¡Cópialo, úsalo y mejóralo libremente!</p>
+
+<!-- Reemplaza el enlace href con el enlace exacto de tu repositorio de GitHub -->
+<a href="https://github.com/tu-usuario/tu-repositorio" target="_blank" class="btn-opensource">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+  </svg>
+  Regalar / Ver Código en GitHub
+</a>
 </div>
 </section>
 
-<section id="videos">
-<h2>🎬 Videos</h2>
-<div class="card">
-<div class="video-box">
-<video id="videoPlayer" controls>
-    <source src="videos/video1.mp4" type="video/mp4">
-</video>
-</div>
-<center>
-<button onclick="anteriorVideo()">⏮</button>
-<button onclick="siguienteVideo()">⏭</button>
-</center>
-</div>
-</section>
-
-<section id="tv">
-<h2>📺 TV Online</h2>
-<div class="card">
-<select id="tvSelect">
-<option value="">Seleccione Canal</option>
-<option value="URL_CANAL_1.m3u8">Canal 1</option>
-<option value="URL_CANAL_2.m3u8">Canal 2</option>
-</select>
-<button onclick="cargarCanal()">Abrir Canal</button>
-<div class="video-box">
-<video id="tvPlayer" controls></video>
-</div>
-</div>
-</section>
-
-<section id="herramientas">
-<h2>🛠 Herramientas</h2>
-<div class="card">
-<h3>🧮 Calculadora</h3>
-<input id="n1" type="number" placeholder="Número 1">
-<input id="n2" type="number" placeholder="Número 2">
-<button onclick="sumar()">Calcular</button>
-<p id="resultado"></p>
-</div>
-
-<div class="card">
-<h3>🔲 Generador QR</h3>
-<input id="qrtexto" placeholder="Texto o URL">
-<button onclick="crearQR()">Generar QR</button>
-<img id="qr">
-</div>
-
-<div class="card">
-<h3>🌍 Traductor</h3>
-<textarea id="textoTraducir" rows="4" placeholder="Escribe algo..."></textarea>
-<button onclick="traducir()">Traducir</button>
-</div>
-
-<div class="card">
-<h3>⏰ Hora</h3>
-<p id="hora"></p>
-</div>
-</section>
-
+<!-- SECCIÓN CONTACTO -->
 <section id="contacto">
-<h2>📧 Contacto</h2>
-<div class="card">
-<p>Carlos Eduardo</p>
-<p>carloslondo196619@gmail.com</p>
-<p>Cali - Colombia</p>
+<div class="card" style="text-align: center;">
+<h2>📬 Contacto</h2>
+<p style="color:#fff; font-weight: bold;">Carlos Eduardo</p>
+<p style="color:#a0a5c0;">Cali - Colombia</p>
 </div>
 </section>
 
 <footer>
-© 2026 URU Music
+© 2026 URU Music & Radio · Hecho con código libre
 </footer>
-
-<script>
-const playlistAudio=[
-"musica/cancion1.mp3",
-"musica/cancion2.mp3",
-"musica/cancion3.mp3"
-];
-
-let audioActual=0;
-
-function siguienteAudio(){
-audioActual++;
-if(audioActual>=playlistAudio.length) audioActual=0;
-document.getElementById("audioPlayer").src=playlistAudio[audioActual];
-document.getElementById("audioPlayer").play();
-}
-
-function anteriorAudio(){
-audioActual--;
-if(audioActual<0) audioActual=playlistAudio.length-1;
-document.getElementById("audioPlayer").src=playlistAudio[audioActual];
-document.getElementById("audioPlayer").play();
-}
-
-const playlistVideo=[
-"videos/video1.mp4",
-"videos/video2.mp4",
-"videos/video3.mp4"
-];
-
-let videoActual=0;
-
-function siguienteVideo(){
-videoActual++;
-if(videoActual>=playlistVideo.length) videoActual=0;
-document.getElementById("videoPlayer").src=playlistVideo[videoActual];
-document.getElementById("videoPlayer").play();
-}
-
-function anteriorVideo(){
-videoActual--;
-if(videoActual<0) videoActual=playlistVideo.length-1;
-document.getElementById("videoPlayer").src=playlistVideo[videoActual];
-document.getElementById("videoPlayer").play();
-}
-
-function sumar(){
-let a=parseFloat(document.getElementById("n1").value)||0;
-let b=parseFloat(document.getElementById("n2").value)||0;
-document.getElementById("resultado").innerHTML="Resultado: "+(a+b);
-}
-
-function crearQR(){
-let texto=document.getElementById("qrtexto").value;
-document.getElementById("qr").src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data="+encodeURIComponent(texto);
-}
-
-function traducir(){
-const texto=encodeURIComponent(document.getElementById("textoTraducir").value);
-window.open("https://translate.google.com/?sl=es&tl=en&text="+texto+"&op=translate");
-}
-
-function reloj(){
-document.getElementById("hora").innerHTML=new Date().toLocaleString("es-CO");
-}
-
-setInterval(reloj,1000);
-reloj();
-
-function cargarCanal(){
-const url=document.getElementById("tvSelect").value;
-if(!url) return;
-const video=document.getElementById("tvPlayer");
-if(Hls.isSupported()){
-let hls=new Hls();
-hls.loadSource(url);
-hls.attachMedia(video);
-}else{
-video.src=url;
-}
-}
-</script>
 
 </body>
 </html>
