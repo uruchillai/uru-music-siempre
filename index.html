@@ -124,6 +124,8 @@ audio{
   box-shadow: 0 0 20px rgba(0, 255, 204, 0.3);
   width: 100%;
   margin-top: 15px;
+  border: none;
+  cursor: pointer;
 }
 
 .btn-opensource:hover {
@@ -163,6 +165,7 @@ footer{
 <ul>
 <li><a href="#radio">Radio en Vivo</a></li>
 <li><a href="#codigo">Código Libre</a></li>
+<li><a href="#gps">Rastreador GPS</a></li>
 <li><a href="#contacto">Contacto</a></li>
 </ul>
 </nav>
@@ -179,11 +182,30 @@ footer{
 <span class="badge-live">🔴 Transmitiendo vía butt</span>
 <h2>Radio Online (Icecast)</h2>
 <audio controls autoplay>
-    <!-- Enlace directo a tu servidor configurado con el puerto 8000 -->
     <source src="https://portal.uruchillaimusiconline.online:8000/stream" type="audio/mpeg">
     Tu navegador no soporta audio en vivo.
 </audio>
 <p style="margin-top: 15px; color: #a0a5c0; font-size: 0.9rem;">Sintonizado en directo desde el servidor principal.</p>
+</div>
+</section>
+
+<!-- SECCIÓN RASTRADOR GPS SATELITAL EN VIVO -->
+<section id="gps">
+<div class="card">
+<span class="badge-live" style="background: #00ffcc; color: #0b0d17; box-shadow: 0 0 10px rgba(0, 255, 204, 0.5);">🛰️ Satélite en Línea</span>
+<h2>Rastreador Antirrobo Satelital</h2>
+<p class="desc-codigo">Conecta directamente con los satélites GPS gratuitos de tu dispositivo para obtener coordenadas en tiempo real.</p>
+
+<div id="estado-gps" style="background: #111827; padding: 20px; border-radius: 12px; margin: 20px 0; border: 1px solid rgba(0, 255, 204, 0.3); font-family: monospace; color: #00ffcc; font-size: 1.05rem;">
+    Sistema en espera. Presiona el botón para activar el rastreo.
+</div>
+
+<button onclick="activarRastreoGPS()" class="btn-opensource">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+    </svg>
+    Iniciar Rastreo Satelital
+</button>
 </div>
 </section>
 
@@ -193,7 +215,6 @@ footer{
 <h2>🤖 Firmware Abierto: BIOSHOP 7</h2>
 <p class="desc-codigo">Diseño libre de procesamiento por nodos y control de microcontroladores de 8 bits para prótesis[cite: 1]. ¡Cópialo, úsalo y mejóralo libremente!</p>
 
-<!-- Reemplaza el enlace href con el enlace exacto de tu repositorio de GitHub -->
 <a href="https://github.com/tu-usuario/tu-repositorio" target="_blank" class="btn-opensource">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
     <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
@@ -215,6 +236,57 @@ footer{
 <footer>
 © 2026 URU Music & Radio · Hecho con código libre
 </footer>
+
+<!-- SCRIPT DE RASTREO SATELITAL EN TIEMPO REAL -->
+<script>
+function activarRastreoGPS() {
+    const infoDiv = document.getElementById("estado-gps");
+    
+    if (navigator.geolocation) {
+        infoDiv.innerHTML = "🛰️ Buscando satélites y solicitando permisos de ubicación...";
+        
+        navigator.geolocation.watchPosition(
+            function(position) {
+                const lat = position.coords.latitude;
+                const lon = position.coords.longitude;
+                const vel = position.coords.speed || 0;
+                const alt = position.coords.altitude || 0;
+
+                infoDiv.innerHTML = `
+                    🟢 <b>¡SEÑAL GPS EN VIVO RECIBIDA!</b><br>
+                    📍 Latitud: ${lat.toFixed(6)}<br>
+                    📍 Longitud: ${lon.toFixed(6)}<br>
+                    🚀 Velocidad: ${(vel * 3.6).toFixed(1)} km/h<br>
+                    ⛰️ Altitud: ${alt.toFixed(1)} m
+                `;
+            },
+            function(error) {
+                switch(error.code) {
+                    case error.PERMISSION_DENIED:
+                        infoDiv.innerHTML = "⚠️ Permiso denegado. Debes aceptar compartir la ubicación.";
+                        break;
+                    case error.POSITION_UNAVAILABLE:
+                        infoDiv.innerHTML = "⚠️ Información de ubicación no disponible. Activa el GPS.";
+                        break;
+                    case error.TIMEOUT:
+                        infoDiv.innerHTML = "⚠️ Tiempo de espera agotado buscando satélites.";
+                        break;
+                    default:
+                        infoDiv.innerHTML = "⚠️ Error desconocido al obtener el GPS.";
+                        break;
+                }
+            },
+            {
+                enableHighAccuracy: true, // Obliga a usar hardware GPS real (satélites)
+                maximumAge: 0,            // Evita datos guardados en caché
+                timeout: 10000
+            }
+        );
+    } else {
+        infoDiv.innerHTML = "⚠️ Tu navegador no soporta geolocalización.";
+    }
+}
+</script>
 
 </body>
 </html>
