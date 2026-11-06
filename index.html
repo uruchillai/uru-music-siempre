@@ -237,7 +237,7 @@ footer{
 © 2026 URU Music & Radio · Hecho con código libre
 </footer>
 
-<!-- SCRIPT DE RASTREO SATELITAL EN TIEMPO REAL -->
+<!-- SCRIPT DE RASTREO SATELITAL CON GOOGLE MAPS -->
 <script>
 function activarRastreoGPS() {
     const infoDiv = document.getElementById("estado-gps");
@@ -252,12 +252,25 @@ function activarRastreoGPS() {
                 const vel = position.coords.speed || 0;
                 const alt = position.coords.altitude || 0;
 
+                const linkGoogleMaps = `https://www.google.com/maps?q=${lat},${lon}`;
+
                 infoDiv.innerHTML = `
                     🟢 <b>¡SEÑAL GPS EN VIVO RECIBIDA!</b><br>
                     📍 Latitud: ${lat.toFixed(6)}<br>
                     📍 Longitud: ${lon.toFixed(6)}<br>
                     🚀 Velocidad: ${(vel * 3.6).toFixed(1)} km/h<br>
-                    ⛰️ Altitud: ${alt.toFixed(1)} m
+                    ⛰️ Altitud: ${alt.toFixed(1)} m<br><br>
+                    <a href="${linkGoogleMaps}" target="_blank" style="
+                        display: inline-block;
+                        background: #00ffcc;
+                        color: #0b0d17;
+                        padding: 10px 20px;
+                        border-radius: 8px;
+                        text-decoration: none;
+                        font-weight: bold;
+                        margin-top: 10px;
+                        box-shadow: 0 0 10px rgba(0, 255, 204, 0.4);
+                    ">🗺️ Abrir ubicación en Google Maps</a>
                 `;
             },
             function(error) {
@@ -277,8 +290,8 @@ function activarRastreoGPS() {
                 }
             },
             {
-                enableHighAccuracy: true, // Obliga a usar hardware GPS real (satélites)
-                maximumAge: 0,            // Evita datos guardados en caché
+                enableHighAccuracy: true,
+                maximumAge: 0,
                 timeout: 10000
             }
         );
