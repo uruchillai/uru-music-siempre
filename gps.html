@@ -1,56 +1,83 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Diagnóstico GPS - URU</title>
+    <title>Consola GPS Satelital - URU</title>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; background-color: #0b0f19; color: #00ffcc; padding: 20px; }
-        #consola { font-family: monospace; font-size: 14px; margin: 20px auto; padding: 15px; background: #1f2937; border-radius: 8px; border: 1px solid #374151; max-width: 400px; text-align: left; word-break: break-all; }
-        button { background: #00ffcc; color: #0b0f19; border: none; padding: 12px 20px; font-size: 16px; font-weight: bold; border-radius: 8px; cursor: pointer; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; background: #0b0f19; color: #00ffcc; text-align: center; padding: 30px 15px; margin: 0; }
+        .box { background: #1f2937; border: 1px solid #374151; border-radius: 12px; padding: 20px; max-width: 450px; margin: 20px auto; text-align: left; box-shadow: 0 5px 20px rgba(0,0,0,0.5); }
+        h1 { font-size: 1.5rem; color: #fff; text-align: center; }
+        button { background: #00ffcc; color: #0b0d17; border: none; padding: 15px; width: 100%; font-size: 1.1rem; font-weight: bold; border-radius: 10px; cursor: pointer; margin-top: 10px; }
+        button:hover { background: #00cca3; }
+        a.btn-mapa { display: block; background: #0077ff; color: #fff; text-align: center; padding: 12px; border-radius: 8px; text-decoration: none; font-weight: bold; margin-top: 15px; }
+        a.btn-volver { display: inline-block; color: #a0a5c0; margin-top: 20px; text-decoration: none; }
     </style>
 </head>
 <body>
-    <h1>🛰️ Diagnóstico de GPS</h1>
-    <p>Presiona el botón para forzar la lectura del satélite:</p>
-    <button onclick="probarGPS()">Forzar Lectura GPS</button>
-    <div id="consola">Esperando acción...</div>
+
+    <h1>🛰️ Rastreador Satelital URU</h1>
+    <p style="color: #9ca3af; font-size: 0.9rem;">Presiona el botón para solicitar permiso de ubicación al celular.</p>
+
+    <button onclick="iniciarGPS()">📍 Activar Lectura Satelital</button>
+
+    <div class="box" id="consola">
+        🟢 Estado: Esperando activación del usuario...
+    </div>
+
+    <a href="index.html" class="btn-volver">← Volver al Portal / Radio</a>
 
     <script>
-        function log(texto) {
-            document.getElementById("consola").innerHTML += "<br>> " + texto;
-        }
+        function iniciarGPS() {
+            const consola = document.getElementById("consola");
+            consola.innerHTML = "🛰️ Conectando con los satélites GPS del dispositivo...";
 
-        function probarGPS() {
-            document.getElementById("consola").innerHTML = "Iniciando solicitud de GPS...";
-            
             if (!navigator.geolocation) {
-                log("ERROR: Tu navegador no soporta geolocalización.");
+                consola.innerHTML = "⚠️ Tu navegador no admite geolocalización por hardware.";
                 return;
             }
 
-            log("Navegador compatible. Solicitando permisos...");
-
-            navigator.geolocation.getCurrentPosition(
+            navigator.geolocation.watchPosition(
                 function(pos) {
-                    log("¡ÉXITO!");
-                    log("Lat: " + pos.coords.latitude);
-                    log("Lon: " + pos.coords.longitude);
-                    log("Precisión: " + pos.coords.accuracy + " metros");
-                    
-                    let mapsUrl = `https://www.google.com/maps?q=${pos.coords.latitude},${pos.coords.longitude}`;
-                    log(`<br><a href="${mapsUrl}" target="_blank" style="color: #fff; background: #0077ff; padding: 8px; display:inline-block; margin-top:10px; border-radius:5px; text-decoration:none;">Abrir en Google Maps</a>`);
+                    const lat = pos.coords.latitude;
+                    const lon = pos.coords.longitude;
+                    const alt = pos.coords.altitude ? pos.coords.altitude.toFixed(1) + " m" : "N/A";
+                    const vel = pos.coords.speed ? (pos.coords.speed * 3.6).toFixed(1) + " km/h" : "0.0 km/h";
+                    const mapUrl = `https://www.google.com/maps?q=${lat},${lon}`;
+
+                    consola.innerHTML = `
+                        ✅ <b>¡SEÑAL SATELITAL RECIBIDA!</b><br><br>
+                        📍 <b>Latitud:</b> ${lat.toFixed(6)}<br>
+                        📍 <b>Longitud:</b> ${lon.toFixed(6)}<br>
+                        ⛰️ <b>Altitud:</b> ${alt}<br>
+                        🚀 <b>Velocidad:</b> ${vel}<br>
+                        🎯 <b>Precisión:</b> ±${pos.coords.accuracy.toFixed(0)} metros<br>
+                        <a href="${mapUrl}" target="_blank" class="btn-mapa">🗺️ Abrir ubicación en Google Maps</a>
+                    `;
                 },
                 function(err) {
-                    log("ERROR GPS (Código " + err.code + "): " + err.message);
-                    if(err.code === 1) log("-> Permiso denegado por el usuario o el navegador.");
-                    if(err.code === 2) log("-> Posición no disponible. ¿Tienes el GPS del cel encendido?");
-                    if(err.code === 3) log("-> Tiempo de espera agotado.");
+                    let msg = "";
+                    switch(err.code) {
+                        case err.PERMISSION_DENIED:
+                            msg = "⚠️ Permiso Denegado. Activa la ubicación en los ajustes del navegador de tu celular.";
+                            break;
+                        case err.POSITION_UNAVAILABLE:
+                            msg = "⚠️ Posición no disponible. Asegúrate de tener el GPS del celular encendido.";
+                            break;
+                        case err.TIMEOUT:
+                            msg = "⚠️ Tiempo de espera agotado buscando la señal del satélite.";
+                            break;
+                        default:
+                            msg = "⚠️ Error leyendo datos GPS: " + err.message;
+                            break;
+                    }
+                    consola.innerHTML = msg;
                 },
                 {
                     enableHighAccuracy: true,
-                    timeout: 15000,
-                    maximumAge: 0
+                    maximumAge: 0,
+                    timeout: 15000
                 }
             );
         }
